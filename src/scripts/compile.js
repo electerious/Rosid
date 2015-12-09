@@ -23,7 +23,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 	routes   = routes.map(validate.route)
 	srcPath  = validate.path(srcPath)
 	distPath = validate.path(distPath)
-	opts     = validate.options(opts)
+	opts     = validate.opts(opts)
 	next     = validate.next(next)
 
 	async.series([

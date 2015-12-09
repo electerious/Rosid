@@ -18,7 +18,7 @@ module.exports = function(routes, srcPath, distPath, next) {
 	let items = []
 
 	fse.walk(srcPath)
-		.on('data', () => items.push(item.path))
+		.on('data', (item) => items.push(item.path))
 		.on('end', () => {
 			console.log(items)
 			next(null)
