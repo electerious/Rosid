@@ -2,6 +2,7 @@
 
 let async    = require('async'),
     validate = require('./validate'),
+    clean    = require('./clean'),
     copy     = require('./copy'),
     run      = require('./run')
 
@@ -28,6 +29,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	async.series([
 
+		(next) => clean(distPath, next),
 		(next) => copy(routes, srcPath, distPath, next),
 		(next) => run(routes, srcPath, distPath, next)
 
