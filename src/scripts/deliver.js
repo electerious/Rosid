@@ -50,11 +50,12 @@ module.exports = function(srcPath, rewrite, next) {
 	// @todo merge bs defaults with opts
 
 	let server = {
-		baseDir    : 'src',
+		baseDir    : srcPath,
 		middleware : rewrite
 	}
 
 	let defaults = {
+		logPrefix : 'Invo',
 		files     : getFiles(),
 		notify    : false,
 		ghostMode : false,
