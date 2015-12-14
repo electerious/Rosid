@@ -1,7 +1,9 @@
 'use strict'
 
-let async = require('async'),
-    fse   = require('fs-extra')
+let path     = require('path'),
+    async    = require('async'),
+    anymatch = require('anymatch'),
+    fse      = require('fs-extra')
 
 /**
  * Run multiple function in series. Each one running once the previous function has been completed.
@@ -13,18 +15,47 @@ let async = require('async'),
  */
 module.exports = function(routes, srcPath, distPath, next) {
 
-	let fns = []
+	let handlers = []
 
-	let items = []
+	const addFile = (file) => {
 
-	fse.walk(srcPath)
-		.on('data', (item) => items.push(item.path))
-		.on('end', () => {
-			console.log(items)
-			next(null)
+		routes.forEach((route) => {
+
+			// Convert file path to route path
+			let fileRoute = '/' + path.relative(srcPath, file.path)
+
+			// Only add handler to fn queue when fileRoute and route path matches
+			if (anymatch(route.path, fileRoute)===false) return false
+
+			// Skip file when handler should only run once and has already been added
+			if (route.opts.once===true && route._executed===true) return false
+
+			// Create paths object with all necessary information
+			let paths = {
+				route : route.path,
+				src   : srcPath,
+				dist  : distPath,
+				file  : file.path
+			}
+
+			let fn = (next) => route.handler(paths, next)
+
+			handlers.push(fn)
+			route._executed = true
+
 		})
 
-	// @todo run each handler for each matching file and pass paths object to the handler
-	// async.parallel(fns, next)
+	}
+
+	const executeHandlers = () => {
+
+		// Run each file handler and continue with next
+		async.parallel(handlers, next)
+
+	}
+
+	fse.walk(srcPath)
+	   .on('data', addFile)
+	   .on('end', executeHandlers)
 
 }
