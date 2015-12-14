@@ -39,7 +39,7 @@ const _route = function(route /*= {}*/, index /*= ''*/) {
 const _path = function(filePath /*= ''*/) {
 
 	// Make filePath absolute
-	filePath = path.resolve(process.cwd(), filePath)
+	filePath = path.resolve(filePath)
 
 	return filePath
 
