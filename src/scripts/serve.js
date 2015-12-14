@@ -13,7 +13,7 @@ let async    = require('async'),
  * @param {objects} opts - Additional optional options.
  * @param {function} next - The callback that handles the response. Receives the following properties: err.
  */
-module.exports = function(routes, srcPath, opts, next) {
+module.exports = function(routes, srcPath /*= 'src/'*/, opts, next) {
 
 	// Make opts optional and use opts as next when next is undefined
 	// Next will be validated at a later juncture
