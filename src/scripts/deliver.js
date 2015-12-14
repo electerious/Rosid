@@ -47,8 +47,6 @@ const getFiles = function() {
  */
 module.exports = function(srcPath, rewrite, next) {
 
-	// @todo merge bs defaults with opts
-
 	let server = {
 		baseDir    : srcPath,
 		middleware : rewrite
