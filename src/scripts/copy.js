@@ -1,7 +1,42 @@
 'use strict'
 
-let anymatch = require('anymatch'),
+let path     = require('path'),
+    anymatch = require('anymatch'),
     fse      = require('fs-extra')
+
+/**
+ * Get a list of all ignored files.
+ * @param {array} routes - Array of route configurations.
+ * @param {string} srcPath - Path to the source folder.
+ * @returns {array} ignoredFiles
+ */
+const getIgnoredFiles = function(routes, srcPath) {
+
+	// Those files are always ignored
+	let ignoredDefaults = [
+		'**/.git',
+		'**/CVS',
+		'**/.svn',
+		'**/.hg',
+		'**/.lock-wscript',
+		'**/.wafpickle-N',
+		'**/*.swp',
+		'**/.DS_Store',
+		'**/._*',
+		'**/npm-debug.log',
+		'**/_*'
+	]
+
+	// Make route paths absolute and add them to the ignored files
+	let ignoredRoutes = routes.map((route) => path.join(srcPath, route.path))
+
+	// Return all ignored files
+	return [
+		...ignoredDefaults,
+		...ignoredRoutes
+	]
+
+}
 
 /**
  * Copy an entire directory with all its files and folders. Specified files will be ignored.
@@ -13,9 +48,8 @@ let anymatch = require('anymatch'),
  */
 module.exports = function(routes, srcPath, distPath, next) {
 
-	// @todo Ignore default and route files
-
-	let matcher = anymatch([])
+	let ignoredFiles = getIgnoredFiles(routes, srcPath),
+	    matcher      = anymatch(ignoredFiles)
 
 	let opts = {
 		filter: (path) => !matcher(path)
