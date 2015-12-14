@@ -1,6 +1,7 @@
 'use strict'
 
-let compile = require('./compile')
+let compile = require('./compile'),
+    serve   = require('./serve')
 
 /**
  * Returns an object of functions.
@@ -12,7 +13,8 @@ let compile = require('./compile')
 module.exports = function(routes) {
 
 	return {
-		compile: compile.bind(null, routes)
+		compile : compile.bind(null, routes),
+		serve   : serve.bind(null, routes)
 	}
 
 }

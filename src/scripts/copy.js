@@ -12,8 +12,8 @@ let path     = require('path'),
  */
 const getIgnoredFiles = function(routes, srcPath) {
 
-	// Those files are always ignored
-	let ignoredDefaults = [
+	// Ignore thr following files
+	let ignoredFiles = [
 		'**/.git',
 		'**/CVS',
 		'**/.svn',
@@ -32,7 +32,7 @@ const getIgnoredFiles = function(routes, srcPath) {
 
 	// Return all ignored files
 	return [
-		...ignoredDefaults,
+		...ignoredFiles,
 		...ignoredRoutes
 	]
 
