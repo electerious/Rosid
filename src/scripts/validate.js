@@ -1,7 +1,8 @@
 'use strict'
 
-let path  = require('path'),
-    async = require('async')
+let path   = require('path'),
+    async  = require('async'),
+    extend = require('extend')
 
 /**
  * Parse and validate a route.
@@ -53,8 +54,34 @@ const _path = function(filePath /*= ''*/) {
  */
 const _opts = function(opts /*= {}*/) {
 
+	// Clean-task options
+	let clean = {}
+
+	// Copy-task options
+	let copy = {
+		skip  : false,
+		files : []
+	}
+
+	// Run-task options
+	let run = {}
+
+	// Clean-task options
+	let deliver = {}
+
+	// All default options
+	let defaults = {
+		clean,
+		copy,
+		deliver,
+		run
+	}
+
 	// Copy object to prevent changes by reverence
 	opts = Object.assign({}, opts)
+
+	// Merge custom opts with defaults
+	opts = extend(true, defaults, opts)
 
 	return opts
 

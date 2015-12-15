@@ -30,7 +30,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 	async.series([
 
 		(next) => clean(distPath, next),
-		(next) => copy(routes, srcPath, distPath, next),
+		(next) => copy(routes, srcPath, distPath, opts.copy, next),
 		(next) => run(routes, srcPath, distPath, next)
 
 	], next)

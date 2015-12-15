@@ -5,35 +5,42 @@ let path     = require('path'),
     fse      = require('fs-extra')
 
 /**
- * Get a list of all ignored files.
+ * Get a list of files to copy.
  * @param {array} routes - Array of route configurations.
  * @param {string} srcPath - Path to the source folder.
+ * @param {array} customFiles - Array of user-defined globs.
  * @returns {array} ignoredFiles
  */
-const getIgnoredFiles = function(routes, srcPath) {
+const getFiles = function(routes, customFiles, srcPath) {
 
-	// Ignore thr following files
-	let ignoredFiles = [
-		'**/.git',
-		'**/CVS',
-		'**/.svn',
-		'**/.hg',
-		'**/.lock-wscript',
-		'**/.wafpickle-N',
-		'**/*.swp',
-		'**/.DS_Store',
-		'**/._*',
-		'**/npm-debug.log',
-		'**/_*'
+	// Exclude the following files
+	let excludedFiles = [
+		'!**/.git',
+		'!**/CVS',
+		'!**/.svn',
+		'!**/.hg',
+		'!**/.lock-wscript',
+		'!**/.wafpickle-N',
+		'!**/*.swp',
+		'!**/.DS_Store',
+		'!**/._*',
+		'!**/npm-debug.log'
 	]
 
-	// Make route paths absolute and add them to the ignored files
-	let ignoredRoutes = routes.map((route) => path.join(srcPath, route.path))
+	// Make route paths absolute and exclude them
+	let excludedRoutes = routes.map((route) => '!' + path.join(srcPath, route.path))
+
+	// Include the following files
+	let includedFiles = [
+		'**/*'
+	]
 
 	// Return all ignored files
 	return [
-		...ignoredFiles,
-		...ignoredRoutes
+		...excludedFiles,
+		...excludedRoutes,
+		...includedFiles,
+		...customFiles
 	]
 
 }
@@ -44,17 +51,23 @@ const getIgnoredFiles = function(routes, srcPath) {
  * @param {array} routes - Array of route configurations.
  * @param {string} srcPath - Path to the source folder.
  * @param {string} distPath - Path to the destination folder.
+ * @param {objects} copyOpts - Additional optional options for the copy-task.
  * @param {function} next - The callback that handles the response. Receives the following properties: err.
  */
-module.exports = function(routes, srcPath, distPath, next) {
+module.exports = function(routes, srcPath, distPath, copyOpts, next) {
 
-	let ignoredFiles = getIgnoredFiles(routes, srcPath),
-	    matcher      = anymatch(ignoredFiles)
-
-	let opts = {
-		filter: (path) => !matcher(path)
+	if (copyOpts.skip===true) {
+		next(null)
+		return false
 	}
 
-	fse.copy(srcPath, distPath, opts, next)
+	let files   = getFiles(routes, copyOpts.files, srcPath),
+	    matcher = anymatch(files)
+
+	let fseOpts = {
+		filter: (path) => matcher(path)
+	}
+
+	fse.copy(srcPath, distPath, fseOpts, next)
 
 }
