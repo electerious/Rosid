@@ -18,8 +18,19 @@ module.exports = function(routes, srcPath) {
 
 		const send = (err, data) => {
 
+			// Continue without a custom response when ...
+			// ... an error happened
+			// ... the file is empty
+			if (err!=null || data==null) {
+				next()
+				return false
+			}
+
+			// Skip when response already sent
 			if (res.finished===true) return false
-			else                     res.end(data)
+
+			res.end(data)
+			return true
 
 		}
 
