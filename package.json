@@ -5,7 +5,7 @@
     "Tobias Reich <tobias@electerious.com>"
   ],
   "description": "",
-  "main": "src/scripts/main.js",
+  "main": "index.js",
   "keywords": [
     "gulp",
     "tasks",
