@@ -38,7 +38,7 @@ module.exports = function(routes, srcPath /*= 'src/'*/, distPath /*= 'dist/'*/, 
 				file  : file.path
 			}
 
-			let fn = (next) => route.handler(paths, next)
+			let fn = (next) => route.handler(paths, true, next)
 
 			handlers.push(fn)
 			route._executed = true

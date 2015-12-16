@@ -44,11 +44,11 @@ module.exports = function(routes, srcPath) {
 			let paths = {
 				route : item.path,
 				src   : srcPath,
-				dist  : '',
+				dist  : null,
 				file  : path.join(srcPath, req.url)
 			}
 
-			item.handler(paths, send)
+			item.handler(paths, false, send)
 
 		}
 
