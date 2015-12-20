@@ -1,4 +1,4 @@
-# Ivo
+# Invo
 
 A just-in-time development server and static site exporter written in [Node.js](https://nodejs.org/).
 
