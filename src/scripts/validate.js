@@ -17,8 +17,8 @@ const _route = function(route /*= {}*/, index /*= ''*/) {
 	route = Object.assign({}, route)
 
 	// Check if each route has a path and a handler
-	if (route.path==null)    new Error(`Missing path property in route ${ index }`)
-	if (route.handler==null) new Error(`Missing handler property in route ${ index }`)
+	if (route.path==null)    throw new Error(`Missing path property in route ${ index }`)
+	if (route.handler==null) throw new Error(`Missing handler property in route ${ index }`)
 
 	// Check the property values
 	if (route.path.substr(0, 1)!=='/')       new Error(`Path in route ${ index } must be absolute`)
