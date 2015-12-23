@@ -13,7 +13,7 @@ let path     = require('path'),
  * @param {string} distPath - Path to the destination folder.
  * @param {function} next - The callback that handles the response. Receives the following properties: err.
  */
-module.exports = function(routes, srcPath /*= 'src/'*/, distPath /*= 'dist/'*/, next) {
+module.exports = function(routes, srcPath, distPath, next) {
 
 	let handlers = []
 
