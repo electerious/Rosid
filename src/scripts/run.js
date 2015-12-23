@@ -19,10 +19,13 @@ module.exports = function(routes, srcPath, distPath, next) {
 
 	const addFile = (file) => {
 
-		routes.forEach((route) => {
+		routes.forEach((route, index) => {
 
-			// Convert file path to route path
-			let fileRoute = '/' + path.relative(srcPath, file.path)
+			// Absolute path to the requested file
+			let filePath = file.path
+
+			// Set file path relative to the src path as route paths are relative, too
+			let fileRoute = path.relative(srcPath, filePath)
 
 			// Only add handler to fn queue when fileRoute and route path matches
 			if (anymatch(route.path, fileRoute)===false) return false
@@ -30,15 +33,30 @@ module.exports = function(routes, srcPath, distPath, next) {
 			// Skip file when handler should only run once and has already been added
 			if (route.opts.once===true && route._executed===true) return false
 
-			// Create paths object with all necessary information
-			let paths = {
-				route : route.path,
-				src   : srcPath,
-				dist  : distPath,
-				file  : file.path
-			}
+			let fn = (next) => {
 
-			let fn = (next) => route.handler(paths, true, next)
+				route.handler(filePath, srcPath, distPath, route, (err, data, savePath) => {
+
+					if (err!=null) {
+						next(err)
+						return false
+					}
+
+					if (data==null) {
+						next(new Error(`Handler of route ${ index } returned without data`))
+						return false
+					}
+
+					if (savePath==null || savePath==='') {
+						next(new Error(`File of route ${ index } could not be saved as no path has been specified`))
+						return false
+					}
+
+					fse.writeFile(savePath, data, next)
+
+				})
+
+			}
 
 			handlers.push(fn)
 			route._executed = true

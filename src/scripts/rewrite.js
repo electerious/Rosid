@@ -16,13 +16,18 @@ module.exports = function(routes, srcPath) {
 
 		let found = false
 
-		const send = (err, data) => {
+		// Remove first character to convert URL to a relative path
+		let url = req.url.substr(1)
 
-			// Continue without a custom response when ...
-			// ... an error happened
-			// ... the file is empty
-			if (err!=null || data==null) {
-				next()
+		const send = (err, data, savePath) => {
+
+			if (err!=null) {
+				next(err)
+				return false
+			}
+
+			if (data==null) {
+				next(new Error(`Handler of route returned without data`))
 				return false
 			}
 
@@ -34,21 +39,17 @@ module.exports = function(routes, srcPath) {
 
 		}
 
-		const match = (item) => {
+		const match = (route) => {
 
-			// Only rewrite request when url matches a route
-			if (anymatch(item.path, req.url)!==true) return false
+			// Only rewrite request when URL matches a route
+			if (anymatch(route.path, url)!==true) return false
+
+			// Absolute path to the requested file
+			let filePath = path.join(srcPath, url)
 
 			found = true
 
-			let paths = {
-				route : item.path,
-				src   : srcPath,
-				dist  : null,
-				file  : path.join(srcPath, req.url)
-			}
-
-			item.handler(paths, false, send)
+			route.handler(filePath, srcPath, null, route, send)
 
 		}
 

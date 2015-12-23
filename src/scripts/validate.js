@@ -21,8 +21,8 @@ const _route = function(route /*= {}*/, index /*= ''*/) {
 	if (route.handler==null) throw new Error(`Missing handler property in route ${ index }`)
 
 	// Check the property values
-	if (route.path.substr(0, 1)!=='/')       new Error(`Path in route ${ index } must be absolute`)
-	if (typeof route.handler === 'function') new Error(`Handler in route ${ index } is not a function`)
+	if (path.isAbsolute(route.path)===true)  throw new Error(`Path in route ${ index } must be relative`)
+	if (typeof route.handler !== 'function') throw new Error(`Handler in route ${ index } is not a function`)
 
 	// Provide a fallback for the opts property
 	if (route.opts==null) route.opts = {}
