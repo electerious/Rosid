@@ -24,7 +24,8 @@ const _route = function(route /*= {}*/, index /*= ''*/) {
 	if (path.isAbsolute(route.path)===true)  throw new Error(`Path in route ${ index } must be relative`)
 	if (typeof route.handler !== 'function') throw new Error(`Handler in route ${ index } is not a function`)
 
-	// Provide a fallback for the opts property
+	// Provide a fallback for the args and opts property
+	if (route.args==null) route.args = {}
 	if (route.opts==null) route.opts = {}
 
 	return route
