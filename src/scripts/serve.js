@@ -19,10 +19,19 @@ module.exports = function(routes, srcPath /*= 'src/'*/, opts, next) {
 	// Next will be validated at a later juncture
 	if (next==null) next = opts
 
-	routes  = routes.map(validate.route)
-	srcPath = validate.path(srcPath)
-	opts    = validate.opts(opts)
-	next    = validate.next(next)
+	try {
+
+		routes  = routes.map(validate.route)
+		srcPath = validate.path(srcPath)
+		opts    = validate.opts(opts)
+		next    = validate.next(next)
+
+	} catch (err) {
+
+		next(err)
+		return false
+
+	}
 
 	async.series([
 
