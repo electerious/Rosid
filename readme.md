@@ -167,7 +167,7 @@ Parameters:
 - `next` `{Function}`
 	- `err` `{Error | null}`
 	- `result` `{String | Buffer}` The transformed file content.
-	- `savePath` `{String | null}` Where to save the file when compiling.
+	- `savePath` `{String | null}` Where to save the file when compiling. If the parent directory does not exist, it's created.
 
 ## Execute
 
