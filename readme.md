@@ -130,8 +130,9 @@ Custom options for the route.
 ```js
 {
 	/*
-	 * Only run the handler once.
-	 * Helpful when the file-handler combines multiple files.
+	 * Only run handler once.
+	 * On compilation, Rosid runs the handler for each matching file.
+	 * Use this option when the file-handler combines multiple files and should only run once.
 	 */
 	once: false
 }
@@ -199,7 +200,7 @@ Rosid.serve('src/', (err) => {})
 
 Parameters:
 - `srcPath` `{String}` Path to the folder containing your site and untransformed files.
-- `opts` `{Object | {}}`
+- `opts` `{Object | {}}` An object of [options](#options).
 - `callback` `{Function | null}`
 	- `err` `{Error | null}`
 
@@ -220,6 +221,30 @@ Rosid.compile('src/', 'dist/', (err) => {})
 Parameters:
 - `srcPath` `{String}` Path to the folder containing your site and untransformed files.
 - `distPath` `{String}` Path where Rosid should save your site and transformed files. The folder is automatically created and is assumed to be empty.
-- `opts` `{Object | {}}`
+- `opts` `{Object | {}}` An object of [options](#options).
 - `callback` `{Function | null}`
 	- `err` `{Error | null}`
+
+## Options
+
+If you want more control over the [serve](#serve)- or [compile](#compile)-function, you can pass an object with the following parameters to them:
+
+```js
+{
+	/*
+	 * Options for the copy-module.
+	 * This module will only run when compiling your site.
+	 */
+	copy: {
+		/*
+		 * Don't copy anything to the distPath.
+		 */
+		skip: false,
+		/*
+		 * Ignore the following files when copying.
+		 * Must be an array of strings, which will be matched against absolute paths.
+		 */
+		files: []
+	}
+}
+```
