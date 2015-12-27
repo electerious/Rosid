@@ -143,6 +143,13 @@ Custom options for the route.
 
 Handlers are functions which load and transform files. Rosid doesn't care about how you transform them, but requires you to call the callback with the content of a file and a path where it should be saved. The `savePath` must be specified for the [compilation](#compile).
 
+Existing handlers:
+| Supported Files | Description | Link |
+|:-----------|:------------|:------------|
+| *.js | Load, transform and compress JS. | [GitHub](https://github.com/electerious/rosid-handler-js) |
+| *.scss | Load SCSS and transform to CSS, add vendor prefixes and minify. | [GitHub](https://github.com/electerious/rosid-handler-scss) |
+| *.ejs | Load EJS and transform to HTML. | [GitHub](https://github.com/electerious/rosid-handler-ejs) |
+
 Example:
 ```js
 /*
