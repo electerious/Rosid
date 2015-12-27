@@ -1,12 +1,12 @@
-# Invo
+# Rosid
 
 A just-in-time development server and static site exporter written in [Node.js](https://nodejs.org/).
 
 ## Contents
 
 - [Description](#description)
-	- [What is Invo?](#what-is-invo)
-	- [Why Invo?](#why-invo)
+	- [What is Rosid?](#what-is-rosid)
+	- [Why Rosid?](#why-rosid)
 	- [How does it work?](#how-does-it-work)
 - [Requirements](#requirements)
 - [Setup](#setup)
@@ -23,14 +23,14 @@ A just-in-time development server and static site exporter written in [Node.js](
 
 ## Description
 
-### What is Invo?
+### What is Rosid?
 
-Invo is a framework that focus on two features:
+Rosid is a framework that focus on two features:
 
 1. A **development server with live-reloading**, which transforms files as soon as you request them.
 2. A **static site generator**, which transforms files using defined transform-functions.
 
-### Why Invo?
+### Why Rosid?
 
 - It doesn't force you to use a defined directory structure
 - It's build on popular modules like [Browsersync](https://www.browsersync.io)
@@ -41,23 +41,23 @@ Invo is a framework that focus on two features:
 
 ### How does it work?
 
-Invo starts a server and compares requested URLs with user-defined patterns. A associated file handler will be executed when a pattern matches. The handler receives information about the request and can transform the file, which will be send to the browser.
+Rosid starts a server and compares requested URLs with user-defined patterns. A associated file handler will be executed when a pattern matches. The handler receives information about the request and can transform the file, which will be send to the browser.
 
 ## Requirements
 
-Invo dependents on...
+Rosid dependents on...
 
 - [Node.js](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com)
 
-Make sure to install and update all dependencies before you setup Invo.
+Make sure to install and update all dependencies before you setup Rosid.
 
 ## Setup
 
-Install Invo using [npm](https://npmjs.com).
+Install Rosid using [npm](https://npmjs.com).
 
 ```sh
-npm install invo
+npm install rosid
 ```
 
 Create a new JS-file and add insert the following code:
@@ -72,18 +72,18 @@ const transfromJS = (...) => {...}
 const transfromSASS = (...) => {...}
 
 /*
- * Invo compares all requested URLs with the following patterns.
+ * Rosid compares all requested URLs with the following patterns.
  * The associated file-handler will be executed when a pattern matches.
  */
 const routes = [{...}, {...}]
 
 /*
- * Require and initialize Invo.
+ * Require and initialize Rosid.
  */
-let Invo = require('invo')(routes)
+let Rosid = require('rosid')(routes)
 ```
 
-Both the file-handlers and routes are placeholders and Invo hasn't been executed, yet. Read more about [routes](#routes), [handlers](#handlers) and how to [execute](#execute) Invo to get started.
+Both the file-handlers and routes are placeholders and Rosid hasn't been executed, yet. Read more about [routes](#routes), [handlers](#handlers) and how to [execute](#execute) Rosid to get started.
 
 ## Routes
 
@@ -107,7 +107,7 @@ const routes = [{
 
 Type: `String` Default: `null` Optional: `false`
 
-Invo compares all requested URLs with the path and executes the handler when the pattern matches. The path must be a relative. Invo uses the same [patterns the shell uses](https://github.com/isaacs/node-glob).
+Rosid compares all requested URLs with the path and executes the handler when the pattern matches. The path must be a relative. Rosid uses the same [patterns the shell uses](https://github.com/isaacs/node-glob).
 
 ### Handler
 
@@ -139,7 +139,7 @@ Custom options for the route.
 
 ## Handlers
 
-Handlers are functions which load and transform files. Invo doesn't care about how you transform them, but requires you to call the callback with the content of a file and a path where it should be saved. The `savePath` must be specified for the [compilation](#compile).
+Handlers are functions which load and transform files. Rosid doesn't care about how you transform them, but requires you to call the callback with the content of a file and a path where it should be saved. The `savePath` must be specified for the [compilation](#compile).
 
 Example:
 ```js
@@ -173,11 +173,11 @@ Parameters:
 
 ### Initialize
 
-You must require and initialize Invo before you can use the `serve` and `compile` functions.
+You must require and initialize Rosid before you can use the `serve` and `compile` functions.
 
 Syntax:
 ```js
-Invo = require('invo')(routes)
+Rosid = require('rosid')(routes)
 ```
 
 Parameters:
@@ -189,12 +189,12 @@ Start a static site server and compile requested files on-the-fly. The site will
 
 Syntax:
 ```js
-Invo.serve(srcPath, opts, callback)
+Rosid.serve(srcPath, opts, callback)
 ```
 
 Example:
 ```js
-Invo.serve('src/', (err) => {})
+Rosid.serve('src/', (err) => {})
 ```
 
 Parameters:
@@ -209,17 +209,17 @@ Export your site to a folder.
 
 Syntax:
 ```js
-Invo.compile(srcPath, distPath, opts, callback)
+Rosid.compile(srcPath, distPath, opts, callback)
 ```
 
 Example:
 ```js
-Invo.compile('src/', 'dist/', (err) => {})
+Rosid.compile('src/', 'dist/', (err) => {})
 ```
 
 Parameters:
 - `srcPath` `{String}` Path to the folder containing your site and untransformed files.
-- `distPath` `{String}` Path where Invo should save your site and transformed files. The folder is automatically created and is assumed to be empty.
+- `distPath` `{String}` Path where Rosid should save your site and transformed files. The folder is automatically created and is assumed to be empty.
 - `opts` `{Object | {}}`
 - `callback` `{Function | null}`
 	- `err` `{Error | null}`

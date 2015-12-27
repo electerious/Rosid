@@ -53,7 +53,7 @@ module.exports = function(srcPath, rewrite, next) {
 	}
 
 	let defaults = {
-		logPrefix : 'Invo',
+		logPrefix : 'Rosid',
 		files     : getFiles(),
 		notify    : false,
 		ghostMode : false,

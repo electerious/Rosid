@@ -1,5 +1,5 @@
 {
-  "name": "invo",
+  "name": "rosid",
   "version": "0.0.1",
   "authors": [
     "Tobias Reich <tobias@electerious.com>"
@@ -15,10 +15,10 @@
     "static"
   ],
   "license": "MIT",
-  "homepage": "http://github.com/electerious/Invo",
+  "homepage": "http://github.com/electerious/Rosid",
   "repository": {
     "type": "git",
-    "url": "https://github.com/electerious/Invo.git"
+    "url": "https://github.com/electerious/Rosid.git"
   },
   "dependencies": {
     "anymatch": "^1.3.0",
