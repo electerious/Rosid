@@ -14,7 +14,6 @@ Just-in-time development server and static site exporter written in [Node.js](ht
 	- [Path](#path)
 	- [Handler](#handler)
 	- [Args](#args)
-	- [Opts](#opts)
 - [Handlers](#handlers)
 - [Execute](#execute)
 	- [Initialize](#initialize)
@@ -96,10 +95,9 @@ const routes = [{
 		handler : transfromJS
 	},
 	{
-		path    : 'assets/styles/**/*.{css,scss}',
+		path    : 'assets/styles/**/[^_]*.{css,scss}',
 		handler : transfromSASS,
 		args    : { custom: 'data' }
-		opts    : { once: true }
 	}
 ]
 ```
@@ -121,23 +119,6 @@ Must be a function which transforms and returns the content of a file. [More abo
 Type: `Object` Default: `{}` Optional: `true`
 
 A save place to store route-specific properties, settings or data. All args are accessible inside the corresponding handler.
-
-### Opts
-
-Type: `Object` Default: `{}` Optional: `true`
-
-Custom options for the route.
-
-```js
-{
-	/*
-	 * Only run handler once.
-	 * On compilation, Rosid runs the handler for each matching file.
-	 * Use this option when the file-handler combines multiple files and should only run once.
-	 */
-	once: false
-}
-```
 
 ## Handlers
 
