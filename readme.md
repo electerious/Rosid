@@ -91,16 +91,24 @@ The route-configuration is an array of objects. Each object must contain a path 
 
 ```js
 const routes = [{
+		name    : 'JS',
 		path    : 'assets/scripts/**/*.js',
 		handler : transfromJS
 	},
 	{
+		name    : 'SCSS',
 		path    : 'assets/styles/**/[^_]*.{css,scss}',
-		handler : transfromSASS,
+		handler : transfromSCSS,
 		args    : { custom: 'data' }
 	}
 ]
 ```
+
+### Name
+
+Type: `String` Default: `null` Optional: `false`
+
+Name of the route.
 
 ### Path
 
@@ -135,9 +143,9 @@ Existing handlers:
 Example:
 ```js
 /*
- * The following handler transforms SASS to CSS.
+ * The following handler transforms SCSS to CSS.
  */
-const transfromSASS = function(filePath, srcPath, distPath, route, next) {
+const transfromSCSS = function(filePath, srcPath, distPath, route, next) {
 
 	/*
 	 * 1. Load requested file (filePath)
