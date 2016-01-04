@@ -128,7 +128,7 @@ Existing handlers:
 
 | Supported Files | Description | Link |
 |:-----------|:------------|:------------|
-| *.js | Load, transform and compress JS. | [GitHub](https://github.com/electerious/rosid-handler-js) |
+| *.js | Load, transform, bundle and compress JS. | [GitHub](https://github.com/electerious/rosid-handler-js) |
 | *.scss | Load SCSS and transform to CSS, add vendor prefixes and minify. | [GitHub](https://github.com/electerious/rosid-handler-scss) |
 | *.ejs | Load EJS and transform to HTML. | [GitHub](https://github.com/electerious/rosid-handler-ejs) |
 
