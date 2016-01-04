@@ -11,6 +11,7 @@ Just-in-time development server and static site exporter written in [Node.js](ht
 - [Requirements](#requirements)
 - [Setup](#setup)
 - [Routes](#routes)
+	- [Name](#name)
 	- [Path](#path)
 	- [Handler](#handler)
 	- [Args](#args)
