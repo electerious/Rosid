@@ -88,7 +88,7 @@ Both the file-handlers and routes are placeholders and Rosid hasn't been execute
 
 ## Routes
 
-The route-configuration is an array of objects. Each object must contain a path and a file handler.
+The route-configuration is an array of objects. Each object must contain a name, path and handler.
 
 ```js
 const routes = [{
