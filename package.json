@@ -1,6 +1,6 @@
 {
   "name": "rosid",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "authors": [
     "Tobias Reich <tobias@electerious.com>"
   ],
@@ -25,7 +25,7 @@
     "async": "^1.5.1",
     "browser-sync": "^2.11.0",
     "extend": "^3.0.0",
-    "fs-extra": "^0.26.3",
+    "fs-extra": "^0.26.4",
     "tfunk": "^3.0.1"
   }
 }
