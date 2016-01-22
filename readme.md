@@ -95,7 +95,7 @@ const routes = [
 	{
 		name    : 'JS',
 		path    : 'assets/scripts/**/*.js',
-		handler : transfromJS
+		handler : 'rosid-handler-js'
 	},
 	{
 		name    : 'SCSS',
@@ -120,9 +120,9 @@ Rosid compares all requested URLs with the path and executes the handler when th
 
 ### Handler
 
-Type: `Function` Default: `null` Optional: `false` Signature: `filePath, srcPath, distPath, route, next`
+Type: `Function|String` Default: `null` Optional: `false` Signature: `filePath, srcPath, distPath, route, next`
 
-Must be a function which transforms and returns the content of a file. [More about handlers...](#handlers)
+Should be a function which transforms and returns the content of a file. When a string is specified, Rosid tries to require the given module. [More about handlers...](#handlers)
 
 ### Args
 
