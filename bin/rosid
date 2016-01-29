@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+
+'use strict'
+
+let path    = require('path')
+let program = require('commander')
+let Rosid   = require('./../index')
+let pkg     = require('./../package')
+
+const getRoutes = function() {
+
+	let routesPath = path.resolve(process.cwd(), './rosidfile')
+
+	return require(routesPath)
+
+}
+
+program
+	.command('serve [srcPath]')
+	.description('serve current or specified folder')
+	.action((srcPath) => {
+
+		let routes = getRoutes()
+
+		srcPath = path.resolve(process.cwd(), srcPath || '')
+
+		Rosid(routes).serve(srcPath)
+
+	})
+
+program
+	.command('compile [srcPath] <distPath>')
+	.description('compile current or specified folder to static files')
+	.action((srcPath, distPath) => {
+
+		let routes = getRoutes()
+
+		srcPath  = path.resolve(process.cwd(), srcPath || '')
+		distPath = path.resolve(process.cwd(), distPath)
+
+		Rosid(routes).compile(srcPath, distPath)
+
+	})
+
+program
+	.version(pkg.version)
+	.parse(process.argv)
+
+if (program.args.length<1) program.help()
