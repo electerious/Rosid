@@ -102,6 +102,11 @@ const routes = [
 		path    : 'assets/styles/**/[^_]*.{css,scss}',
 		handler : transfromSCSS,
 		args    : { custom: 'data' }
+	},
+	{
+		name    : 'EJS',
+		path    : '[^_]*.{html,ejs}',
+		handler : require('rosid-handler-ejs')
 	}
 ]
 ```
