@@ -20,6 +20,7 @@ Just-in-time development server and static site exporter written in [Node.js](ht
 	- [Initialize](#initialize)
 	- [Serve](#serve)
 	- [Compile](#compile)
+	- [CLI](#cli)
 - [Options](#options)
 
 ## Description
@@ -107,6 +108,28 @@ const routes = [
 		name    : 'EJS',
 		path    : '[^_]*.{html,ejs}',
 		handler : require('rosid-handler-ejs')
+	}
+]
+```
+
+Store the routes in a variable or save them in a JSON-file called `rosidfile.json`. This file must be placed in your current working directory when using the [CLI](#cli). Here's how it might look like:
+
+```json
+[
+	{
+		"name"    : "JS",
+		"path"    : "assets/scripts/**/[^_]*.js",
+		"handler" : "rosid-handler-js"
+	},
+	{
+		"name"    : "SCSS",
+		"path"    : "assets/styles/[^_]*.{css,scss}",
+		"handler" : "rosid-handler-scss"
+	},
+	{
+		"name"    : "EJS",
+		"path"    : "[^_]*.{html,ejs}",
+		"handler" : "rosid-handler-ejs"
 	}
 ]
 ```
@@ -229,6 +252,10 @@ Parameters:
 - `opts` `{Object | {}}` An object of [options](#options).
 - `callback` `{Function | null}`
 	- `err` `{Error | null}`
+
+### CLI
+
+Rosid can be used as a library or as a command line utility. The tool is located in the `bin`-folder and allows you to run the `serve` and `compile` functions without adding JS-files to your project. Only a single `rosidfile.json` is required in your current working directory. Execute `rosid --help` for additional information.
 
 ## Options
 
