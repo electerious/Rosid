@@ -4,41 +4,51 @@
 
 let path    = require('path')
 let program = require('commander')
-let Rosid   = require('./../index')
 let pkg     = require('./../package')
 
-const getRoutes = function() {
+const getRosid = function() {
 
 	let routesPath = path.resolve(process.cwd(), './rosidfile')
 
-	return require(routesPath)
+	let Rosid  = require('./../index')
+	let routes = require(routesPath)
+
+	return Rosid(routes)
+
+}
+
+const collect = function(value, list) {
+
+	return [
+		...list,
+		...value.split(',')
+	]
 
 }
 
 program
 	.command('serve [srcPath]')
 	.description('serve current or specified folder')
-	.action((srcPath) => {
-
-		let routes = getRoutes()
+	.action((srcPath, opts) => {
 
 		srcPath = path.resolve(process.cwd(), srcPath || '')
 
-		Rosid(routes).serve(srcPath)
+		getRosid().serve(srcPath, opts)
 
 	})
 
 program
 	.command('compile [srcPath] <distPath>')
 	.description('compile current or specified folder to static files')
+	.option('-c, --copy <filePath>', 'include or exclude files from the copy-task', collect, [])
 	.action((srcPath, distPath) => {
 
-		let routes = getRoutes()
+		if (opts.copy.length===1 && opts.copy[0]==='false') opts.copy = false
 
 		srcPath  = path.resolve(process.cwd(), srcPath || '')
 		distPath = path.resolve(process.cwd(), distPath)
 
-		Rosid(routes).compile(srcPath, distPath)
+		getRosid().compile(srcPath, distPath, opts)
 
 	})
 

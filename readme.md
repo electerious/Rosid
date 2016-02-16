@@ -259,24 +259,16 @@ Rosid can be used as a library or as a command line utility. The tool is located
 
 ## Options
 
-If you want more control over the [serve](#serve)- or [compile](#compile)-function, you can pass an object with the following parameters to them:
+If you want more control over the [serve](#serve)- or [compile](#compile)-function, pass an object with the following parameters to them:
 
 ```js
 {
 	/*
-	 * Options for the copy-module.
-	 * This module will only run when compiling your site.
+	 * Options for the copy-module which will only run when compiling your site.
+	 * false = Don't copy any static files to the distPath.
+	 * []    = Include or exclude the following files when copying.
+	 *         Must be an array of strings, which will be matched against absolute paths.
 	 */
-	copy: {
-		/*
-		 * Don't copy anything to the distPath.
-		 */
-		skip: false,
-		/*
-		 * Ignore the following files when copying.
-		 * Must be an array of strings, which will be matched against absolute paths.
-		 */
-		files: []
-	}
+	copy: []
 }
 ```
