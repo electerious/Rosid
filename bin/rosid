@@ -41,7 +41,7 @@ program
 	.command('compile [srcPath] <distPath>')
 	.description('compile current or specified folder to static files')
 	.option('-c, --copy <filePath>', 'include or exclude files from the copy-task', collect, [])
-	.action((srcPath, distPath) => {
+	.action((srcPath, distPath, opts) => {
 
 		if (opts.copy.length===1 && opts.copy[0]==='false') opts.copy = false
 
