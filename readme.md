@@ -156,7 +156,7 @@ Should be a function which transforms and returns the content of a file. When a 
 
 Type: `Object` Default: `{}` Optional: `true`
 
-A save place to store route-specific properties, settings or data. All args are accessible inside the corresponding handler.
+A save place to store route-specific properties, settings or data. All args are accessible inside the corresponding handler using `route.args`.
 
 ## Handlers
 
