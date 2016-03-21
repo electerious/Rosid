@@ -171,6 +171,7 @@ Existing handlers:
 | *.ejs | Load EJS and transform to HTML. | [GitHub](https://github.com/electerious/rosid-handler-ejs) |
 
 Example:
+
 ```js
 /*
  * The following handler transforms SCSS to CSS.
@@ -189,6 +190,7 @@ const transfromSCSS = function(filePath, srcPath, distPath, route, next) {
 ```
 
 Parameters:
+
 - `filePath` `{String}` Absolute path to the requested file.
 - `srcPath` `{String}` Absolute path to the source folder.
 - `distPath` `{String | null}` Absolute path to the export folder.
@@ -205,11 +207,13 @@ Parameters:
 You must require and initialize Rosid before you can use the `serve` and `compile` functions.
 
 Syntax:
+
 ```js
 Rosid = require('rosid')(routes)
 ```
 
 Parameters:
+
 - `routes` `{Array}` An array of [routes](#routes).
 
 ### Serve
@@ -217,16 +221,19 @@ Parameters:
 Start a static site server and compile requested files on-the-fly. The site will reload automatically when files change.
 
 Syntax:
+
 ```js
 Rosid.serve(srcPath, opts, callback)
 ```
 
 Example:
+
 ```js
 Rosid.serve('src/', (err) => {})
 ```
 
 Parameters:
+
 - `srcPath` `{String}` Path to the folder containing your site and untransformed files.
 - `opts` `{Object | {}}` An object of [options](#options).
 - `callback` `{Function | null}`
@@ -237,16 +244,19 @@ Parameters:
 Export your site to a folder.
 
 Syntax:
+
 ```js
 Rosid.compile(srcPath, distPath, opts, callback)
 ```
 
 Example:
+
 ```js
 Rosid.compile('src/', 'dist/', (err) => {})
 ```
 
 Parameters:
+
 - `srcPath` `{String}` Path to the folder containing your site and untransformed files.
 - `distPath` `{String}` Path where Rosid should save your site and transformed files. The folder is automatically created and is assumed to be empty.
 - `opts` `{Object | {}}` An object of [options](#options).
@@ -259,7 +269,7 @@ Rosid can be used as a library or as a command line utility. The tool is located
 
 ## Options
 
-If you want more control over the [serve](#serve)- or [compile](#compile)-function, pass an object with the following parameters to them:
+If you want more control over the `serve` or `compile` function, pass an object with the following parameters to them:
 
 ```js
 {
