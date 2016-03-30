@@ -10,7 +10,7 @@ const getRosid = function() {
 
 	let routesPath = path.resolve(process.cwd(), './rosidfile')
 
-	let Rosid  = require('./../index')
+	let Rosid  = require('./../src/index')
 	let routes = require(routesPath)
 
 	return Rosid(routes)
