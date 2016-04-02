@@ -1,6 +1,6 @@
 # Rosid
 
-Just-in-time development server and static site exporter written in [Node.js](https://nodejs.org/). Rosid invokes functions before serving files to the browser. This allows you to pre-process anything on-the-fly, without saving it.
+Just-in-time development server and static site generator written in [Node.js](https://nodejs.org/). Rosid invokes functions before serving files to the browser. This allows you to transform anything on-the-fly, without saving.
 
 ## Contents
 

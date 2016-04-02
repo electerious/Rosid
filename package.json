@@ -4,7 +4,7 @@
   "authors": [
     "Tobias Reich <tobias@electerious.com>"
   ],
-  "description": "Just-in-time development server and static site exporter",
+  "description": "Just-in-time development server and static site generator",
   "main": "src/index.js",
   "bin": "bin/rosid",
   "keywords": [
