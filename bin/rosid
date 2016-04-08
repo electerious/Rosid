@@ -29,11 +29,11 @@ const collect = function(value, list) {
 program
 	.command('serve [srcPath]')
 	.description('serve current or specified folder')
-	.action((srcPath, opts) => {
+	.action((srcPath) => {
 
 		srcPath = path.resolve(process.cwd(), srcPath || '')
 
-		getRosid().serve(srcPath, opts)
+		getRosid().serve(srcPath)
 
 	})
 
