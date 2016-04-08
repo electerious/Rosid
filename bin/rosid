@@ -27,18 +27,21 @@ const collect = function(value, list) {
 }
 
 program
-	.command('serve [srcPath]')
+	.command('serve <srcPath>')
 	.description('serve current or specified folder')
-	.action((srcPath) => {
+	.option('-p, --polling', 'use polling to watch files over a network or in other non-standard situations')
+	.action((srcPath, opts) => {
 
 		srcPath = path.resolve(process.cwd(), srcPath || '')
 
-		getRosid().serve(srcPath)
+		getRosid().serve(srcPath, {
+			polling: opts.polling
+		})
 
 	})
 
 program
-	.command('compile [srcPath] <distPath>')
+	.command('compile <srcPath> <distPath>')
 	.description('compile current or specified folder to static files')
 	.option('-c, --copy <filePath>', 'include or exclude files from the copy-task', collect, [])
 	.action((srcPath, distPath, opts) => {
@@ -48,7 +51,9 @@ program
 		srcPath  = path.resolve(process.cwd(), srcPath || '')
 		distPath = path.resolve(process.cwd(), distPath)
 
-		getRosid().compile(srcPath, distPath, opts)
+		getRosid().compile(srcPath, distPath, {
+			copy: opts.copy
+		})
 
 	})
 

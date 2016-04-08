@@ -42,7 +42,7 @@ module.exports = function(routes, srcPath, opts, next) {
 
 	async.series([
 
-		(next) => deliver(srcPath, _rewrite, _redirect, next)
+		(next) => deliver(srcPath, _rewrite, _redirect, opts, next)
 
 	], next)
 

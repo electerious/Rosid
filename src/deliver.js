@@ -66,9 +66,10 @@ const eventHandler = function(event, file) {
  * @param {string} srcPath - Path to the source folder.
  * @param {function} rewrite - URL rewrite middleware.
  * @param {function} redirect - URL redirect middleware.
+ * @param {Object} opts - Additional optional options.
  * @param {function} next - The callback that handles the response. Receives the following properties: err.
  */
-module.exports = function(srcPath, rewrite, redirect, next) {
+module.exports = function(srcPath, rewrite, redirect, opts, next) {
 
 	let server = {
 		baseDir    : srcPath,
@@ -79,16 +80,19 @@ module.exports = function(srcPath, rewrite, redirect, next) {
 	}
 
 	let files = {
-		match : getFiles(),
-		fn    : eventHandler
+		match   : getFiles(),
+		fn      : eventHandler,
+		options : {
+			usePolling: opts.polling
+		}
 	}
 
 	let defaults = {
 		logPrefix : 'Rosid',
+		server    : server,
 		files     : [ files ],
 		notify    : false,
-		ghostMode : false,
-		server    : server
+		ghostMode : false
 	}
 
 	bs.init(defaults)
