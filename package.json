@@ -22,8 +22,7 @@
   },
   "files": [
     "bin",
-    "src",
-    "LICENSE.md"
+    "src"
   ],
   "dependencies": {
     "anymatch": "^1.3.0",
