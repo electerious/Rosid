@@ -23,7 +23,7 @@ const _route = function(route) {
 	if (route.handler==null) throw new Error(`Missing handler property in route '${ route.name }'`)
 
 	// Check if path is relative
-	if (path.isAbsolute(route.path)===true)  throw new Error(`Path in route '${ route.name }' must be relative`)
+	if (path.isAbsolute(route.path)===true) throw new Error(`Path in route '${ route.name }' must be relative`)
 
 	// Check if handler is a string or function
 	if (typeof route.handler === 'string')   route.handler = require(route.handler)
