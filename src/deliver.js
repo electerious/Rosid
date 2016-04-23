@@ -1,8 +1,8 @@
 'use strict'
 
-let path  = require('path')
-let bs    = require('browser-sync').create()
-let cache = require('./cache')
+const path  = require('path')
+const bs    = require('browser-sync').create()
+const cache = require('./cache')
 
 /**
  * Get a list of files to watch.
@@ -11,7 +11,7 @@ let cache = require('./cache')
 const getFiles = function() {
 
 	// Exclude the following files
-	let excludedFiles = [
+	const excludedFiles = [
 		'!**/.git',
 		'!**/CVS',
 		'!**/.svn',
@@ -27,7 +27,7 @@ const getFiles = function() {
 	]
 
 	// Include the following files
-	let includedFiles = [
+	const includedFiles = [
 		'**/*'
 	]
 
@@ -48,7 +48,7 @@ const getFiles = function() {
 const eventHandler = function(event, file) {
 
 	// Get the extension of the file
-	let extension = path.extname(file)
+	const extension = path.extname(file)
 
 	// Flush the cache no matter what event was send by Chokidar.
 	// This ensures that we serve the latest files when the user reloads the site.
@@ -71,7 +71,7 @@ const eventHandler = function(event, file) {
  */
 module.exports = function(srcPath, rewrite, redirect, opts, next) {
 
-	let server = {
+	const server = {
 		baseDir    : srcPath,
 		middleware : [
 			rewrite,
@@ -79,7 +79,7 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 		]
 	}
 
-	let files = {
+	const files = {
 		match   : getFiles(),
 		fn      : eventHandler,
 		options : {
@@ -87,7 +87,7 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 		}
 	}
 
-	let defaults = {
+	const defaults = {
 		logPrefix : 'Rosid',
 		server    : server,
 		files     : [ files ],

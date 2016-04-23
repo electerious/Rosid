@@ -1,10 +1,10 @@
 'use strict'
 
-let path     = require('path')
-let anymatch = require('anymatch')
-let mime     = require('mime')
-let log      = require('./log')
-let cache    = require('./cache')
+const path     = require('path')
+const anymatch = require('anymatch')
+const mime     = require('mime')
+const log      = require('./log')
+const cache    = require('./cache')
 
 /**
  * Sends a chunk of the response body and signals the server
@@ -31,26 +31,26 @@ module.exports = function(routes, srcPath) {
 	return (req, res, next) => {
 
 		// Remove first character to convert URL to a relative path
-		let url = req.url.substr(1)
+		const url = req.url.substr(1)
 
 		// Generate an array of matching routes
-		let matches = routes.filter((route) => anymatch(route.path, url))
+		const matches = routes.filter((route) => anymatch(route.path, url))
 
 		// Continue without a rewrite when no matching route has been found
 		if (matches.length===0) return next()
 
 		// Rewrite request using the first matching route only
-		let route = matches[0]
+		const route = matches[0]
 
 		// Absolute path to the requested file
-		let filePath = path.join(srcPath, url)
+		const filePath = path.join(srcPath, url)
 
 		// Use cached handler response when available
 		if (cache.get(filePath)!=null) {
 
 			log(`{cyan:Using cached handler: {magenta:${ route.name } {grey:${ url }`)
 
-			let cachedHandler = cache.get(filePath)
+			const cachedHandler = cache.get(filePath)
 
 			send(res, cachedHandler.contentType, cachedHandler.data)
 			return true
@@ -61,7 +61,7 @@ module.exports = function(routes, srcPath) {
 
 		route.handler(filePath, srcPath, null, route, (err, data, savePath) => {
 
-			let contentType = mime.lookup(savePath || filePath)
+			const contentType = mime.lookup(savePath || filePath)
 
 			if (err!=null) {
 				next(err)

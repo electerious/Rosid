@@ -1,6 +1,6 @@
 'use strict'
 
-let url = require('url')
+const url = require('url')
 
 /**
  * Redirect to the main page when no file specified in the URL.
@@ -12,10 +12,10 @@ module.exports = function(srcPath) {
 	return (req, res, next) => {
 
 		// Parse the URL
-		let _url = url.parse(req.url)
+		const _url = url.parse(req.url)
 
 		// Get the last char of the requested URL pathname
-		let lastChar = _url.pathname.substr(-1)
+		const lastChar = _url.pathname.substr(-1)
 
 		// Only continue when requested URL is a folder
 		if (lastChar!=='/') {

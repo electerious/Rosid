@@ -1,10 +1,10 @@
 'use strict'
 
-let path     = require('path')
-let async    = require('async')
-let anymatch = require('anymatch')
-let fse      = require('fs-extra')
-let log      = require('./log')
+const path     = require('path')
+const async    = require('async')
+const anymatch = require('anymatch')
+const fse      = require('fs-extra')
+const log      = require('./log')
 
 /**
  * Run multiple function in series. Each one running once the previous function has been completed.
@@ -16,22 +16,22 @@ let log      = require('./log')
  */
 module.exports = function(routes, srcPath, distPath, next) {
 
-	let handlers = []
+	const handlers = []
 
 	const addFile = (file) => {
 
 		routes.forEach((route, index) => {
 
 			// Absolute path to the requested file
-			let filePath = file.path
+			const filePath = file.path
 
 			// Set file path relative to the src path as route paths are relative, too
-			let fileRoute = path.relative(srcPath, filePath)
+			const fileRoute = path.relative(srcPath, filePath)
 
 			// Only add handler to fn queue when fileRoute and route path matches
 			if (anymatch(route.path, fileRoute)===false) return false
 
-			let fn = (next) => {
+			const fn = (next) => {
 
 				log(`{cyan:Starting handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 

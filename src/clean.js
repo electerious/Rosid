@@ -1,6 +1,6 @@
 'use strict'
 
-let fse = require('fs-extra')
+const fse = require('fs-extra')
 
 /**
  * Delete an entire directory with all its files and folders.

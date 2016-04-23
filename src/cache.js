@@ -1,6 +1,6 @@
 'use strict'
 
-let cache = new Map()
+const cache = new Map()
 
 /**
  * Gets an object from the cache.
@@ -44,7 +44,7 @@ const _flush = function(extension) {
 		}
 
 		// Look for matching extensions in the current entry
-		let matches = value.cache.filter((value) => value===extension)
+		const matches = value.cache.filter((value) => value===extension)
 
 		// Delete entry when a match was found
 		if (matches.length>0) cache.delete(key)

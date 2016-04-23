@@ -1,7 +1,7 @@
 'use strict'
 
-let compile = require('./compile')
-let serve   = require('./serve')
+const compile = require('./compile')
+const serve   = require('./serve')
 
 /**
  * Returns an object of functions.

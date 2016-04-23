@@ -12,11 +12,11 @@
 module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	// Require modules on function call to speed up the initial launch
-	let async    = require('async')
-	let validate = require('./validate')
-	let clean    = require('./clean')
-	let copy     = require('./copy')
-	let run      = require('./run')
+	const async    = require('async')
+	const validate = require('./validate')
+	const clean    = require('./clean')
+	const copy     = require('./copy')
+	const run      = require('./run')
 
 	// Make opts optional and use opts as next when next is undefined
 	// Next will be validated at a later juncture

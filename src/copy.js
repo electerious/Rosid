@@ -1,8 +1,8 @@
 'use strict'
 
-let path     = require('path')
-let anymatch = require('anymatch')
-let fse      = require('fs-extra')
+const path     = require('path')
+const anymatch = require('anymatch')
+const fse      = require('fs-extra')
 
 /**
  * Get a list of files to copy.
@@ -14,7 +14,7 @@ let fse      = require('fs-extra')
 const getFiles = function(routes, customFiles, srcPath) {
 
 	// Exclude the following files
-	let excludedFiles = [
+	const excludedFiles = [
 		'!**/.git',
 		'!**/CVS',
 		'!**/.svn',
@@ -28,10 +28,10 @@ const getFiles = function(routes, customFiles, srcPath) {
 	]
 
 	// Make route paths absolute and exclude them
-	let excludedRoutes = routes.map((route) => '!' + path.join(srcPath, route.path))
+	const excludedRoutes = routes.map((route) => '!' + path.join(srcPath, route.path))
 
 	// Include the following files
-	let includedFiles = [
+	const includedFiles = [
 		'**/*'
 	]
 
@@ -61,10 +61,10 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 		return false
 	}
 
-	let files   = getFiles(routes, opts.copy, srcPath)
-	let matcher = anymatch(files)
+	const files   = getFiles(routes, opts.copy, srcPath)
+	const matcher = anymatch(files)
 
-	let fseOpts = {
+	const fseOpts = {
 		filter: (path) => matcher(path)
 	}
 
