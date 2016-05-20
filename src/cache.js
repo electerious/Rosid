@@ -30,8 +30,8 @@ const _set = function(key, obj) {
 
 /**
  * Deletes matching data when an extension is given or all data when no extension is given.
- * @param {string} extension - Related extension which should be deleted.
  * @public
+ * @param {string} extension - Related extension which should be deleted.
  */
 const _flush = function(extension) {
 
