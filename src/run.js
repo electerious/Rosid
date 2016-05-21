@@ -1,13 +1,13 @@
 'use strict'
 
-const path     = require('path')
-const async    = require('async')
-const anymatch = require('anymatch')
-const fse      = require('fs-extra')
-const log      = require('./log')
+const async = require('async')
+const path  = require('path')
+const mm    = require('micromatch')
+const fse   = require('fs-extra')
+const log   = require('./log')
 
 /**
- * Run multiple function in series. Each one running once the previous function has been completed.
+ * Run multiple route functions parallel.
  * @public
  * @param {Array} routes - Array of route configurations.
  * @param {string} srcPath - Path to the source folder.
@@ -29,7 +29,7 @@ module.exports = function(routes, srcPath, distPath, next) {
 			const fileRoute = path.relative(srcPath, filePath)
 
 			// Only add handler to fn queue when fileRoute and route path matches
-			if (anymatch(route.path, fileRoute)===false) return false
+			if (mm.isMatch(fileRoute, route.path)===false) return false
 
 			const fn = (next) => {
 

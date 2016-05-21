@@ -1,45 +1,39 @@
 'use strict'
 
-const path     = require('path')
-const anymatch = require('anymatch')
-const fse      = require('fs-extra')
+const path = require('path')
+const fse  = require('fs-extra')
+const mm   = require('micromatch')
 
 /**
- * Get a list of files to copy.
+ * Get a list of files which should not be copied.
  * @param {Array} routes - Array of route configurations.
  * @param {Array} customFiles - Array of user-defined globs.
  * @param {string} srcPath - Path to the source folder.
  * @returns {Array} ignoredFiles
  */
-const getFiles = function(routes, customFiles, srcPath) {
+const getIgnoredFiles = function(routes, customFiles, srcPath) {
 
-	// Exclude the following files
-	const excludedFiles = [
-		'!**/.git',
-		'!**/CVS',
-		'!**/.svn',
-		'!**/.hg',
-		'!**/.lock-wscript',
-		'!**/.wafpickle-N',
-		'!**/*.swp',
-		'!**/.DS_Store',
-		'!**/._*',
-		'!**/npm-debug.log'
+	// Always ignore the following files
+	const ignoredFiles = [
+		'**/.git',
+		'**/CVS',
+		'**/.svn',
+		'**/.hg',
+		'**/.lock-wscript',
+		'**/.wafpickle-N',
+		'**/*.swp',
+		'**/.DS_Store',
+		'**/._*',
+		'**/npm-debug.log'
 	]
 
-	// Make route paths absolute and exclude them
-	const excludedRoutes = routes.map((route) => '!' + path.join(srcPath, route.path))
-
-	// Include the following files
-	const includedFiles = [
-		'**/*'
-	]
+	// Make route paths absolute and ignore them
+	const ignoredRoutes = routes.map((route) => path.join(srcPath, route.path))
 
 	// Return all ignored files
 	return [
-		...excludedFiles,
-		...excludedRoutes,
-		...includedFiles,
+		...ignoredFiles,
+		...ignoredRoutes,
 		...customFiles
 	]
 
@@ -61,11 +55,11 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 		return false
 	}
 
-	const files   = getFiles(routes, opts.copy, srcPath)
-	const matcher = anymatch(files)
+	const ignoredFiles = getIgnoredFiles(routes, opts.copy, srcPath)
 
 	const fseOpts = {
-		filter: (path) => matcher(path)
+		// Copy file when it is not part of the ignored files
+		filter: (path) => mm.any(path, ignoredFiles)===false
 	}
 
 	fse.copy(srcPath, distPath, fseOpts, next)

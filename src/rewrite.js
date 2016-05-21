@@ -1,10 +1,10 @@
 'use strict'
 
-const path     = require('path')
-const anymatch = require('anymatch')
-const mime     = require('mime')
-const log      = require('./log')
-const cache    = require('./cache')
+const path  = require('path')
+const mm    = require('micromatch')
+const mime  = require('mime')
+const log   = require('./log')
+const cache = require('./cache')
 
 /**
  * Sends a chunk of the response body and signals the server
@@ -34,7 +34,7 @@ module.exports = function(routes, srcPath) {
 		const url = req.url.substr(1)
 
 		// Generate an array of matching routes
-		const matches = routes.filter((route) => anymatch(route.path, url))
+		const matches = routes.filter((route) => mm.isMatch(url, route.path))
 
 		// Continue without a rewrite when no matching route has been found
 		if (matches.length===0) return next()
