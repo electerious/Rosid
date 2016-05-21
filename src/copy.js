@@ -50,12 +50,7 @@ const getIgnoredFiles = function(routes, customFiles, srcPath) {
  */
 module.exports = function(routes, srcPath, distPath, opts, next) {
 
-	if (opts.copy===false) {
-		next(null)
-		return false
-	}
-
-	const ignoredFiles = getIgnoredFiles(routes, opts.copy, srcPath)
+	const ignoredFiles = getIgnoredFiles(routes, opts.ignore, srcPath)
 
 	const fseOpts = {
 		// Copy file when it is not part of the ignored files

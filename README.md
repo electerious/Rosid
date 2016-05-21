@@ -275,11 +275,10 @@ If you want more control over the `serve` or `compile` function, pass an object 
 {
 	/*
 	 * Option for the copy-module which will only run when compiling your site.
-	 * false = Don't copy any static files to the distPath.
-	 * []    = Include or exclude the following files when copying.
-	 *         Must be an array of strings, which will be matched against absolute paths.
+	 * [] = Ignore the following files when copying.
+	 *      Must be an array of strings, which will be matched against absolute paths.
 	 */
-	copy: [],
+	ignore: [],
 	/*
 	 * Option for the deliver-module which will only run when serving your site.
 	 * It is typically necessary to set this to true to successfully watch files over a network,

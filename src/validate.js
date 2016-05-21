@@ -63,7 +63,7 @@ const _opts = function(opts) {
 	opts = Object.assign({}, opts)
 
 	// Set a default value when an option is missing
-	if (opts.copy==null)    opts.copy = []
+	if (opts.ignore==null)  opts.ignore = []
 	if (opts.polling==null) opts.polling = false
 
 	return opts
