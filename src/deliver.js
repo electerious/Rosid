@@ -42,8 +42,8 @@ const getFiles = function() {
 /**
  * Flushes the cache and reloads the site.
  * Should be executed when a file gets updated.
- * @param {string} event
- * @param {string} file
+ * @param {String} event
+ * @param {String} file
  */
 const eventHandler = function(event, file) {
 
@@ -63,11 +63,11 @@ const eventHandler = function(event, file) {
 /**
  * Serve a directory and reload the page when files change.
  * @public
- * @param {string} srcPath - Path to the source folder.
- * @param {function} rewrite - URL rewrite middleware.
- * @param {function} redirect - URL redirect middleware.
+ * @param {String} srcPath - Path to the source folder.
+ * @param {Function} rewrite - URL rewrite middleware.
+ * @param {Function} redirect - URL redirect middleware.
  * @param {Object} opts - Additional optional options.
- * @param {function} next - The callback that handles the response. Receives the following properties: err.
+ * @param {Function} next - The callback that handles the response. Receives the following properties: err.
  */
 module.exports = function(srcPath, rewrite, redirect, opts, next) {
 

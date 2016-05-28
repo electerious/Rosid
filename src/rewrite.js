@@ -10,8 +10,8 @@ const cache = require('./cache')
  * Sends a chunk of the response body and signals the server
  * that all of the response headers and body have been sent.
  * @param {Object} res - Object which was created internally by a HTTP server.
- * @param {string} contentType - MIME-Type of the data.
- * @param {string|Buffer} data
+ * @param {String} contentType - MIME-Type of the data.
+ * @param {String|Buffer} data
  */
 const send = function(res, contentType, data) {
 
@@ -24,7 +24,7 @@ const send = function(res, contentType, data) {
  * Match and rewrite a request.
  * @public
  * @param {Array} routes - Array of route configurations.
- * @param {string} srcPath - Path to the source folder.
+ * @param {String} srcPath - Path to the source folder.
  */
 module.exports = function(routes, srcPath) {
 

@@ -6,7 +6,7 @@ const prefix = tfunk('[{blue:Rosid}]')
 /**
  * Log a message similar to browser-sync.
  * @public
- * @param {string} msg - Message which should be logged to the console.
+ * @param {String} msg - Message which should be logged to the console.
  */
 module.exports = function(msg) {
 

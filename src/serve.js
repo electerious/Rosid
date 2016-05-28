@@ -4,9 +4,9 @@
  * Serve a specified source folder.
  * @public
  * @param {Array} routes - Array of route configurations.
- * @param {string} srcPath - Path to the source folder.
+ * @param {String} srcPath - Path to the source folder.
  * @param {Object} opts - Additional optional options.
- * @param {function} next - The callback that handles the response. Receives the following properties: err.
+ * @param {Function} next - The callback that handles the response. Receives the following properties: err.
  */
 module.exports = function(routes, srcPath, opts, next) {
 

@@ -8,7 +8,7 @@ const serve   = require('./serve')
  * Those functions are public and accessible when importing the module.
  * @public
  * @param {Array} routes - Array of route configurations.
- * @returns {object}
+ * @returns {Object}
  */
 module.exports = function(routes) {
 

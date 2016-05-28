@@ -5,7 +5,7 @@ const cache = new Map()
 /**
  * Gets an object from the cache.
  * @public
- * @param {string} key - Identifier of the cached object.
+ * @param {String} key - Identifier of the cached object.
  * @returns {?Object} obj - Cached object.
  */
 const _get = function(key) {
@@ -17,7 +17,7 @@ const _get = function(key) {
 /**
  * Saves an object in the cache.
  * @public
- * @param {string} key - Identifier for the cached object.
+ * @param {String} key - Identifier for the cached object.
  * @param {Object} obj - Object which should be cached.
  */
 const _set = function(key, obj) {
@@ -31,7 +31,7 @@ const _set = function(key, obj) {
 /**
  * Deletes matching data when an extension is given or all data when no extension is given.
  * @public
- * @param {string} extension - Related extension which should be deleted.
+ * @param {String} extension - Related extension which should be deleted.
  */
 const _flush = function(extension) {
 

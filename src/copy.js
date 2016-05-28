@@ -8,7 +8,7 @@ const mm   = require('micromatch')
  * Get a list of files which should not be copied.
  * @param {Array} routes - Array of route configurations.
  * @param {Array} customFiles - Array of user-defined globs.
- * @param {string} srcPath - Path to the source folder.
+ * @param {String} srcPath - Path to the source folder.
  * @returns {Array} ignoredFiles
  */
 const getIgnoredFiles = function(routes, customFiles, srcPath) {
@@ -43,10 +43,10 @@ const getIgnoredFiles = function(routes, customFiles, srcPath) {
  * Copy an entire directory with all its files and folders. Specified files will be ignored.
  * @public
  * @param {Array} routes - Array of route configurations.
- * @param {string} srcPath - Path to the source folder.
- * @param {string} distPath - Path to the destination folder.
+ * @param {String} srcPath - Path to the source folder.
+ * @param {String} distPath - Path to the destination folder.
  * @param {Object} opts - Additional optional options.
- * @param {function} next - The callback that handles the response. Receives the following properties: err.
+ * @param {Function} next - The callback that handles the response. Receives the following properties: err.
  */
 module.exports = function(routes, srcPath, distPath, opts, next) {
 

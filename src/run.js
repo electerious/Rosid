@@ -10,9 +10,9 @@ const log   = require('./log')
  * Run multiple route functions parallel.
  * @public
  * @param {Array} routes - Array of route configurations.
- * @param {string} srcPath - Path to the source folder.
- * @param {string} distPath - Path to the destination folder.
- * @param {function} next - The callback that handles the response. Receives the following properties: err.
+ * @param {String} srcPath - Path to the source folder.
+ * @param {String} distPath - Path to the destination folder.
+ * @param {Function} next - The callback that handles the response. Receives the following properties: err.
  */
 module.exports = function(routes, srcPath, distPath, next) {
 

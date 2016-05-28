@@ -39,8 +39,8 @@ const _route = function(route) {
 /**
  * Parse and validate a path.
  * @public
- * @param {string} filePath - Path to a folder or file.
- * @returns {string} filePath - Validated and absolute path to a folder or file.
+ * @param {String} filePath - Path to a folder or file.
+ * @returns {String} filePath - Validated and absolute path to a folder or file.
  */
 const _path = function(filePath) {
 
@@ -73,8 +73,8 @@ const _opts = function(opts) {
 /**
  * Parse and validate callbacks.
  * @public
- * @param {function} next - A callback that handles a response.
- * @returns {function} next - A validated callback that handles a response.
+ * @param {Function} next - A callback that handles a response.
+ * @returns {Function} next - A validated callback that handles a response.
  */
 const _next = function(next) {
 
