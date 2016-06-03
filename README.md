@@ -49,7 +49,7 @@ Rosid starts a server and compares requested URLs with user-defined patterns. A 
 
 Rosid dependents on...
 
-- [Node.js](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/) (v6.2.0 or newer)
 - [npm](https://www.npmjs.com)
 
 Make sure to install and update all dependencies before you setup Rosid.
