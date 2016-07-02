@@ -62,9 +62,10 @@ const _opts = function(opts) {
 	// Copy object to prevent changes by reverence
 	opts = Object.assign({}, opts)
 
-	// Set a default value when an option is missing
-	if (opts.ignore==null)  opts.ignore = []
-	if (opts.polling==null) opts.polling = false
+	// Set default value when an option is missing or has an incorrect type
+	opts.ignore  = (Array.isArray(opts.ignore)===true ? opts.ignore : [])
+	opts.polling = (opts.polling===true ? true : false)
+	opts.verbose = (opts.verbose===true ? true : false)
 
 	return opts
 

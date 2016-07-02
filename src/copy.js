@@ -3,6 +3,7 @@
 const path = require('path')
 const fse  = require('fs-extra')
 const mm   = require('micromatch')
+const log  = require('./log')
 
 /**
  * Get a list of files which should not be copied.
@@ -53,8 +54,21 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 	const ignoredFiles = getIgnoredFiles(routes, opts.ignore, srcPath)
 
 	const fseOpts = {
-		// Copy file when it is not part of the ignored files
-		filter: (path) => mm.any(path, ignoredFiles)===false
+		filter: (path) => {
+
+			const isIgnored = mm.any(path, ignoredFiles)
+
+			if (opts.verbose===true) {
+
+				if (isIgnored===true)  log(`{cyan:Skipping file: {grey:${ path }`)
+				if (isIgnored===false) log(`{cyan:Copying file: {grey:${ path }`)
+
+			}
+
+			// Copy file when it is not part of the ignored files
+			return isIgnored===false
+
+		}
 	}
 
 	fse.copy(srcPath, distPath, fseOpts, next)

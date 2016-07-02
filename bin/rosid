@@ -6,6 +6,15 @@ const path    = require('path')
 const program = require('commander')
 const pkg     = require('./../package')
 
+const collect = function(value, list) {
+
+	return [
+		...list,
+		...value.split(',')
+	]
+
+}
+
 const getRosid = function() {
 
 	const routesPath = path.resolve(process.cwd(), './rosidfile')
@@ -17,12 +26,9 @@ const getRosid = function() {
 
 }
 
-const collect = function(value, list) {
+const catchError = function(err) {
 
-	return [
-		...list,
-		...value.split(',')
-	]
+	if (err!=null) throw err
 
 }
 
@@ -30,13 +36,15 @@ program
 	.command('serve <srcPath>')
 	.description('serve current or specified folder')
 	.option('-p, --polling', 'use polling to watch files over a network or in other non-standard situations')
+	.option('-v, --verbose', 'increase verbosity')
 	.action((srcPath, opts) => {
 
 		srcPath = path.resolve(process.cwd(), srcPath || '')
 
 		getRosid().serve(srcPath, {
-			polling: opts.polling
-		})
+			polling : opts.polling,
+			verbose : opts.verbose
+		}, catchError)
 
 	})
 
@@ -44,14 +52,16 @@ program
 	.command('compile <srcPath> <distPath>')
 	.description('compile current or specified folder to static files')
 	.option('-i, --ignore <filePath>', 'exclude files from the copy-task', collect, [])
+	.option('-v, --verbose', 'increase verbosity')
 	.action((srcPath, distPath, opts) => {
 
 		srcPath  = path.resolve(process.cwd(), srcPath || '')
 		distPath = path.resolve(process.cwd(), distPath)
 
 		getRosid().compile(srcPath, distPath, {
-			ignore: opts.ignore
-		})
+			ignore  : opts.ignore,
+			verbose : opts.verbose
+		}, catchError)
 
 	})
 
