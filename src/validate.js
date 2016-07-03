@@ -76,12 +76,16 @@ const _opts = function(opts) {
  * Parse and validate callbacks.
  * @public
  * @param {Function} next - A callback that handles a response.
- * @returns {Function} next - A validated callback that handles a response.
+ * @returns {Function} next - A validated callback that handles a response and throws errors.
  */
 const _next = function(next) {
 
 	// Ensure that next is a function
-	if (typeof next !== 'function') next = () => {}
+	if (typeof next !== 'function') next = (err) => {
+
+		if (err!=null) throw err
+
+	}
 
 	return next
 

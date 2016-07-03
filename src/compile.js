@@ -24,17 +24,15 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	try {
 
+		next     = validate.next(next)
 		routes   = routes.map(validate.route)
 		srcPath  = validate.path(srcPath)
 		distPath = validate.path(distPath)
 		opts     = validate.opts(opts)
-		next     = validate.next(next)
 
 	} catch (err) {
 
-		if (next==null) throw err
-		else next(err)
-
+		next(err)
 		return false
 
 	}
