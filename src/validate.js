@@ -8,6 +8,7 @@ const async = require('async')
  * @public
  * @param {Object} route - A single route configuration.
  * @returns {Object} route - A single validated route configuration.
+ * @throws {Error}
  */
 const _route = function(route) {
 
