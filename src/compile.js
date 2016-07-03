@@ -37,6 +37,9 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	}
 
+	// Handlers may use promises which could lead to unhandled rejections
+	process.on('unhandledRejection', next)
+
 	async.series([
 
 		(next) => clean(distPath, next),

@@ -35,6 +35,9 @@ module.exports = function(routes, srcPath, opts, next) {
 
 	}
 
+	// Handlers may use promises which could lead to unhandled rejections
+	process.on('unhandledRejection', next)
+
 	const _rewrite  = rewrite(routes, srcPath)
 	const _redirect = redirect(srcPath)
 
