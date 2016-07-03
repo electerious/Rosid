@@ -26,12 +26,6 @@ const getRosid = function() {
 
 }
 
-const catchError = function(err) {
-
-	if (err!=null) throw err
-
-}
-
 program
 	.command('serve <srcPath>')
 	.description('serve current or specified folder')
@@ -44,7 +38,7 @@ program
 		getRosid().serve(srcPath, {
 			polling : opts.polling,
 			verbose : opts.verbose
-		}, catchError)
+		})
 
 	})
 
@@ -61,7 +55,7 @@ program
 		getRosid().compile(srcPath, distPath, {
 			ignore  : opts.ignore,
 			verbose : opts.verbose
-		}, catchError)
+		})
 
 	})
 
