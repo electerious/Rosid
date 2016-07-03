@@ -148,7 +148,7 @@ Rosid compares all requested URLs with the path and executes the handler when th
 
 ### Handler
 
-Type: `Function|String` Default: `null` Optional: `false` Signature: `filePath, srcPath, distPath, route, next`
+Type: `Function|String` Default: `null` Optional: `false` Signature: `filePath, srcPath, distPath, route, callback`
 
 Should be a function which transforms and returns the content of a file. When a string is specified, Rosid tries to require the given module. [More about handlers...](#handlers)
 
@@ -176,7 +176,7 @@ Example:
 /*
  * The following handler transforms SCSS to CSS.
  */
-const transfromSCSS = function(filePath, srcPath, distPath, route, next) {
+const transfromSCSS = function(filePath, srcPath, distPath, route, callback) {
 
 	/*
 	 * 1. Load requested file (filePath)
@@ -184,7 +184,7 @@ const transfromSCSS = function(filePath, srcPath, distPath, route, next) {
 	 * 3. Return the transformed contents of the file
 	 */
 
-	next(null, css, path.join(distPath + 'assets/styles/main.css'))
+	callback(null, css, path.join(distPath + 'assets/styles/main.css'))
 
 }
 ```
@@ -195,7 +195,7 @@ Parameters:
 - `srcPath` `{String}` Absolute path to the source folder.
 - `distPath` `{String | null}` Absolute path to the export folder.
 - `route` `{Object}` The route which matched the request URL.
-- `next` `{Function}`
+- `callback` `{Function}`
 	- `err` `{Error | null}`
 	- `result` `{String | Buffer}` The transformed file content.
 	- `savePath` `{String | null}` Where to save the file when compiling. If the parent directory does not exist, it's created.
