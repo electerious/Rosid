@@ -20,49 +20,49 @@ module.exports = function(routes, srcPath, distPath, next) {
 
 	const addFile = (file) => {
 
-		routes.forEach((route, index) => {
+		// Absolute path to the requested file
+		const filePath = file.path
 
-			// Absolute path to the requested file
-			const filePath = file.path
+		// Set file path relative to the src path as route paths are relative, too
+		const fileRoute = path.relative(srcPath, filePath)
 
-			// Set file path relative to the src path as route paths are relative, too
-			const fileRoute = path.relative(srcPath, filePath)
+		// Generate an array of matching routes
+		const matches = routes.filter((route) => mm.isMatch(fileRoute, route.path))
 
-			// Only add handler to fn queue when fileRoute and route path matches
-			if (mm.isMatch(fileRoute, route.path)===false) return false
+		// Only add handler to fn queue when fileRoute and route path matches
+		if (matches.length===0) return false
 
-			const fn = (next) => {
+		// Rewrite request using the first matching route only
+		const route = matches[0]
 
-				log(`{cyan:Starting handler: {magenta:${ route.name } {grey:${ fileRoute }`)
+		const fn = (next) => {
 
-				const processHandler = ({ data, savePath }) => {
+			log(`{cyan:Starting handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 
-					log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ fileRoute }`)
+			const processHandler = ({ data, savePath }) => {
 
-					if (data==null) {
-						next(new Error(`Handler of route '${ route.name }' returned without data`))
-						return false
-					}
+				log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 
-					if (savePath==null || savePath==='') {
-						next(new Error(`File of route '${ route.name }' could not be saved as no path has been specified by the handler`))
-						return false
-					}
-
-					fse.outputFile(savePath, data, next)
-					return true
-
+				if (data==null) {
+					return next(new Error(`Handler of route '${ route.name }' returned without data`))
 				}
 
-				route
-					.handler(filePath, srcPath, distPath, route)
-					.then(processHandler, next)
+				if (savePath==null || savePath==='') {
+					return next(new Error(`File of route '${ route.name }' could not be saved as no path has been specified by the handler`))
+				}
+
+				fse.outputFile(savePath, data, next)
 
 			}
 
-			handlers.push(fn)
+			route
+				.handler(filePath, srcPath, distPath, route)
+				.then(processHandler, next)
 
-		})
+		}
+
+		// Add fn to final list of handlers
+		handlers.push(fn)
 
 	}
 
