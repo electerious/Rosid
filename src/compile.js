@@ -43,7 +43,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 		(next) => clean(distPath, next),
 		(next) => copy(routes, srcPath, distPath, opts, next),
-		(next) => run(routes, srcPath, distPath, next)
+		(next) => run(routes, srcPath, distPath, opts, next)
 
 	], next)
 

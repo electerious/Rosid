@@ -12,9 +12,10 @@ const log   = require('./log')
  * @param {Array} routes - Array of route configurations.
  * @param {String} srcPath - Path to the source folder.
  * @param {String} distPath - Path to the destination folder.
+ * @param {Object} opts - Additional optional options.
  * @param {Function} next - The callback that handles the response. Receives the following properties: err.
  */
-module.exports = function(routes, srcPath, distPath, next) {
+module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	const handlers = []
 
@@ -51,7 +52,17 @@ module.exports = function(routes, srcPath, distPath, next) {
 					return next(new Error(`File of route '${ route.name }' could not be saved as no path has been specified by the handler`))
 				}
 
-				fse.outputFile(savePath, data, next)
+				if (opts.verbose===true) log(`{cyan:Saving file: {grey:${ savePath }`)
+
+				fse.outputFile(savePath, data, (err) => {
+
+					if (err!=null) return next(err)
+
+					if (opts.verbose===true) log(`{cyan:Saved file: {grey:${ savePath }`)
+
+					next()
+
+				})
 
 			}
 
