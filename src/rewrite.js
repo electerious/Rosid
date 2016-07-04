@@ -59,14 +59,11 @@ module.exports = function(routes, srcPath) {
 
 		log(`{cyan:Starting handler: {magenta:${ route.name } {grey:${ url }`)
 
-		route.handler(filePath, srcPath, null, route, (err, data, savePath) => {
+		const processHandler = ({ data, savePath }) => {
+
+			log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ url }`)
 
 			const contentType = mime.lookup(savePath || filePath)
-
-			if (err!=null) {
-				next(err)
-				return false
-			}
 
 			if (data==null) {
 				next(new Error(`Handler of route '${ route.name }' returned without data`))
@@ -85,12 +82,15 @@ module.exports = function(routes, srcPath) {
 				cache       : route.handler.cache
 			})
 
-			log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ url }`)
-
 			send(res, contentType, data)
 			return true
 
-		})
+		}
+
+		route
+			.handler(filePath, srcPath, null, route)
+			.then(processHandler)
+			.catch(next)
 
 	}
 

@@ -35,12 +35,9 @@ module.exports = function(routes, srcPath, distPath, next) {
 
 				log(`{cyan:Starting handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 
-				route.handler(filePath, srcPath, distPath, route, (err, data, savePath) => {
+				const processHandler = ({ data, savePath }) => {
 
-					if (err!=null) {
-						next(err)
-						return false
-					}
+					log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 
 					if (data==null) {
 						next(new Error(`Handler of route '${ route.name }' returned without data`))
@@ -52,12 +49,15 @@ module.exports = function(routes, srcPath, distPath, next) {
 						return false
 					}
 
-					log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ fileRoute }`)
-
 					fse.outputFile(savePath, data, next)
 					return true
 
-				})
+				}
+
+				route
+					.handler(filePath, srcPath, distPath, route)
+					.then(processHandler)
+					.catch(next)
 
 			}
 
