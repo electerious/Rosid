@@ -66,6 +66,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 			}
 
 			// Copy file when it is not part of the ignored files
+			// Return true to include, false to exclude
 			return isIgnored===false
 
 		}
