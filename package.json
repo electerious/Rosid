@@ -25,7 +25,7 @@
     "src"
   ],
   "dependencies": {
-    "async": "^1.5.1",
+    "async": "^2.0.0-rc.6",
     "browser-sync": "^2.13.0",
     "commander": "^2.9.0",
     "fs-extra": "^0.30.0",
