@@ -52,8 +52,7 @@ module.exports = function(routes, srcPath) {
 
 			const cachedHandler = cache.get(filePath)
 
-			send(res, cachedHandler.contentType, cachedHandler.data)
-			return true
+			return send(res, cachedHandler.contentType, cachedHandler.data)
 
 		}
 
@@ -66,13 +65,11 @@ module.exports = function(routes, srcPath) {
 			const contentType = mime.lookup(savePath || filePath)
 
 			if (data==null) {
-				next(new Error(`Handler of route '${ route.name }' returned without data`))
-				return false
+				return next(new Error(`Handler of route '${ route.name }' returned without data`))
 			}
 
 			if (res.finished===true) {
-				next(new Error(`Data of route '${ route.name }' has already been sent to the client`))
-				return false
+				return next(new Error(`Data of route '${ route.name }' has already been sent to the client`))
 			}
 
 			// Cache the response of the handler
@@ -83,7 +80,6 @@ module.exports = function(routes, srcPath) {
 			})
 
 			send(res, contentType, data)
-			return true
 
 		}
 

@@ -30,8 +30,7 @@ module.exports = function(routes, srcPath, opts, next) {
 
 	} catch (err) {
 
-		next(err)
-		return false
+		return next(err)
 
 	}
 

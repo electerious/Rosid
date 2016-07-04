@@ -38,10 +38,7 @@ const _flush = function(extension) {
 	cache.forEach((value, key) => {
 
 		// Delete entry directly when no caching information available
-		if (value.cache==null) {
-			cache.delete(key)
-			return true
-		}
+		if (value.cache==null) return cache.delete(key)
 
 		// Look for matching extensions in the current entry
 		const matches = value.cache.filter((value) => value===extension)

@@ -18,17 +18,12 @@ module.exports = function(srcPath) {
 		const lastChar = _url.pathname.substr(-1)
 
 		// Only continue when requested URL is a folder
-		if (lastChar!=='/') {
-			next()
-			return false
-		}
+		if (lastChar!=='/') return next()
 
 		res.statusCode = 302
 		res.setHeader('Location', `${ _url.pathname }index.html`)
 		res.setHeader('Content-Length', '0')
 		res.end()
-
-		return true
 
 	}
 
