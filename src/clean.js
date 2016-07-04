@@ -19,7 +19,7 @@ module.exports = function(distPath, opts, next) {
 	const isUnsafePath = pathIsInside(process.cwd(), distPath)
 
 	if (isUnsafePath===true) {
-		return next(new Error('Current working directory can not be inside the specified distPath'))
+		return next(new Error(`Current working directory can't be inside the specified distPath`))
 	}
 
 	if (opts.verbose===true) log(`{cyan:Deleting folder: {grey:${ distPath }`)
