@@ -280,11 +280,17 @@ If you want more control over the `serve` or `compile` function, pass an object 
 	 */
 	ignore: [],
 	/*
+	 * Increase verbosity.
+	 * true  = Log additional messages.
+	 * false = Only log important messages.
+	 */
+	verbose: false,
+	/*
 	 * Option for the deliver-module which will only run when serving your site.
 	 * It is typically necessary to set this to true to successfully watch files over a network,
 	 * and it may be necessary to successfully watch files in other non-standard situations.
-	 * false = Use fs.watchFile (backed by polling)
 	 * true  = Use fs.watch
+	 * false = Use fs.watchFile (backed by polling)
 	 */
 	polling: false
 }
