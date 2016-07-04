@@ -2,6 +2,7 @@
 
 const fse          = require('fs-extra')
 const pathIsInside = require('path-is-inside')
+const log          = require('./log')
 
 /**
  * Delete an entire directory with all its files and folders.
