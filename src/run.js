@@ -56,8 +56,7 @@ module.exports = function(routes, srcPath, distPath, next) {
 
 				route
 					.handler(filePath, srcPath, distPath, route)
-					.then(processHandler)
-					.catch(next)
+					.then(processHandler, next)
 
 			}
 
