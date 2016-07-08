@@ -193,12 +193,12 @@ Parameters:
 
 - `filePath` `{String}` Absolute path to the requested file.
 - `srcPath` `{String}` Absolute path to the source folder.
-- `distPath` `{String | null}` Absolute path to the export folder.
+- `distPath` `{?String}` Absolute path to the export folder.
 - `route` `{Object}` The route which matched the request URL.
 - `callback` `{Function}`
-	- `err` `{Error | null}`
+	- `err` `{?Error}`
 	- `result` `{String | Buffer}` The transformed file content.
-	- `savePath` `{String | null}` Where to save the file when compiling. If the parent directory does not exist, it's created.
+	- `savePath` `{?String}` Where to save the file when compiling. If the parent directory does not exist, it's created.
 
 ## Execute
 
@@ -236,8 +236,8 @@ Parameters:
 
 - `srcPath` `{String}` Path to the folder containing your site and untransformed files.
 - `opts` `{Object | {}}` An object of [options](#options).
-- `callback` `{Function | null}`
-	- `err` `{Error | null}`
+- `callback` `{?Function}`
+	- `err` `{?Error}`
 
 ### Compile
 
@@ -260,8 +260,8 @@ Parameters:
 - `srcPath` `{String}` Path to the folder containing your site and untransformed files.
 - `distPath` `{String}` Path where Rosid should save your site and transformed files. The folder is automatically created and is assumed to be empty.
 - `opts` `{Object | {}}` An object of [options](#options).
-- `callback` `{Function | null}`
-	- `err` `{Error | null}`
+- `callback` `{?Function}`
+	- `err` `{?Error}`
 
 ### CLI
 
