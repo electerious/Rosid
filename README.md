@@ -160,7 +160,7 @@ A save place to store route-specific properties, settings or data. All args are 
 
 ## Handlers
 
-Handlers are functions which load and transform files. Rosid doesn't care about how you transform them, but requires you to call the callback with the content of a file and a path where it should be saved. The `savePath` must be specified for the [compilation](#compile).
+Handlers are functions which load and transform files. Rosid doesn't care about how you transform them, but requires you to return a promise which resolves an object with two properties: The content of a file (`data`) and a path where it should be saved (`savePath`). The `savePath` must be specified for the [compilation](#compile).
 
 Existing handlers:
 
@@ -176,15 +176,18 @@ Example:
 /*
  * The following handler transforms SCSS to CSS.
  */
-const transfromSCSS = function(filePath, srcPath, distPath, route, callback) {
+const transfromSCSS = function(filePath, srcPath, distPath, route) {
 
 	/*
 	 * 1. Load requested file (filePath)
 	 * 2. Transform the file
-	 * 3. Return the transformed contents of the file
+	 * 3. Return the transformed contents of the file and a save path
 	 */
-
-	callback(null, css, path.join(distPath + 'assets/styles/main.css'))
+	 
+	return Promise.resolve({
+		data     : css
+		savePath : path.join(distPath + 'assets/styles/main.css')
+	})
 
 }
 ```
@@ -195,9 +198,11 @@ Parameters:
 - `srcPath` `{String}` Absolute path to the source folder.
 - `distPath` `{?String}` Absolute path to the export folder.
 - `route` `{Object}` The route which matched the request URL.
-- `callback` `{Function}`
-	- `err` `{?Error}`
-	- `result` `{String | Buffer}` The transformed file content.
+
+Returns:
+
+- `{Promise}({Object})`
+	- `data` `{String | Buffer}` The transformed file content.
 	- `savePath` `{?String}` Where to save the file when compiling. If the parent directory does not exist, it's created.
 
 ## Execute
@@ -235,7 +240,7 @@ Rosid.serve('src/', (err) => {})
 Parameters:
 
 - `srcPath` `{String}` Path to the folder containing your site and untransformed files.
-- `opts` `{Object | {}}` An object of [options](#options).
+- `opts` `{?Object}` An object of [options](#options).
 - `callback` `{?Function}`
 	- `err` `{?Error}`
 
@@ -259,7 +264,7 @@ Parameters:
 
 - `srcPath` `{String}` Path to the folder containing your site and untransformed files.
 - `distPath` `{String}` Path where Rosid should save your site and transformed files. The folder is automatically created and is assumed to be empty.
-- `opts` `{Object | {}}` An object of [options](#options).
+- `opts` `{?Object}` An object of [options](#options).
 - `callback` `{?Function}`
 	- `err` `{?Error}`
 
