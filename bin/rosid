@@ -2,17 +2,15 @@
 
 'use strict'
 
-const path    = require('path')
-const program = require('commander')
-const pkg     = require('./../package')
+const path     = require('path')
+const minimist = require('minimist')
+const pkg      = require('./../package')
 
-const collect = function(value, list) {
-
-	return [
-		...list,
-		...value.split(',')
-	]
-
+const alias = {
+	i: 'ignore',
+	p: 'polling',
+	v: 'verbose',
+	V: 'version'
 }
 
 const getRosid = function() {
@@ -26,41 +24,80 @@ const getRosid = function() {
 
 }
 
-program
-	.command('serve <srcPath>')
-	.description('serve current or specified folder')
-	.option('-p, --polling', 'use polling to watch files over a network or in other non-standard situations')
-	.option('-v, --verbose', 'increase verbosity')
-	.action((srcPath, opts) => {
+const serve = function(srcPath, opts) {
 
-		srcPath = path.resolve(process.cwd(), srcPath || '')
+	srcPath = path.resolve(process.cwd(), srcPath || '')
 
-		getRosid().serve(srcPath, {
-			polling : opts.polling,
-			verbose : opts.verbose
-		})
-
+	getRosid().serve(srcPath, {
+		polling : opts.polling,
+		verbose : opts.verbose
 	})
 
-program
-	.command('compile <srcPath> <distPath>')
-	.description('compile current or specified folder to static files')
-	.option('-i, --ignore <filePath>', 'exclude files from the copy-task', collect, [])
-	.option('-v, --verbose', 'increase verbosity')
-	.action((srcPath, distPath, opts) => {
+}
 
-		srcPath  = path.resolve(process.cwd(), srcPath || '')
-		distPath = path.resolve(process.cwd(), distPath)
+const compile = function(srcPath, distPath, opts) {
 
-		getRosid().compile(srcPath, distPath, {
-			ignore  : opts.ignore,
-			verbose : opts.verbose
-		})
+	srcPath  = path.resolve(process.cwd(), srcPath || '')
+	distPath = path.resolve(process.cwd(), distPath || 'dist/')
 
+	getRosid().compile(srcPath, distPath, {
+		ignore  : opts.ignore,
+		verbose : opts.verbose
 	})
 
-program
-	.version(pkg.version)
-	.parse(process.argv)
+}
 
-if (program.args.length<1) program.help()
+const version = function() {
+
+	console.log(pkg.version)
+
+}
+
+const help = function() {
+
+	console.log(`
+		Usage:
+
+		  rosid [command] [options]
+
+		Commands:
+
+		  serve [srcPath] [options]               serve current or specified folder
+		  compile [srcPath] [distPath] [options]  compile current or specified folder to static files
+
+		Options:
+
+		  -p, --polling  use polling to watch files over a network or in other non-standard situations
+		  -v, --verbose  increase verbosity
+		  -V, --version  output the version number
+		  -h, --help     output usage information
+	`.replace(/\t/g, ' '))
+
+}
+
+const parse = function(argv) {
+
+	// Output the version number
+	if (argv.version===true) return version()
+
+	// Output usage information
+	if (argv.help===true) return help()
+
+	// Serve current or specified folder
+	if (argv._[0]==='serve') return serve(argv._[1], {
+		polling : argv.polling,
+		verbose : argv.verbose
+	})
+
+	// Compile current or specified folder to static files
+	if (argv._[0]==='compile') return compile(argv._[1], argv._[2], {
+		ignore  : argv.ignore,
+		verbose : argv.verbose
+	})
+
+	// Show usage information when no known arg was found
+	help()
+
+}
+
+parse(minimist(process.argv.slice(2), { alias }))
