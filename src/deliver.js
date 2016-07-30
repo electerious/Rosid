@@ -1,8 +1,9 @@
 'use strict'
 
-const path  = require('path')
-const bs    = require('browser-sync').create()
-const cache = require('./cache')
+const path    = require('path')
+const niceTry = require('nice-try')
+const bs      = niceTry(() => require('browser-sync'))
+const cache   = require('./cache')
 
 /**
  * Get a list of files to watch.
@@ -71,6 +72,10 @@ const eventHandler = function(event, file) {
  */
 module.exports = function(srcPath, rewrite, redirect, opts, next) {
 
+	if (bs==null) {
+		return next(new Error('Rosid has been installed without optionalDependencies. Make sure that all optionalDependencies are installed before serving a site.'))
+	}
+
 	const server = {
 		baseDir    : srcPath,
 		middleware : [
@@ -95,7 +100,7 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 		ghostMode : false
 	}
 
-	bs.init(defaults)
+	bs.create().init(defaults)
 
 	next()
 
