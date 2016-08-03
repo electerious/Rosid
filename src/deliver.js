@@ -1,9 +1,9 @@
 'use strict'
 
-const path    = require('path')
-const niceTry = require('nice-try')
-const bs      = niceTry(() => require('browser-sync'))
-const cache   = require('./cache')
+const path        = require('path')
+const niceTry     = require('nice-try')
+const browserSync = niceTry(() => require('browser-sync'))
+const cache       = require('./cache')
 
 /**
  * Get a list of files to watch.
@@ -43,10 +43,11 @@ const getFiles = function() {
 /**
  * Flushes the cache and reloads the site.
  * Should be executed when a file gets updated.
- * @param {String} event
- * @param {String} file
+ * @param {Object} bs - Browsersync instance.
+ * @param {String} event - Event sent by Chokidar.
+ * @param {String} file - File affected by event.
  */
-const eventHandler = function(event, file) {
+const eventHandler = function(bs, event, file) {
 
 	// Get the extension of the file
 	const extension = path.extname(file)
@@ -72,9 +73,11 @@ const eventHandler = function(event, file) {
  */
 module.exports = function(srcPath, rewrite, redirect, opts, next) {
 
-	if (bs==null) {
+	if (browserSync==null) {
 		return next(new Error('Rosid has been installed without optionalDependencies. Make sure that all optionalDependencies are installed before serving a site.'))
 	}
+
+	const bs = browserSync.create()
 
 	const server = {
 		baseDir    : srcPath,
@@ -86,7 +89,7 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 
 	const files = {
 		match   : getFiles(),
-		fn      : eventHandler,
+		fn      : eventHandler.bind(null, bs),
 		options : {
 			usePolling: opts.polling
 		}
@@ -100,7 +103,7 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 		ghostMode : false
 	}
 
-	bs.create().init(defaults)
+	bs.init(defaults)
 
 	next()
 
