@@ -58,7 +58,21 @@ const eventHandler = function(bs, event, file) {
 
 	// Chokidar always sends an 'event' property - which could be 'add',
 	// 'unlink' etc so we need to check for that and only respond to 'change'.
-	if (event==='change') bs.reload()
+	if (event==='change') {
+
+		const styleExtensions = [
+			'.css',
+			'.scss',
+			'.sass',
+			'.less'
+		]
+
+		// Reload stylesheets only when the extension is a known style extension
+		if (styleExtensions.includes(extension)===true) return bs.reload('*.css')
+
+		return bs.reload()
+
+	}
 
 }
 
