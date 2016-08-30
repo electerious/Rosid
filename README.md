@@ -22,6 +22,7 @@ Just-in-time development server and static site generator written in [Node.js](h
 	- [Compile](#compile)
 	- [CLI](#cli)
 - [Options](#options)
+- [Tips](#tips)
 
 ## Description
 
@@ -183,7 +184,7 @@ const transfromSCSS = function(filePath, srcPath, distPath, route) {
 	 * 2. Transform the file
 	 * 3. Return the transformed contents of the file and a save path
 	 */
-	 
+
 	return Promise.resolve({
 		data     : css
 		savePath : path.join(distPath + 'assets/styles/main.css')
@@ -300,3 +301,7 @@ If you want more control over the `serve` or `compile` function, pass an object 
 	polling: false
 }
 ```
+
+## Tips
+
+- Install Rosid without optional dependencies using npm's `--no-optional` flag. This speeds up the installation and skips a lot of dependencies. It's perfect when used in production. The downside: Running the `serve` function isn't possible anymore.
