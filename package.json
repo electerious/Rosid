@@ -35,6 +35,6 @@
     "tfunk": "^3.0.2"
   },
   "optionalDependencies": {
-    "browser-sync": "^2.14.0"
+    "browser-sync": "^2.14.3"
   }
 }
