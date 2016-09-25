@@ -145,7 +145,7 @@ Name of the route.
 
 Type: `String` Default: `null` Optional: `false`
 
-Rosid compares all requested URLs with the path and executes the handler when the pattern matches. The path must be a relative. Rosid uses the same [patterns the shell uses](https://github.com/isaacs/node-glob).
+Rosid compares all requested URLs (when running the [development server](#serve)) and all existing files (when [compiling the project](#compile)) with the path. It executes the handler when the pattern matches. The path must be a relative. Query strings will be ignored. Rosid uses the same [patterns the shell uses](https://github.com/isaacs/node-glob).
 
 ### Handler
 

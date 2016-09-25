@@ -30,8 +30,8 @@ module.exports = function(routes, srcPath) {
 
 	return (req, res, next) => {
 
-		// Remove first character to convert URL to a relative path
-		const url = req.url.substr(1)
+		// Remove first character and query to convert URL to a relative path
+		const url = req.url.substr(1).split('?')[0]
 
 		// Generate an array of matching routes
 		const matches = routes.filter((route) => mm.isMatch(url, route.path))
