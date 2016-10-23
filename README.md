@@ -30,8 +30,8 @@ Just-in-time development server and static site generator written in [Node.js](h
 
 Rosid is a framework that focus on two features:
 
-1. A **development server with live-reloading**, which transforms files as soon as you request them.
-2. A **static site generator**, which transforms files using defined transform-functions.
+1. A **development server with live reloading**, which transforms files as soon as you request them.
+2. A **static site generator**, which transforms files using defined transform functions.
 
 ### Why Rosid?
 
@@ -113,7 +113,7 @@ const routes = [
 ]
 ```
 
-Store the routes in a variable or save them in a JSON-file called `rosidfile.json`. This file must be placed in your current working directory when using the [CLI](#cli). Here's how it might look like:
+Store the routes in a variable or save them in a JSON file called `rosidfile.json`. This file must be placed in your current working directory when using the [CLI](#cli). Here's how it might look like:
 
 ```json
 [
@@ -271,7 +271,7 @@ Parameters:
 
 ### CLI
 
-Rosid can be used as a library or as a command line utility. The tool is located in the `bin`-folder and allows you to run the `serve` and `compile` functions without adding JS-files to your project. Only a single `rosidfile.json` is required in your current working directory. Execute `rosid --help` for additional information.
+Rosid can be used as a library or as a command line utility. The tool is located in the `bin` folder and allows you to run the `serve` and `compile` functions without adding JS files to your project. Only a single `rosidfile.json` is required in your current working directory. Execute `rosid --help` for additional information.
 
 ## Options
 
