@@ -75,7 +75,7 @@ const _opts = function(opts) {
 /**
  * Parse and validate callbacks.
  * @public
- * @param {Function} next - A callback that handles a response.
+ * @param {?Function} next - A callback that handles a response.
  * @returns {Function} next - A validated callback that handles a response and throws errors.
  */
 const _next = function(next) {
