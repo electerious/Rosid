@@ -1,9 +1,10 @@
 'use strict'
 
-const path = require('path')
-const fse  = require('fs-extra')
-const mm   = require('micromatch')
-const log  = require('./log')
+const path       = require('path')
+const fse        = require('fs-extra')
+const mm         = require('micromatch')
+const globEscape = require('glob-escape')
+const log        = require('./log')
 
 /**
  * Get a list of files which should not be copied.
@@ -28,8 +29,11 @@ const getIgnoredFiles = function(routes, customFiles, srcPath) {
 		'**/npm-debug.log'
 	]
 
+	// Escape glob patterns. srcPath should not glob.
+	const saveSrcPath = globEscape(srcPath)
+
 	// Make route paths absolute and ignore them
-	const ignoredRoutes = routes.map((route) => path.join(srcPath, route.path))
+	const ignoredRoutes = routes.map((route) => path.join(saveSrcPath, route.path))
 
 	// Return all ignored files
 	return [
