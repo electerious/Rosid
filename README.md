@@ -300,7 +300,13 @@ If you want more control over the `serve` or `compile` function, pass an object 
 	 * true  = Use fs.watch
 	 * false = Use fs.watchFile (backed by polling)
 	 */
-	polling: false
+	polling: false,
+	/*
+	 * Decide if Rosid should open the URL automatically in your default browser.
+	 * true  = Open URL
+	 * false = Don't open URL
+	 */
+	open: true
 }
 ```
 

@@ -67,6 +67,7 @@ const _opts = function(opts) {
 	opts.ignore  = (Array.isArray(opts.ignore)===true ? opts.ignore : [])
 	opts.polling = (opts.polling===true ? true : false)
 	opts.verbose = (opts.verbose===true ? true : false)
+	opts.open    = (opts.open===false ? false : true)
 
 	return opts
 

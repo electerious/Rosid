@@ -138,12 +138,24 @@ describe('validate', function() {
 
 	describe('.opts()', function() {
 
-		it('should set defaults when called with an empty object', function() {
+		it('should set defaults when called without an object', function() {
 
 			assert.deepEqual(validate.opts(), {
 				ignore  : [],
 				polling : false,
-				verbose : false
+				verbose : false,
+				open    : true
+			})
+
+		})
+
+		it('should set defaults when called with an empty object', function() {
+
+			assert.deepEqual(validate.opts({}), {
+				ignore  : [],
+				polling : false,
+				verbose : false,
+				open    : true
 			})
 
 		})
@@ -157,7 +169,8 @@ describe('validate', function() {
 			assert.deepEqual(validate.opts(opts), {
 				ignore  : [],
 				polling : true,
-				verbose : false
+				verbose : false,
+				open    : true
 			})
 
 		})
@@ -169,7 +182,8 @@ describe('validate', function() {
 					'array'
 				],
 				polling : true,
-				verbose : true
+				verbose : true,
+				open    : false
 			}
 
 			assert.deepEqual(validate.opts(opts), opts)
