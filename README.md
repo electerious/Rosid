@@ -1,5 +1,7 @@
 # Rosid
 
+[![Travis Build Status](https://travis-ci.org/electerious/rosid.svg?branch=master)](https://travis-ci.org/electerious/rosid) [![Coverage Status](https://coveralls.io/repos/github/electerious/rosid/badge.svg?branch=master)](https://coveralls.io/github/electerious/rosid?branch=master) [![Dependencies](https://david-dm.org/electerious/rosid.svg)](https://david-dm.org/electerious/rosid#info=dependencies)
+
 Just-in-time development server and static site generator written in [Node.js](https://nodejs.org/). Rosid invokes functions before serving files to the browser. This allows you to transform anything on-the-fly, without saving.
 
 ## Contents
