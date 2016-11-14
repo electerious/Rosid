@@ -68,14 +68,12 @@ describe('copy()', function() {
 
 		copy(routes, srcPath, distPath, opts, (err) => {
 
-			assert.isNull(err)
-
 			assert.throws(fs.readFileSync.bind(null, distFileEJS))
 			assert.doesNotThrow(fs.readFileSync.bind(null, distFileJS))
 			assert.throws(fs.readFileSync.bind(null, distFileSWP))
 			assert.throws(fs.readFileSync.bind(null, distFileCSS))
 
-			next()
+			next(err)
 
 		})
 
