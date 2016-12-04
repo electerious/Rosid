@@ -85,7 +85,7 @@ const routes = [{...}, {...}]
 /*
  * Require and initialize Rosid.
  */
-let Rosid = require('rosid')(routes)
+const Rosid = require('rosid')(routes)
 ```
 
 Both the file-handlers and routes are placeholders and Rosid hasn't been executed, yet. Read more about [routes](#routes), [handlers](#handlers) and how to [execute](#execute) Rosid to get started.
