@@ -38,7 +38,7 @@ Rosid is a framework that focus on two features:
 ### Why Rosid?
 
 - It doesn't force you to use a defined directory structure
-- It's build on popular modules like [Browsersync](https://www.browsersync.io)
+- It's built on popular modules like [Browsersync](https://www.browsersync.io)
 - It integrates nicely with tools you are are already using to transform your files (e.g. [Gulp](http://gulpjs.com), [Grunt](http://gruntjs.com) or Vanilla JS)
 - It's lightweight and only includes what it really needs
 - Transformed files don't need to be saved along their source files
