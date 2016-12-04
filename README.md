@@ -46,11 +46,11 @@ Rosid is a framework that focus on two features:
 
 ### How does it work?
 
-Rosid starts a server and compares requested URLs with user-defined patterns. A associated file handler will be executed when a pattern matches. The handler receives information about the request and can transform the file, which will be send to the browser.
+Rosid starts a server and compares requested URLs with user-defined patterns. An associated file handler will be executed when a pattern matches. The handler receives information about the request and can transform the file, which will be sent to the browser.
 
 ## Requirements
 
-Rosid dependents on...
+Rosid depends on...
 
 - [Node.js](https://nodejs.org/en/) (v6.2.0 or newer)
 - [npm](https://www.npmjs.com)
@@ -65,7 +65,7 @@ Install Rosid using [npm](https://npmjs.com).
 npm install rosid
 ```
 
-Create a new JS-file and add insert the following code:
+Create a new JS-file and insert the following code:
 
 ```js
 'use strict'
