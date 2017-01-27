@@ -18,6 +18,9 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 	const copy     = require('./copy')
 	const run      = require('./run')
 
+	// Current working directory
+	const cwdPath = process.cwd()
+
 	// Make opts optional and use opts as next when next is undefined
 	// Next will be validated at a later juncture
 	if (next==null) next = opts
@@ -41,7 +44,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	async.series([
 
-		(next) => clean(distPath, opts, next),
+		(next) => clean(distPath, cwdPath, opts, next),
 		(next) => copy(routes, srcPath, distPath, opts, next),
 		(next) => run(routes, srcPath, distPath, opts, next)
 
