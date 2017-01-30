@@ -25,6 +25,7 @@ const getIgnoredFiles = function(routes, customFiles, srcPath) {
 		'**/.wafpickle-N',
 		'**/*.swp',
 		'**/.DS_Store',
+		'**/.LSOverride',
 		'**/._*',
 		'**/npm-debug.log'
 	]

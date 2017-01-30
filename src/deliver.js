@@ -21,6 +21,7 @@ const getFiles = function() {
 		'!**/.wafpickle-N',
 		'!**/*.swp',
 		'!**/.DS_Store',
+		'!**/.LSOverride',
 		'!**/._*',
 		'!**/npm-debug.log',
 		'!**/node_modules',
