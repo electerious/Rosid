@@ -83,6 +83,9 @@ const parse = function(argv) {
 	// Output usage information
 	if (argv.help===true) return help()
 
+	// Ignore must be an array of strings
+	argv.ignore = (typeof argv.ignore==='string' ? [ argv.ignore ] : argv.ignore)
+
 	// Serve current or specified folder
 	if (argv._[0]==='serve') return serve(argv._[1], {
 		polling : argv.polling,
