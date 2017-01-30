@@ -5,9 +5,8 @@ const url = require('url')
 /**
  * Redirect to the main page when no file specified in the URL.
  * @public
- * @param {String} srcPath - Path to the source folder.
  */
-module.exports = function(srcPath) {
+module.exports = function() {
 
 	return (req, res, next) => {
 

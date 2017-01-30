@@ -38,7 +38,7 @@ module.exports = function(routes, srcPath, opts, next) {
 	process.on('unhandledRejection', next)
 
 	const _rewrite  = rewrite(routes, srcPath)
-	const _redirect = redirect(srcPath)
+	const _redirect = redirect()
 
 	async.series([
 
