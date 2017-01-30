@@ -74,10 +74,10 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	klaw(srcPath).on('data', (file) => {
 
-		const filePath = file.path
+		const fn = getHandlerFn(file.path)
 
 		// Store handler fn in query
-		query.push(getHandlerFn(filePath))
+		query.push(fn)
 
 	}).on('end', () => {
 
