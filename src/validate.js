@@ -27,8 +27,8 @@ const _route = function(route) {
 	if (path.isAbsolute(route.path)===true) throw new Error(`Path in route '${ route.name }' must be relative`)
 
 	// Check if handler is a string or function
-	if (typeof route.handler === 'string')   route.handler = require(route.handler)
-	if (typeof route.handler !== 'function') throw new Error(`Handler in route '${ route.name }' is not a function nor a string`)
+	if (typeof route.handler==='string')   route.handler = require(route.handler)
+	if (typeof route.handler!=='function') throw new Error(`Handler in route '${ route.name }' is not a function nor a string`)
 
 	// Provide fallbacks
 	if (route.args==null) route.args = {}
@@ -82,7 +82,7 @@ const _opts = function(opts) {
 const _next = function(next) {
 
 	// Ensure that next is a function
-	if (typeof next !== 'function') next = (err) => {
+	if (typeof next!=='function') next = (err) => {
 
 		if (err!=null) throw err
 
