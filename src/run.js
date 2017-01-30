@@ -4,6 +4,7 @@ const async = require('async')
 const path  = require('path')
 const mm    = require('micromatch')
 const fse   = require('fs-extra')
+const klaw  = require('klaw')
 const log   = require('./log')
 
 /**
@@ -17,26 +18,20 @@ const log   = require('./log')
  */
 module.exports = function(routes, srcPath, distPath, opts, next) {
 
-	const handlers = []
-
-	const addFile = (file) => {
-
-		// Absolute path to the requested file
-		const filePath = file.path
+	const getHandlerFn = (filePath) => {
 
 		// Set file path relative to the src path as route paths are relative, too
 		const fileRoute = path.relative(srcPath, filePath)
 
-		// Generate an array of matching routes
+		// Generate an array of matching routes and use the first matching route only
 		const matches = routes.filter((route) => mm.isMatch(fileRoute, route.path))
+		const route   = matches[0]
 
-		// Only add handler to fn queue when fileRoute and route path matches
-		if (matches.length===0) return false
+		// Return empty fn when no matching route found
+		if (route==null) return (next) => next()
 
-		// Rewrite request using the first matching route only
-		const route = matches[0]
-
-		const fn = (next) => {
+		// Return fn when matching route found
+		return (next) => {
 
 			log(`{cyan:Starting handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 
@@ -72,21 +67,23 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 		}
 
-		// Add fn to final list of handlers
-		handlers.push(fn)
-
 	}
 
-	const executeHandlers = () => {
+	// Array of fns to execute
+	const query = []
 
-		// Run each file handler and continue with next
-		async.parallel(handlers, next)
+	klaw(srcPath).on('data', (file) => {
 
-	}
+		const filePath = file.path
 
-	fse
-		.walk(srcPath)
-		.on('data', addFile)
-		.on('end', executeHandlers)
+		// Store handler fn in query
+		query.push(getHandlerFn(filePath))
+
+	}).on('end', () => {
+
+		// Run each fn and continue with next
+		async.parallel(query, next)
+
+	})
 
 }

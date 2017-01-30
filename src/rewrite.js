@@ -33,17 +33,15 @@ module.exports = function(routes, srcPath) {
 		// Remove first character and query to convert URL to a relative path
 		const url = req.url.substr(1).split('?')[0]
 
-		// Generate an array of matching routes
-		const matches = routes.filter((route) => mm.isMatch(url, route.path))
-
-		// Continue without a rewrite when no matching route has been found
-		if (matches.length===0) return next()
-
-		// Rewrite request using the first matching route only
-		const route = matches[0]
-
 		// Absolute path to the requested file
 		const filePath = path.join(srcPath, url)
+
+		// Generate an array of matching routes and use the first matching route only
+		const matches = routes.filter((route) => mm.isMatch(url, route.path))
+		const route   = matches[0]
+
+		// Continue without a rewrite when no matching route has been found
+		if (route==null) return next()
 
 		// Use cached handler response when available
 		if (cache.get(filePath)!=null) {
