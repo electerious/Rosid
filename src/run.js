@@ -1,12 +1,13 @@
 'use strict'
 
-const async  = require('async')
-const path   = require('path')
-const mm     = require('micromatch')
-const fse    = require('fs-extra')
-const klaw   = require('klaw')
-const rename = require('rename-extension')
-const log    = require('./log')
+const async   = require('async')
+const path    = require('path')
+const mm      = require('micromatch')
+const fse     = require('fs-extra')
+const klaw    = require('klaw')
+const rename  = require('rename-extension')
+const log     = require('./log')
+const execute = require('./execute')
 
 /**
  * Run multiple route functions parallel.

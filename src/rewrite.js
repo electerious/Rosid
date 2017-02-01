@@ -1,11 +1,12 @@
 'use strict'
 
-const path   = require('path')
-const mm     = require('micromatch')
-const mime   = require('mime')
-const rename = require('rename-extension')
-const log    = require('./log')
-const cache  = require('./cache')
+const path    = require('path')
+const mm      = require('micromatch')
+const mime    = require('mime')
+const rename  = require('rename-extension')
+const log     = require('./log')
+const cache   = require('./cache')
+const execute = require('./execute')
 
 /**
  * Sends a chunk of the response body and signals the server
