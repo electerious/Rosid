@@ -43,7 +43,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 			if (err!=null) return next(err)
 
 			// Save file to disk
-			save(fileSave, data, next)
+			save(fileSave, data, opts, next)
 
 		})
 
