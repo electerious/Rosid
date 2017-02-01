@@ -38,6 +38,7 @@
     "minimist": "^1.2.0",
     "nice-try": "^1.0.2",
     "path-is-inside": "^1.0.2",
+    "rename-extension": "^1.0.4",
     "tfunk": "^3.0.2"
   },
   "optionalDependencies": {

@@ -1,11 +1,12 @@
 'use strict'
 
-const async = require('async')
-const path  = require('path')
-const mm    = require('micromatch')
-const fse   = require('fs-extra')
-const klaw  = require('klaw')
-const log   = require('./log')
+const async  = require('async')
+const path   = require('path')
+const mm     = require('micromatch')
+const fse    = require('fs-extra')
+const klaw   = require('klaw')
+const rename = require('rename-extension')
+const log    = require('./log')
 
 /**
  * Run multiple route functions parallel.
@@ -32,20 +33,20 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 		// Save file in distPath at the same location as in srcPath,
 		// but with a different extension.
-		const savePath = rename(filePath.replace(srcPath, distPath), route.out(route.opts))
+		const fileSave = rename(filePath.replace(srcPath, distPath), route.out(route.opts))
 
 		// Return fn when matching route found
 		return (next) => execute(route, fileRoute, filePath, (err, data) => {
 
 			if (err!=null) return next(err)
 
-			if (opts.verbose===true) log(`{cyan:Saving file: {grey:${ savePath }`)
+			if (opts.verbose===true) log(`{cyan:Saving file: {grey:${ fileSave }`)
 
-			fse.outputFile(savePath, data, (err) => {
+			fse.outputFile(fileSave, data, (err) => {
 
 				if (err!=null) return next(err)
 
-				if (opts.verbose===true) log(`{cyan:Saved file: {grey:${ savePath }`)
+				if (opts.verbose===true) log(`{cyan:Saved file: {grey:${ fileSave }`)
 
 				next()
 
