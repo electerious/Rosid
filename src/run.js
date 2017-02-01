@@ -34,7 +34,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 		// Save file in distPath at the same location as in srcPath,
 		// but with a different extension.
-		const fileSave = rename(filePath.replace(srcPath, distPath), route.out(route.opts))
+		const fileSave = rename(filePath.replace(srcPath, distPath), route.handler.out(route.opts))
 
 		// Return fn when matching route found
 		return (next) => execute(route, fileRoute, filePath, (err, data) => {

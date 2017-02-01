@@ -61,7 +61,7 @@ module.exports = function(routes, srcPath) {
 		const contentType = mime.lookup(filePath)
 
 		// Load file with a different extension as filePath points to the target extension
-		const fileLoad = rename(filePath, route.in(route.opts))
+		const fileLoad = rename(filePath, route.handler.in(route.opts))
 
 		// Execute handler
 		execute(route, fileRoute, fileLoad, (err, data) => {
