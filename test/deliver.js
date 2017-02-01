@@ -6,14 +6,14 @@ const deliver = require('./../src/deliver')
 
 describe('deliver()', function() {
 
-	it('should deliver a directory', function(next) {
+	it('should deliver a directory', function(done) {
 
 		const srcPath  = temp.mkdirSync()
 		const rewrite  = () => {}
 		const redirect = () => {}
 		const opts     = { open: false }
 
-		deliver(srcPath, rewrite, redirect, opts, next)
+		deliver(srcPath, rewrite, redirect, opts, done)
 
 	})
 

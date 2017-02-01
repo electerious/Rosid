@@ -18,7 +18,7 @@ const newFile = function(opts) {
 
 describe('copy()', function() {
 
-	it('should copy a directory without ignored files', function(next) {
+	it('should copy a directory without ignored files', function(done) {
 
 		const srcPath  = temp.mkdirSync()
 		const distPath = temp.mkdirSync()
@@ -51,7 +51,7 @@ describe('copy()', function() {
 			assert.throws(fs.readFileSync.bind(null, distFileSWP))
 			assert.throws(fs.readFileSync.bind(null, distFileCSS))
 
-			next(err)
+			done(err)
 
 		})
 
