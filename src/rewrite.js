@@ -35,9 +35,6 @@ module.exports = function(routes, srcPath) {
 		// Remove first character and query to convert URL to a relative path
 		const fileRoute = req.url.substr(1).split('?')[0]
 
-		// Absolute path to the requested file
-		const filePath = path.join(srcPath, fileRoute)
-
 		// Generate an array of matching routes and use the first matching route only
 		const matches = routes.filter((route) => mm.isMatch(fileRoute, route.path))
 		const route   = matches[0]
@@ -57,11 +54,14 @@ module.exports = function(routes, srcPath) {
 
 		}
 
-		// Get mime type of request files
-		const contentType = mime.lookup(filePath)
+		// Absolute path to the requested file
+		const filePath = path.join(srcPath, fileRoute)
 
 		// Load file with a different extension as filePath points to the target extension
 		const fileLoad = rename(filePath, route.handler.in(route.opts))
+
+		// Get mime type of request files
+		const contentType = mime.lookup(filePath)
 
 		// Execute handler
 		execute(route, fileRoute, fileLoad, (err, data) => {
