@@ -31,7 +31,7 @@ const _route = function(route) {
 	if (typeof route.handler!=='function') throw new Error(`Handler in route '${ route.name }' is not a function nor a string`)
 
 	// Provide fallbacks
-	if (route.args==null) route.args = {}
+	if (route.opts==null) route.opts = {}
 
 	return route
 

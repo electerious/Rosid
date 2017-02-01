@@ -13,7 +13,7 @@ describe('validate', function() {
 			const route = {
 				path    : '.',
 				handler : () => {},
-				args    : {}
+				opts    : {}
 			}
 
 			assert.throws(validate.route.bind(null, route), 'Missing name property in route')
@@ -26,7 +26,7 @@ describe('validate', function() {
 				name    : '',
 				path    : '.',
 				handler : () => {},
-				args    : {}
+				opts    : {}
 			}
 
 			assert.throws(validate.route.bind(null, route), 'Missing name property in route')
@@ -38,7 +38,7 @@ describe('validate', function() {
 			const route = {
 				name    : 'mocha',
 				handler : () => {},
-				args    : {}
+				opts    : {}
 			}
 
 			assert.throws(validate.route.bind(null, route), `Missing path property in route '${ route.name }'`)
@@ -50,7 +50,7 @@ describe('validate', function() {
 			const route = {
 				name    : 'mocha',
 				path    : '.',
-				args    : {}
+				opts    : {}
 			}
 
 			assert.throws(validate.route.bind(null, route), `Missing handler property in route '${ route.name }'`)
@@ -63,7 +63,7 @@ describe('validate', function() {
 				name    : 'mocha',
 				path    : '/a/b/c',
 				handler : () => {},
-				args    : {}
+				opts    : {}
 			}
 
 			assert.throws(validate.route.bind(null, route), `Path in route '${ route.name }' must be relative`)
@@ -76,7 +76,7 @@ describe('validate', function() {
 				name    : 'mocha',
 				path    : '.',
 				handler : [],
-				args    : {}
+				opts    : {}
 			}
 
 			assert.throws(validate.route.bind(null, route), `Handler in route '${ route.name }' is not a function nor a string`)
@@ -89,14 +89,14 @@ describe('validate', function() {
 				name    : 'mocha',
 				path    : '.',
 				handler : './index.js',
-				args    : {}
+				opts    : {}
 			}
 
 			assert.isFunction(validate.route(route).handler)
 
 		})
 
-		it('should return a route with args when args are missing', function() {
+		it('should return a route with opts when opts are missing', function() {
 
 			const route = {
 				name    : 'mocha',
@@ -104,7 +104,7 @@ describe('validate', function() {
 				handler : () => {}
 			}
 
-			assert.deepEqual(validate.route(route), Object.assign(route, { args: {} }))
+			assert.deepEqual(validate.route(route), Object.assign(route, { opts: {} }))
 
 		})
 
@@ -114,7 +114,7 @@ describe('validate', function() {
 				name    : 'mocha',
 				path    : '.',
 				handler : () => {},
-				args    : {}
+				opts    : {}
 			}
 
 			assert.deepEqual(validate.route(route), route)
