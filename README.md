@@ -206,7 +206,7 @@ Parameters:
 Returns:
 
 - `{Promise}({Object})`
-	- `data` `{String | Buffer}` The transformed file content.
+	- `data` `{String|Buffer}` The transformed file content.
 	- `savePath` `{?String}` Where to save the file when compiling. If the parent directory does not exist, it's created.
 
 ## Execute
