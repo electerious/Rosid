@@ -31,59 +31,52 @@ module.exports = function(routes, srcPath) {
 	return (req, res, next) => {
 
 		// Remove first character and query to convert URL to a relative path
-		const url = req.url.substr(1).split('?')[0]
+		const fileRoute = req.url.substr(1).split('?')[0]
 
 		// Absolute path to the requested file
-		const filePath = path.join(srcPath, url)
+		const filePath = path.join(srcPath, fileRoute)
 
 		// Generate an array of matching routes and use the first matching route only
-		const matches = routes.filter((route) => mm.isMatch(url, route.path))
+		const matches = routes.filter((route) => mm.isMatch(fileRoute, route.path))
 		const route   = matches[0]
 
 		// Continue without a rewrite when no matching route has been found
 		if (route==null) return next()
 
 		// Use cached handler response when available
-		if (cache.get(filePath)!=null) {
+		if (cache.get(fileRoute)!=null) {
 
-			log(`{cyan:Using cached handler: {magenta:${ route.name } {grey:${ url }`)
+			log(`{cyan:Using cached handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 
-			const cachedHandler = cache.get(filePath)
+			const cachedHandler = cache.get(fileRoute)
 
+			// Send file to browser
 			return send(res, cachedHandler.contentType, cachedHandler.data)
 
 		}
 
-		log(`{cyan:Starting handler: {magenta:${ route.name } {grey:${ url }`)
+		// Get mime type of request files
+		const contentType = mime.lookup(filePath)
 
-		const processHandler = ({ data, savePath }) => {
+		// Load file with a different extension as filePath points to the target extension
+		const fileLoad = rename(filePath, route.in(route.opts))
 
-			log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ url }`)
+		// Execute handler
+		execute(route, fileRoute, fileLoad, (err, data) => {
 
-			const contentType = mime.lookup(savePath || filePath)
+			if (err!=null) return next(err)
 
-			if (data==null) {
-				return next(new Error(`Handler of route '${ route.name }' returned without data`))
-			}
-
-			if (res.finished===true) {
-				return next(new Error(`Data of route '${ route.name }' has already been sent to the client`))
-			}
+			// Send file to browser
+			send(res, contentType, data)
 
 			// Cache the response of the handler
-			cache.set(filePath, {
+			cache.set(fileRoute, {
 				contentType : contentType,
 				data        : data,
 				cache       : route.handler.cache
 			})
 
-			send(res, contentType, data)
-
-		}
-
-		route
-			.handler(filePath, srcPath, null, route)
-			.then(processHandler, next)
+		})
 
 	}
 

@@ -30,42 +30,28 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 		// Return empty fn when no matching route found
 		if (route==null) return (next) => next()
 
+		// Save file in distPath at the same location as in srcPath,
+		// but with a different extension.
+		const savePath = rename(filePath.replace(srcPath, distPath), route.out(route.opts))
+
 		// Return fn when matching route found
-		return (next) => {
+		return (next) => execute(route, fileRoute, filePath, (err, data) => {
 
-			log(`{cyan:Starting handler: {magenta:${ route.name } {grey:${ fileRoute }`)
+			if (err!=null) return next(err)
 
-			const processHandler = ({ data, savePath }) => {
+			if (opts.verbose===true) log(`{cyan:Saving file: {grey:${ savePath }`)
 
-				log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ fileRoute }`)
+			fse.outputFile(savePath, data, (err) => {
 
-				if (data==null) {
-					return next(new Error(`Handler of route '${ route.name }' returned without data`))
-				}
+				if (err!=null) return next(err)
 
-				if (savePath==null || savePath==='') {
-					return next(new Error(`File of route '${ route.name }' could not be saved as no path has been specified by the handler`))
-				}
+				if (opts.verbose===true) log(`{cyan:Saved file: {grey:${ savePath }`)
 
-				if (opts.verbose===true) log(`{cyan:Saving file: {grey:${ savePath }`)
+				next()
 
-				fse.outputFile(savePath, data, (err) => {
+			})
 
-					if (err!=null) return next(err)
-
-					if (opts.verbose===true) log(`{cyan:Saved file: {grey:${ savePath }`)
-
-					next()
-
-				})
-
-			}
-
-			route
-				.handler(filePath, srcPath, distPath, route)
-				.then(processHandler, next)
-
-		}
+		})
 
 	}
 
