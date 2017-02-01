@@ -14,7 +14,7 @@ describe('save()', function() {
 
 		save(filePath, data, {}, (err) => {
 
-			if (err!=null) done(err)
+			if (err!=null) return done(err)
 
 			assert.strictEqual(fs.readFileSync(filePath, 'utf8'), data)
 
@@ -31,7 +31,7 @@ describe('save()', function() {
 
 		save(filePath, data, { verbose: true }, (err) => {
 
-			if (err!=null) done(err)
+			if (err!=null) return done(err)
 
 			assert.strictEqual(fs.readFileSync(filePath, 'utf8'), data)
 
