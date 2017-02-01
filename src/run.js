@@ -8,6 +8,7 @@ const klaw    = require('klaw')
 const rename  = require('rename-extension')
 const log     = require('./log')
 const execute = require('./execute')
+const save    = require('./save')
 
 /**
  * Run multiple route functions parallel.
@@ -41,17 +42,8 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 			if (err!=null) return next(err)
 
-			if (opts.verbose===true) log(`{cyan:Saving file: {grey:${ fileSave }`)
-
-			fse.outputFile(fileSave, data, (err) => {
-
-				if (err!=null) return next(err)
-
-				if (opts.verbose===true) log(`{cyan:Saved file: {grey:${ fileSave }`)
-
-				next()
-
-			})
+			// Save file to disk
+			save(fileSave, data, next)
 
 		})
 
