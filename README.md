@@ -16,7 +16,7 @@ Just-in-time development server and static site generator written in [Node.js](h
 	- [Name](#name)
 	- [Path](#path)
 	- [Handler](#handler)
-	- [Args](#args)
+	- [Opts](#opts)
 - [Handlers](#handlers)
 - [Execute](#execute)
 	- [Initialize](#initialize)
@@ -80,7 +80,7 @@ const routes = [
 		name    : 'SCSS',
 		path    : 'assets/styles/**/[^_]*.{css,scss}',
 		handler : transfromSCSS,
-		args    : { custom: 'data' }
+		opts    : { custom: 'data' }
 	},
 	{
 		name    : 'EJS',
@@ -126,19 +126,19 @@ Rosid compares all requested URLs (when running the [development server](#serve)
 
 ### Handler
 
-Type: `Function|String` Default: `null` Optional: `false` Signature: `filePath, srcPath, distPath, route, callback`
+Type: `Function|String` Default: `null` Optional: `false` Signature: `filePath, opts`
 
 Should be a function which transforms and returns the content of a file. When a string is specified, Rosid tries to require the given module. [More about handlers...](#handlers)
 
-### Args
+### Opts
 
 Type: `Object` Default: `{}` Optional: `true`
 
-A save place to store route-specific properties, settings or data. All args are accessible inside the corresponding handler using `route.args`.
+A save place to store route-specific properties, settings or data. All data is accessible inside the corresponding handler. It's the second parameter passed to the handler.
 
 ## Handlers
 
-Handlers are functions which load and transform files. Rosid doesn't care about how you transform them, but requires you to return a promise which resolves an object with two properties: The content of a file (`data`) and a path where it should be saved (`savePath`). The `savePath` must be specified for the [compilation](#compile).
+Handlers are functions which load and transform files. Rosid doesn't care about how they transform them, but requires them to return a promise. The promise should resolve a string that contains the content of the transformed file.
 
 Existing handlers:
 
@@ -153,36 +153,31 @@ Example:
 
 ```js
 /*
- * The following handler transforms SCSS to CSS.
+ * The following handler transforms SASS to CSS.
  */
-const transfromSCSS = function(filePath, srcPath, distPath, route) {
+const transfromSASS = function(filePath, opts) {
 
 	/*
 	 * 1. Load requested file (filePath)
 	 * 2. Transform the file
-	 * 3. Return the transformed contents of the file and a save path
+	 * 3. Return the transformed contents of the file
 	 */
 
-	return Promise.resolve({
-		data     : css
-		savePath : path.join(distPath + 'assets/styles/main.css')
-	})
+	return Promise.resolve(`
+		.css { display: none; }
+	`)
 
 }
 ```
 
 Parameters:
 
-- `filePath` `{String}` Absolute path to the requested file.
-- `srcPath` `{String}` Absolute path to the source folder.
-- `distPath` `{?String}` Absolute path to the export folder.
-- `route` `{Object}` The route which matched the request URL.
+- `filePath` `{String}` Absolute path to file.
+- `route` `{Object}` Options from the route.
 
 Returns:
 
-- `{Promise}({Object})`
-	- `data` `{String|Buffer}` The transformed file content.
-	- `savePath` `{?String}` Where to save the file when compiling. If the parent directory does not exist, it's created.
+- `{Promise}({String|Buffer})` The transformed file content.
 
 ## Execute
 
