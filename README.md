@@ -65,31 +65,6 @@ Install Rosid using [npm](https://npmjs.com).
 npm install rosid
 ```
 
-Create a new JS-file and insert the following code:
-
-```js
-'use strict'
-
-/*
- * Your file-handlers.
- */
-const transfromJS = (...) => {...}
-const transfromSASS = (...) => {...}
-
-/*
- * Rosid compares all requested URLs with the following patterns.
- * The associated file-handler will be executed when a pattern matches.
- */
-const routes = [{...}, {...}]
-
-/*
- * Require and initialize Rosid.
- */
-const Rosid = require('rosid')(routes)
-```
-
-Both the file-handlers and routes are placeholders and Rosid hasn't been executed, yet. Read more about [routes](#routes), [handlers](#handlers) and how to [execute](#execute) Rosid to get started.
-
 ## Routes
 
 The route-configuration is an array of objects. Each object must contain a name, path and handler.
