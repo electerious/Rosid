@@ -45,7 +45,14 @@ module.exports = function(routes, srcPath) {
 		const filePath = path.join(srcPath, fileRoute)
 
 		// Load file with a different extension as filePath points to the target extension
-		const fileLoad = rename(filePath, route.handler.in(route.opts))
+		const fileLoad = (() => {
+
+			// Check if fn exists
+			const hasFn = (typeof route.handler.in==='function')
+
+			return (hasFn===true ? rename(filePath, route.handler.in(route.opts)) : filePath)
+
+		})()
 
 		// Get mime type of request files
 		const contentType = mime.lookup(filePath)

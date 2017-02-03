@@ -35,7 +35,17 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 		// Save file in distPath at the same location as in srcPath,
 		// but with a different extension.
-		const fileSave = rename(filePath.replace(srcPath, distPath), route.handler.out(route.opts))
+		const fileSave = (() => {
+
+			// Switch from src to dist
+			const fileDist = filePath.replace(srcPath, distPath)
+
+			// Check if fn exists
+			const hasFn = (typeof route.handler.out==='function')
+
+			return (hasFn===true ? rename(fileDist, route.handler.out(route.opts)) : fileDist)
+
+		})()
 
 		// Return fn when matching route found
 		return (next) => execute(route, fileRoute, filePath, true, (err, data) => {
