@@ -38,7 +38,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 		const fileSave = rename(filePath.replace(srcPath, distPath), route.handler.out(route.opts))
 
 		// Return fn when matching route found
-		return (next) => execute(route, fileRoute, filePath, (err, data) => {
+		return (next) => execute(route, fileRoute, filePath, true, (err, data) => {
 
 			if (err!=null) return next(err)
 

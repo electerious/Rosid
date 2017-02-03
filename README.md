@@ -122,7 +122,7 @@ Name of the route.
 
 Type: `String` Default: `null` Optional: `false`
 
-Rosid compares all requested URLs (when running the [development server](#serve)) and all existing files (when [compiling the project](#compile)) with the path. It executes the handler when the pattern matches. The path must be a relative. Query strings will be ignored. Rosid uses the same [patterns the shell uses](https://github.com/isaacs/node-glob).
+Rosid compares all requested URLs (when running the [development server](#serve)) and all existing files (when [compiling a project](#compile)) with the path. It executes the handler when the pattern matches. The path must be a relative. Query strings will be ignored. Rosid uses the same [patterns the shell uses](https://github.com/isaacs/node-glob).
 
 ### Handler
 
@@ -135,6 +135,8 @@ Should be a function which transforms and returns the content of a file. When a 
 Type: `Object` Default: `{}` Optional: `true`
 
 A save place to store route-specific properties, settings or data. All data is accessible inside the corresponding handler. It's the second parameter passed to the handler.
+
+Rosid automatically appends a `optimize` property. `optimize` is `false` when running the [development server](#serve) *or* `true` when [compiling a project](#compile). This option can be used to optimize the output of handlers depending on how Rosid has been executed. Set a custom `optimize` to use your option instead.
 
 ## Handlers
 

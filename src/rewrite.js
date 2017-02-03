@@ -51,7 +51,7 @@ module.exports = function(routes, srcPath) {
 		const contentType = mime.lookup(filePath)
 
 		// Execute handler
-		execute(route, fileRoute, fileLoad, (err, data) => {
+		execute(route, fileRoute, fileLoad, false, (err, data) => {
 
 			if (err!=null) return next(err)
 
