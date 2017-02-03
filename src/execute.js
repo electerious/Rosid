@@ -27,7 +27,7 @@ module.exports = function(route, fileRoute, filePath, optimize, next) {
 
 	}
 
-	const opts = Object.assign(route.opts, {
+	const opts = Object.assign({}, route.opts, {
 		optimize: (route.opts.optimize===undefined ? optimize : route.opts.optimize)
 	})
 
