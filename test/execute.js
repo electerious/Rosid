@@ -10,10 +10,41 @@ describe('execute()', function() {
 
 		const fileRoute = temp.openSync().path
 		const filePath  = temp.openSync().path
+		const optimize  = false
 		const data      = 'data'
 
 		const opts = {
 			key: 'value'
+		}
+
+		const handler = (_filePath, _opts) => {
+
+			assert.strictEqual(_filePath, filePath)
+			assert.deepEqual(_opts, Object.assign({}, opts, { optimize }))
+
+			done()
+
+		}
+
+		const route = {
+			name    : 'mocha',
+			handler : handler,
+			opts    : opts
+		}
+
+		execute(route, fileRoute, filePath, optimize, (err, data) => {})
+
+	})
+
+	it('should execute handler with filePath and data and custom optimize option', function(done) {
+
+		const fileRoute = temp.openSync().path
+		const filePath  = temp.openSync().path
+		const data      = 'data'
+
+		const opts = {
+			key: 'value',
+			optimize: 'custom'
 		}
 
 		const handler = (_filePath, _opts) => {
@@ -31,7 +62,7 @@ describe('execute()', function() {
 			opts    : opts
 		}
 
-		execute(route, fileRoute, filePath, (err, data) => {})
+		execute(route, fileRoute, filePath, undefined, (err, data) => {})
 
 	})
 
@@ -49,7 +80,7 @@ describe('execute()', function() {
 			opts    : {}
 		}
 
-		execute(route, fileRoute, filePath, (err, _data) => {
+		execute(route, fileRoute, filePath, undefined, (err, _data) => {
 
 			if (err!=null) return done(err)
 
@@ -74,9 +105,8 @@ describe('execute()', function() {
 			opts    : {}
 		}
 
-		execute(route, fileRoute, filePath, (err, _data) => {
+		execute(route, fileRoute, filePath, undefined, (err, _data) => {
 
-			assert.isNotNull(err)
 			assert.isDefined(err)
 
 			done()
