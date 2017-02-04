@@ -4,6 +4,7 @@
 
 const path     = require('path')
 const minimist = require('minimist')
+const findUp   = require('find-up')
 const pkg      = require('./../package')
 
 const alias = {
@@ -15,7 +16,7 @@ const alias = {
 
 const getRosid = function() {
 
-	const routesPath = path.resolve(process.cwd(), './rosidfile')
+	const routesPath = findUp.sync([ 'rosidfile.js', 'rosidfile.json' ])
 
 	const Rosid  = require('./../src/index')
 	const routes = require(routesPath)
