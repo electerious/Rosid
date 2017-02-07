@@ -30,8 +30,8 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 		const matches = routes.filter((route) => mm.isMatch(fileRoute, route.path))
 		const route   = matches[0]
 
-		// Return empty fn when no matching route found
-		if (route==null) return (next) => next()
+		// Return resolved promise when no matching route found
+		if (route==null) return Promise.resolve()
 
 		// Save file in distPath at the same location as in srcPath,
 		// but with a different extension.
@@ -47,13 +47,24 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 		})()
 
-		// Return fn when matching route found
-		return (next) => execute(route, fileRoute, filePath, true, (err, data) => {
+		// Return promise when matching route found
+		return new Promise((resolve, reject) => {
 
-			if (err!=null) return next(err)
+			// Execute handler
+			execute(route, fileRoute, filePath, true, (err, data) => {
 
-			// Save file to disk
-			save(fileSave, data, opts, next)
+				if (err!=null) return reject(err)
+
+				// Save file to disk
+				save(fileSave, data, opts, (err) => {
+
+					if (err!=null) return reject(err)
+
+					resolve()
+
+				})
+
+			})
 
 		})
 
@@ -71,8 +82,9 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	}).on('end', () => {
 
-		// Run each fn and continue with next
-		async.parallel(query, next)
+		// Wait for each promise to resolve and continue with next.
+		// Ensure that the first parameter of next is empty.
+		Promise.all(query).then(() => next(), next)
 
 	})
 
