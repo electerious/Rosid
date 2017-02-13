@@ -149,7 +149,8 @@ Existing handlers:
 | JS => JS | Load, transform, bundle and compress JS. | [GitHub](https://github.com/electerious/rosid-handler-js) |
 | JS => HTML | Load JS and transform to HTML. | [GitHub](https://github.com/electerious/rosid-handler-node) |
 | SCSS => CSS | Load SCSS and transform to CSS, add vendor prefixes and minify. | [GitHub](https://github.com/electerious/rosid-handler-scss) |
-| EJS => HTML | Load EJS and transform to HTML. | [GitHub](https://github.com/electerious/rosid-handler-ejs) |
+| EJS => HTML | Load EJS templates and render them. | [GitHub](https://github.com/electerious/rosid-handler-ejs) |
+| Nunjucks => HTML | Load Nunjucks templates and render them. | [GitHub](https://github.com/electerious/rosid-handler-njk) |
 
 Example:
 
