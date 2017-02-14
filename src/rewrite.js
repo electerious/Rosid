@@ -14,6 +14,7 @@ const send    = require('./send')
  * @public
  * @param {Array} routes - Array of route configurations.
  * @param {String} srcPath - Path to the source folder.
+ * @returns {Function} Middleware for Browsersync.
  */
 module.exports = function(routes, srcPath) {
 
