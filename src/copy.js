@@ -17,8 +17,8 @@ const getIgnoredFiles = function(routes, customFiles, srcPath) {
 
 	// Always ignore the following files
 	const ignoredFiles = [
-		'**/.git',
 		'**/CVS',
+		'**/.git',
 		'**/.svn',
 		'**/.hg',
 		'**/.lock-wscript',

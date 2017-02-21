@@ -13,8 +13,8 @@ const getFiles = function() {
 
 	// Exclude the following files
 	const excludedFiles = [
-		'!**/.git',
 		'!**/CVS',
+		'!**/.git',
 		'!**/.svn',
 		'!**/.hg',
 		'!**/.lock-wscript',
