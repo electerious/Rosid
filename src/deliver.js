@@ -2,6 +2,7 @@
 
 const path        = require('path')
 const niceTry     = require('nice-try')
+const junk        = require('junk')
 const browserSync = niceTry(() => require('browser-sync'))
 const cache       = require('./cache')
 
@@ -19,11 +20,6 @@ const getFiles = function() {
 		'!**/.hg',
 		'!**/.lock-wscript',
 		'!**/.wafpickle-N',
-		'!**/*.swp',
-		'!**/.DS_Store',
-		'!**/.LSOverride',
-		'!**/._*',
-		'!**/npm-debug.log',
 		'!**/node_modules',
 		'!**/bower_components'
 	]
@@ -46,12 +42,17 @@ const getFiles = function() {
  * Should be executed when a file gets updated.
  * @param {Object} bs - Browsersync instance.
  * @param {String} event - Event sent by Chokidar.
- * @param {String} file - File affected by event.
+ * @param {String} filePath - File affected by event.
  */
-const eventHandler = function(bs, event, file) {
+const eventHandler = function(bs, event, filePath) {
 
-	// Get the extension of the file
-	const extension = path.extname(file)
+	const fileName = path.parse(filePath).base
+
+	// Ignore change when filePath is junk
+	if (junk.is(fileName)===true) return
+
+	// Get the extension of the filePath
+	const extension = path.extname(filePath)
 
 	// Flush the cache no matter what event was send by Chokidar.
 	// This ensures that we serve the latest files when the user reloads the site.

@@ -25,7 +25,7 @@ describe('copy()', function() {
 
 		const fileEJS = newFile({ dir: srcPath, suffix: '.ejs' })
 		const fileJS  = newFile({ dir: srcPath, suffix: '.js' })
-		const fileSWP = newFile({ dir: srcPath, suffix: '.swp' })
+		const fileSWP = newFile({ dir: srcPath, prefix: '.', suffix: '.swp' })
 		const fileCSS = newFile({ dir: srcPath, suffix: '.css' })
 
 		const distFileEJS = path.resolve(distPath, path.parse(fileEJS).base)

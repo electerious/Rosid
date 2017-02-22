@@ -2,6 +2,7 @@
 
 const path       = require('path')
 const fse        = require('fs-extra')
+const junk       = require('junk')
 const mm         = require('micromatch')
 const globEscape = require('glob-escape')
 const log        = require('./log')
@@ -22,12 +23,7 @@ const getIgnoredFiles = function(routes, customFiles, srcPath) {
 		'**/.svn',
 		'**/.hg',
 		'**/.lock-wscript',
-		'**/.wafpickle-N',
-		'**/*.swp',
-		'**/.DS_Store',
-		'**/.LSOverride',
-		'**/._*',
-		'**/npm-debug.log'
+		'**/.wafpickle-N'
 	]
 
 	// Escape glob patterns. srcPath should not glob.
@@ -59,20 +55,25 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 	const ignoredFiles = getIgnoredFiles(routes, opts.ignore, srcPath)
 
 	const fseOpts = {
-		filter: (path) => {
+		filter: (filePath) => {
 
-			const isIgnored = mm.any(path, ignoredFiles)
+			const fileName = path.parse(filePath).base
+
+			const isIgnored = mm.any(filePath, ignoredFiles)
+			const isJunk    = junk.is(fileName)
+
+			// Copy file when it's not ignored or not junk
+			const copy = isIgnored===false && isJunk===false
 
 			if (opts.verbose===true) {
 
-				if (isIgnored===true)  log(`{cyan:Skipping file: {grey:${ path }`)
-				if (isIgnored===false) log(`{cyan:Copying file: {grey:${ path }`)
+				if (copy===false) log(`{cyan:Skipping file: {grey:${ filePath }`)
+				if (copy===true)  log(`{cyan:Copying file: {grey:${ filePath }`)
 
 			}
 
-			// Copy file when it is not part of the ignored files
 			// Return true to include, false to exclude
-			return isIgnored===false
+			return copy
 
 		}
 	}
