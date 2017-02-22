@@ -39,7 +39,7 @@
     "minimist": "^1.2.0",
     "nice-try": "^1.0.2",
     "path-is-inside": "^1.0.2",
-    "rename-extension": "^1.0.4",
+    "rename-extension": "^2.0.0",
     "tfunk": "^3.1.0"
   },
   "optionalDependencies": {
