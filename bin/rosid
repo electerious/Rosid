@@ -27,7 +27,7 @@ const getRosid = function() {
 
 const serve = function(srcPath, opts) {
 
-	srcPath = path.resolve(process.cwd(), srcPath || '')
+	srcPath = path.resolve(srcPath || '')
 
 	getRosid().serve(srcPath, {
 		polling : opts.polling,
@@ -38,8 +38,8 @@ const serve = function(srcPath, opts) {
 
 const compile = function(srcPath, distPath, opts) {
 
-	srcPath  = path.resolve(process.cwd(), srcPath || '')
-	distPath = path.resolve(process.cwd(), distPath || 'dist/')
+	srcPath  = path.resolve(srcPath || '')
+	distPath = path.resolve(distPath || 'dist/')
 
 	getRosid().compile(srcPath, distPath, {
 		ignore  : opts.ignore,
