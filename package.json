@@ -29,7 +29,7 @@
     "test": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "dependencies": {
-    "async": "^2.1.5",
+    "async": "^2.2.0",
     "find-up": "^2.1.0",
     "fs-extra": "^2.0.0",
     "glob-escape": "0.0.2",
