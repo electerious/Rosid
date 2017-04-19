@@ -100,9 +100,9 @@ Store the routes in a variable or save them in a JSON file called `rosidfile.jso
 		"handler" : "rosid-handler-js"
 	},
 	{
-		"name"    : "SCSS",
-		"path"    : "assets/styles/[^_]*.{css,scss}",
-		"handler" : "rosid-handler-scss"
+		"name"    : "SASS",
+		"path"    : "assets/styles/[^_]*.{css,sass}",
+		"handler" : "rosid-handler-sass"
 	},
 	{
 		"name"    : "EJS",
@@ -136,7 +136,26 @@ Type: `Object` Default: `{}` Optional: `true`
 
 A save place to store route-specific properties, settings or data. All data is accessible inside the corresponding handler. It's the second parameter passed to the handler.
 
-Rosid automatically appends a `optimize` property. `optimize` is `false` when running the [development server](#serve) *or* `true` when [compiling a project](#compile). This option can be used to optimize the output of handlers depending on how Rosid has been executed. Set a custom `optimize` to use your option instead.
+You can choose your property names freely. Only the following names are reserved by Rosid:
+
+- Rosid automatically appends a `optimize` property. `optimize` is `false` when running the [development server](#serve) *or* `true` when [compiling a project](#compile). This option can be used to optimize the output of handlers depending on how Rosid has been executed. Set a custom `optimize` to use your option instead.
+- Each handler has a predefined load (`in`) and save (`out`) extension. Specify a custom extension to overwrite the default of the handler.
+
+`rosid-handler-sass` loads `.sass` files by default and only optimizes the output when necessary. The following `rosidfile.json` shows reserved options in action, forces a optimization and sets the `in` extension to `.scss`.
+
+```json
+[
+	{
+		"name"    : "SASS",
+		"path"    : "assets/styles/[^_]*.{css,scss}",
+		"handler" : "rosid-handler-sass",
+		"opts"    : {
+			"in"       : ".scss",
+			"optimize" : true
+		}
+	}
+]
+```
 
 ## Handlers
 
@@ -148,7 +167,7 @@ Existing handlers:
 |:-----------|:------------|:------------|
 | JS => JS | Load, transform, bundle and compress JS. | [GitHub](https://github.com/electerious/rosid-handler-js) |
 | JS => HTML | Load JS and transform to HTML. | [GitHub](https://github.com/electerious/rosid-handler-node) |
-| SCSS => CSS | Load SCSS and transform to CSS, add vendor prefixes and minify. | [GitHub](https://github.com/electerious/rosid-handler-scss) |
+| SASS => CSS | Load SASS and transform to CSS, add vendor prefixes and minify. | [GitHub](https://github.com/electerious/rosid-handler-sass) |
 | EJS => HTML | Load EJS templates and render them. | [GitHub](https://github.com/electerious/rosid-handler-ejs) |
 | Nunjucks => HTML | Load Nunjucks templates and render them. | [GitHub](https://github.com/electerious/rosid-handler-njk) |
 
