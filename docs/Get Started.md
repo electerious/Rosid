@@ -92,7 +92,7 @@ It's time to fire up Rosid. Rosid has been installed into the `node_modules` dir
 
 Rosid starts and opens your default browser. You should see "Hello Rosid!" in it with a white font on a green background.
 
-### 6. Compile your project
+## 6. Compile your project
 
 You don't need to use the server of Rosid. Export static files using your existing transform-functions and host your site anywhere!
 
