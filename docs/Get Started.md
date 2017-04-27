@@ -1,6 +1,6 @@
 # Get started
 
-Rosid can be integrated into your project in two ways: Using the CLI version *or* using the API of Rosid. This guide covers the first way and shows you how create and serve a simple project.
+Rosid can be integrated into your project in two ways: Using the CLI *or* using the API of Rosid. This guide covers the first way and shows you how create and serve a simple project.
 
 ## 1. Install Rosid
 
