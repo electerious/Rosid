@@ -210,7 +210,7 @@ You must require and initialize Rosid before you can use the `serve` and `compil
 Syntax:
 
 ```js
-Rosid = require('rosid')(routes)
+const Rosid = require('rosid')(routes)
 ```
 
 Parameters:
