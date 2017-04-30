@@ -12,6 +12,8 @@ Handlers are functions which load and transform files. Rosid doesn't care about 
 | EJS => HTML | Load EJS templates and render them. | [GitHub](https://github.com/electerious/rosid-handler-ejs) |
 | Nunjucks => HTML | Load Nunjucks templates and render them. | [GitHub](https://github.com/electerious/rosid-handler-njk) |
 
+[See all handlers &#187;](https://www.npmjs.com/search?q=rosid-handler-)
+
 ## Custom handler
 
 Example:
@@ -43,3 +45,7 @@ Parameters:
 Returns:
 
 - `{Promise}({String|Buffer})` The transformed file content.
+
+## Distributing a handler
+
+Handlers should be distributed through npm. The recommended prefix is `rosid-handler-` and the `package.json` of your handler should at least contain the tags `rosid` and `handler`.
