@@ -1,5 +1,7 @@
 # Rosid
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/electerious/Rosid.svg)](https://greenkeeper.io/)
+
 [![Travis Build Status](https://travis-ci.org/electerious/Rosid.svg?branch=master)](https://travis-ci.org/electerious/Rosid) [![Coverage Status](https://coveralls.io/repos/github/electerious/Rosid/badge.svg?branch=master)](https://coveralls.io/github/electerious/Rosid?branch=master) [![Dependencies](https://david-dm.org/electerious/Rosid.svg)](https://david-dm.org/electerious/Rosid#info=dependencies) [![Donate via Flattr](https://img.shields.io/badge/flattr-donate-009cde.svg)](https://flattr.com/profile/electerious) [![Donate via PayPal](https://img.shields.io/badge/paypal-donate-009cde.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CYKBESW577YWE)
 
 Just-in-time server and static site generator written in [Node.js](https://nodejs.org/). Rosid transforms your files on-the-fly before serving them to the browser.
