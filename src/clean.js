@@ -1,7 +1,7 @@
 'use strict'
 
 const fse          = require('fs-extra')
-const pathIsInside = require('path-is-inside')
+const isPathInside = require('is-path-inside')
 const log          = require('./log')
 
 /**
@@ -15,12 +15,12 @@ const log          = require('./log')
  */
 module.exports = function(distPath, cwdPath, opts, next) {
 
-	// Check if CWD is inside the specified distPath. This prevents us from
-	// deleting ourselves. pathIsInside also returns true when both paths are the same.
-	const isUnsafePath = pathIsInside(cwdPath, distPath)
+	// Check if distPath is inside cwdPath. This prevents us from deleting ourselves.
+	// isPathInside returns false when both paths are the same.
+	const isSafePath = isPathInside(distPath, cwdPath)
 
-	if (isUnsafePath===true) {
-		return next(new Error(`Current working directory can't be inside the specified distPath`))
+	if (isSafePath===false) {
+		return next(new Error(`Specified distPath must be inside the current working directory to prevent us from deleting ourself`))
 	}
 
 	if (opts.verbose===true) log(`{cyan:Deleting folder: {grey:${ distPath }`)
