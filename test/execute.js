@@ -1,15 +1,19 @@
 'use strict'
 
+const os      = require('os')
+const path    = require('path')
 const assert  = require('chai').assert
-const temp    = require('temp').track()
+const uuid    = require('uuid/v4')
 const execute = require('./../src/execute')
+
+const randomPath = () => path.resolve(os.tmpdir(), uuid())
 
 describe('execute()', function() {
 
 	it('should execute handler with filePath and data', function(done) {
 
-		const fileRoute = temp.openSync().path
-		const filePath  = temp.openSync().path
+		const fileRoute = randomPath()
+		const filePath  = randomPath()
 		const optimize  = false
 		const data      = 'data'
 
@@ -38,8 +42,8 @@ describe('execute()', function() {
 
 	it('should execute handler with filePath and data and custom optimize option', function(done) {
 
-		const fileRoute = temp.openSync().path
-		const filePath  = temp.openSync().path
+		const fileRoute = randomPath()
+		const filePath  = randomPath()
 		const data      = 'data'
 
 		const opts = {
@@ -68,8 +72,8 @@ describe('execute()', function() {
 
 	it('should process the response of a handler', function(done) {
 
-		const fileRoute = temp.openSync().path
-		const filePath  = temp.openSync().path
+		const fileRoute = randomPath()
+		const filePath  = randomPath()
 		const data      = 'data'
 
 		const handler = () => Promise.resolve(data)
@@ -92,10 +96,10 @@ describe('execute()', function() {
 
 	})
 
-	it('should pass an error the callback when handler returns no data', function(done) {
+	it('should pass an error to the callback when handler returns no data', function(done) {
 
-		const fileRoute = temp.openSync().path
-		const filePath  = temp.openSync().path
+		const fileRoute = randomPath()
+		const filePath  = randomPath()
 
 		const handler = () => Promise.resolve(null)
 

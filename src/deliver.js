@@ -120,8 +120,6 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 		open      : opts.open
 	}
 
-	bs.init(defaults)
-
-	next()
+	bs.init(defaults, next)
 
 }

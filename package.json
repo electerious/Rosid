@@ -49,8 +49,10 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.13.1",
+    "fsify": "^2.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.3.0",
-    "temp": "^0.8.3"
+    "pify": "^2.3.0",
+    "uuid": "^3.0.1"
   }
 }

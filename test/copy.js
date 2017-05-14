@@ -1,37 +1,54 @@
 'use strict'
 
+const os     = require('os')
 const fs     = require('fs')
-const path   = require('path')
+const pify   = require('pify')
 const assert = require('chai').assert
-const temp   = require('temp').track()
+const uuid   = require('uuid/v4')
 const copy   = require('./../src/copy')
 
-const newFile = function(opts) {
-
-	const file = temp.openSync(opts)
-
-	fs.writeFileSync(file.path, opts.content || '')
-
-	return file.path
-
-}
+const fsify = require('fsify')({
+	cwd        : os.tmpdir(),
+	persistent : false,
+	force      : true
+})
 
 describe('copy()', function() {
 
-	it('should copy a directory without ignored files', function(done) {
+	it('should copy a directory without ignored files', function() {
 
-		const srcPath  = temp.mkdirSync()
-		const distPath = temp.mkdirSync()
-
-		const fileEJS = newFile({ dir: srcPath, suffix: '.ejs' })
-		const fileJS  = newFile({ dir: srcPath, suffix: '.js' })
-		const fileSWP = newFile({ dir: srcPath, prefix: '.', suffix: '.swp' })
-		const fileCSS = newFile({ dir: srcPath, suffix: '.css' })
-
-		const distFileEJS = path.resolve(distPath, path.parse(fileEJS).base)
-		const distFileJS  = path.resolve(distPath, path.parse(fileJS).base)
-		const distFileSWP = path.resolve(distPath, path.parse(fileSWP).base)
-		const distFileCSS = path.resolve(distPath, path.parse(fileCSS).base)
+		const structure = [
+			{
+				type: fsify.DIRECTORY,
+				name: uuid(),
+				contents: [
+					{
+						type: fsify.FILE,
+						name: `${ uuid() }.ejs`
+					},
+					{
+						type: fsify.FILE,
+						name: `_${ uuid() }.ejs`
+					},
+					{
+						type: fsify.FILE,
+						name: `.${ uuid() }.swp`
+					},
+					{
+						type: fsify.FILE,
+						name: `${ uuid() }.css`
+					},
+					{
+						type: fsify.FILE,
+						name: `${ uuid() }.js`
+					}
+				]
+			},
+			{
+				type: fsify.DIRECTORY,
+				name: uuid()
+			}
+		]
 
 		const routes = [
 			{ path: '[^_]*.{html,ejs}*' }
@@ -44,14 +61,56 @@ describe('copy()', function() {
 			]
 		}
 
-		copy(routes, srcPath, distPath, opts, (err) => {
+		return fsify(structure).then((structure) => {
 
-			assert.throws(fs.readFileSync.bind(null, distFileEJS))
-			assert.doesNotThrow(fs.readFileSync.bind(null, distFileJS))
-			assert.throws(fs.readFileSync.bind(null, distFileSWP))
-			assert.throws(fs.readFileSync.bind(null, distFileCSS))
+			const srcPath  = structure[0].name
+			const distPath = structure[1].name
 
-			done(err)
+			const distFileEJS        = structure[0].contents[0].name.replace(srcPath, distPath)
+			const distFileIgnoredEJS = structure[0].contents[1].name.replace(srcPath, distPath)
+			const distFileSWP        = structure[0].contents[2].name.replace(srcPath, distPath)
+			const distFileCSS        = structure[0].contents[3].name.replace(srcPath, distPath)
+			const distFileJS         = structure[0].contents[4].name.replace(srcPath, distPath)
+
+			return pify(copy)(routes, srcPath, distPath, opts).then(() => {
+
+				assert.throws(fs.readFileSync.bind(null, distFileEJS))
+				assert.doesNotThrow(fs.readFileSync.bind(null, distFileIgnoredEJS))
+				assert.throws(fs.readFileSync.bind(null, distFileSWP))
+				assert.throws(fs.readFileSync.bind(null, distFileCSS))
+				assert.doesNotThrow(fs.readFileSync.bind(null, distFileJS))
+
+			})
+
+		})
+
+	})
+
+	it('should copy a directory with verbose enabled', function() {
+
+		const structure = [
+			{
+				type: fsify.DIRECTORY,
+				name: uuid()
+			},
+			{
+				type: fsify.DIRECTORY,
+				name: uuid()
+			}
+		]
+
+		const routes = []
+
+		const opts = {
+			ignore: []
+		}
+
+		return fsify(structure).then((structure) => {
+
+			const srcPath  = structure[0].name
+			const distPath = structure[1].name
+
+			return pify(copy)(routes, srcPath, distPath, opts)
 
 		})
 
