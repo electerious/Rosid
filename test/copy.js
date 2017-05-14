@@ -8,9 +8,7 @@ const uuid   = require('uuid/v4')
 const copy   = require('./../src/copy')
 
 const fsify = require('fsify')({
-	cwd        : os.tmpdir(),
-	persistent : false,
-	force      : true
+	cwd: os.tmpdir()
 })
 
 describe('copy()', function() {

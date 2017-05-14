@@ -8,9 +8,7 @@ const uuid   = require('uuid/v4')
 const deliver = require('./../src/deliver')
 
 const fsify = require('fsify')({
-	cwd        : os.tmpdir(),
-	persistent : false,
-	force      : true
+	cwd: os.tmpdir()
 })
 
 describe('deliver()', function() {

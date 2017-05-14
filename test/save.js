@@ -8,9 +8,7 @@ const uuid   = require('uuid/v4')
 const save   = require('./../src/save')
 
 const fsify = require('fsify')({
-	cwd        : os.tmpdir(),
-	persistent : false,
-	force      : true
+	cwd: os.tmpdir()
 })
 
 describe('save()', function() {

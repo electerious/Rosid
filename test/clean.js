@@ -8,14 +8,11 @@ const uuid   = require('uuid/v4')
 const clean  = require('./../src/clean')
 
 const fsifyCwd = require('fsify')({
-	persistent : false,
-	force      : true
+	persistent: false
 })
 
 const fsifyTmp = require('fsify')({
-	cwd        : os.tmpdir(),
-	persistent : false,
-	force      : true
+	cwd: os.tmpdir()
 })
 
 describe('clean()', function() {
