@@ -1,8 +1,12 @@
+<img width="160" heigh="160" alt="Logo of Rosid" src="https://l.electerious.com/uploads/big/49e6d2dc8566d5f7ffec7091f9b1abfc.png" />
+
 # Rosid
 
 [![Travis Build Status](https://travis-ci.org/electerious/Rosid.svg?branch=master)](https://travis-ci.org/electerious/Rosid) [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/9pm47cxt4oqq0fg1?svg=true)](https://ci.appveyor.com/project/electerious/rosid) [![Coverage Status](https://coveralls.io/repos/github/electerious/Rosid/badge.svg?branch=master)](https://coveralls.io/github/electerious/Rosid?branch=master) [![Dependencies](https://david-dm.org/electerious/Rosid.svg)](https://david-dm.org/electerious/Rosid#info=dependencies) [![Donate via Flattr](https://img.shields.io/badge/flattr-donate-009cde.svg)](https://flattr.com/profile/electerious) [![Donate via PayPal](https://img.shields.io/badge/paypal-donate-009cde.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CYKBESW577YWE)
 
 Just-in-time server and static site generator written in [Node.js](https://nodejs.org/). Rosid transforms your files on-the-fly before serving them to the browser.
+
+![Terminal and browser](https://l.electerious.com/uploads/big/416d22f9cbd3e997a08a95ec1c80d062.png)
 
 ## Contents
 
