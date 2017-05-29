@@ -10,6 +10,7 @@ Just-in-time server and static site generator written in [Node.js](https://nodej
 
 - [Introduction](#introduction)
 - [Get started](#get-started)
+- [Showcase](#showcase)
 - [Documentation](#documentation)
 - [Tips](#tips)
 
@@ -38,6 +39,25 @@ Rosid starts a server and compares requested URLs with [user-defined patterns](d
 ## Get started
 
 Rosid can be integrated into your project in two ways: Using the CLI *or* using the API of Rosid. Check out our [get started guide](docs/Get%20started.md) for more information.
+
+## Showcase
+
+Sites powered by Rosid:
+
+- 🌍 [Rosid](https://rosid.electerious.com)
+- 🌎 [Electerious](https://electerious.com)
+- 🌏 [Lychee](https://lychee.electerious.com)
+- 🌍 [LaudableApps](https://laudableapps.com)
+- 🌎 [basicLightbox](https://basiclightbox.electerious.com)
+- 🌏 [basicGrid](https://basicgrid.electerious.com)
+- 🌍 [Coffee Table](https://coffee.electerious.com)
+- 🌎 [basicLightbox](https://basiclightbox.electerious.com)
+- 🌏 [basicGrid](https://basicgrid.electerious.com)
+
+Boilerplates powered by Rosid:
+
+- 📐 [Skeleton EJS](https://github.com/electerious/Skeleton-EJS): JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and EJS
+- 📐 [Skeleton NJK](https://github.com/electerious/Skeleton-NJK): Components UI, JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and Nunjucks
 
 ## Documentation
 
