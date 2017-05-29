@@ -50,6 +50,7 @@ Handlers build for Rosid:
 - ⚙️ [rosid-handler-sass](https://github.com/electerious/rosid-handler-sass): Load SASS and transform to CSS, add vendor prefixes and minify.
 - ⚙️ [rosid-handler-ejs](https://github.com/electerious/rosid-handler-ejs): Load EJS templates and render them.
 - ⚙️ [rosid-handler-njk](https://github.com/electerious/rosid-handler-njk): Load Nunjucks templates and render them.
+- ⚙️ [rosid-handler-components](https://github.com/comwrap/rosid-handler-components): UI to help you build and document web components.
 
 Sites powered by Rosid:
 
