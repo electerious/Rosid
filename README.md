@@ -42,6 +42,19 @@ Rosid can be integrated into your project in two ways: Using the CLI *or* using 
 
 ## Showcase
 
+Boilerplates powered by Rosid:
+
+- 📐 [Skeleton EJS](https://github.com/electerious/Skeleton-EJS): JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and EJS
+- 📐 [Skeleton NJK](https://github.com/electerious/Skeleton-NJK): Components UI, JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and Nunjucks
+
+Handlers build for Rosid:
+
+- ⚙️ [rosid-handler-js](https://github.com/electerious/rosid-handler-js): Load, transform, bundle and compress JS.
+- ⚙️ [rosid-handler-node](https://github.com/electerious/rosid-handler-node): Load JS and transform to HTML.
+- ⚙️ [rosid-handler-sass](https://github.com/electerious/rosid-handler-sass): Load SASS and transform to CSS, add vendor prefixes and minify.
+- ⚙️ [rosid-handler-ejs](https://github.com/electerious/rosid-handler-ejs): Load EJS templates and render them.
+- ⚙️ [rosid-handler-njk](https://github.com/electerious/rosid-handler-njk): Load Nunjucks templates and render them.
+
 Sites powered by Rosid:
 
 - 🌍 [Rosid](https://rosid.electerious.com)
@@ -53,11 +66,6 @@ Sites powered by Rosid:
 - 🌍 [Coffee Table](https://coffee.electerious.com)
 - 🌎 [basicLightbox](https://basiclightbox.electerious.com)
 - 🌏 [basicGrid](https://basicgrid.electerious.com)
-
-Boilerplates powered by Rosid:
-
-- 📐 [Skeleton EJS](https://github.com/electerious/Skeleton-EJS): JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and EJS
-- 📐 [Skeleton NJK](https://github.com/electerious/Skeleton-NJK): Components UI, JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and Nunjucks
 
 ## Documentation
 
