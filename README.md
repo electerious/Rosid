@@ -8,11 +8,11 @@ Just-in-time server and static site generator written in [Node.js](https://nodej
 
 ## Contents
 
-- [Introduction](#introduction)
-- [Get started](#get-started)
-- [Showcase](#showcase)
-- [Documentation](#documentation)
-- [Tips](#tips)
+- [📄 Introduction](#introduction)
+- [🔗 Links](#links)
+- [🏃 Get started](#get-started)
+- [⚙️ Documentation](#documentation)
+- [💡 Tips](#tips)
 
 ## Introduction
 
@@ -36,11 +36,7 @@ Rosid is a framework that focus on two features:
 
 Rosid starts a server and compares requested URLs with [user-defined patterns](docs/Routes.md). An associated [file handler](docs/Handlers.md) will be executed when a pattern matches. The handler receives information about the request and can transform the file, which will be sent to the browser.
 
-## Get started
-
-Rosid can be integrated into your project in two ways: Using the CLI *or* using the API of Rosid. Check out our [get started guide](docs/Get%20started.md) for more information.
-
-## Showcase
+## Links
 
 Boilerplates powered by Rosid:
 
@@ -66,6 +62,10 @@ Sites powered by Rosid:
 - 🌍 [Coffee Table](https://coffee.electerious.com)
 - 🌎 [basicLightbox](https://basiclightbox.electerious.com)
 - 🌏 [basicGrid](https://basicgrid.electerious.com)
+
+## Get started
+
+Rosid can be integrated into your project in two ways: Using the CLI *or* using the API of Rosid. Check out our [get started guide](docs/Get%20started.md) for more information.
 
 ## Documentation
 
