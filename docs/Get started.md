@@ -103,4 +103,4 @@ You don't need to use the server of Rosid. Export static files using your existi
 
 ## What's next
 
-This was just a taste of what Rosid can do for you. Try the official [Skeleton](https://github.com/electerious/Skeleton) project for more practical examples. Skeleton is a HTML5 Boilerplate built upon Rosid. JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and EJS can be used right out of the box.
+This was just a taste of what Rosid can do for you. Try the official [Skeleton](https://github.com/electerious/Skeleton-EJS) project for more practical examples. Skeleton is a HTML5 Boilerplate built upon Rosid. JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and EJS can be used right out of the box.
