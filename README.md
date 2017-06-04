@@ -8,11 +8,15 @@ Just-in-time server and static site generator written in [Node.js](https://nodej
 
 ## Contents
 
-- [📄 Introduction](#introduction)
-- [🔗 Links](#links)
-- [🏃 Get started](#get-started)
-- [⚙️ Documentation](#documentation)
-- [💡 Tips](#tips)
+- 🏃 [Get started](#get-started)
+- 📄 [Introduction](#introduction)
+- 🔗 [Links](#links)
+- ⚙️ [Documentation](#documentation)
+- 💡 [Tips](#tips)
+
+## Get started
+
+Rosid can be integrated into your project in two ways: Using the CLI *or* using the API of Rosid. Check out our guide for more information. [Get started with Rosid &#187;](docs/Get%20started.md)
 
 ## Introduction
 
@@ -64,9 +68,10 @@ Sites powered by Rosid:
 - 🌎 [basicLightbox](https://basiclightbox.electerious.com)
 - 🌏 [basicGrid](https://basicgrid.electerious.com)
 
-## Get started
+Guides for Rosid:
 
-Rosid can be integrated into your project in two ways: Using the CLI *or* using the API of Rosid. Check out our [get started guide](docs/Get%20started.md) for more information.
+- 📄 [Get started](docs/Get%20started.md)
+- 📄 [Writing a handler](docs/Get%20started.md)
 
 ## Documentation
 

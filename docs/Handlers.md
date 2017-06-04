@@ -8,13 +8,15 @@ Handlers are functions which load and transform files. Rosid doesn't care about 
 
 ## Custom handler
 
+Check out our "[Writing a handler](docs/Writing%20a%20handler.md)" guide to learn how to build your own handler.
+
 Example:
 
 ```js
 /*
  * The following handler transforms SASS to CSS.
  */
-const transfromSASS = function(filePath, opts) {
+module.exports = function(filePath, opts) {
 
 	/*
 	 * 1. Load requested file (filePath)
