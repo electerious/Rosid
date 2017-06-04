@@ -29,7 +29,7 @@
     "test": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "dependencies": {
-    "async": "^2.4.0",
+    "async": "^2.4.1",
     "find-up": "^2.1.0",
     "fs-extra": "^3.0.1",
     "glob-escape": "0.0.2",
@@ -47,12 +47,12 @@
     "browser-sync": "^2.18.12"
   },
   "devDependencies": {
-    "chai": "^4.0.0",
+    "chai": "^4.0.1",
     "coveralls": "^2.13.1",
     "fsify": "^2.0.2",
     "istanbul": "^0.4.5",
-    "mocha": "^3.4.1",
-    "pify": "^2.3.0",
+    "mocha": "^3.4.2",
+    "pify": "^3.0.0",
     "uuid": "^3.0.1"
   }
 }
