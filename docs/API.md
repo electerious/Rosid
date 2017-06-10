@@ -16,6 +16,10 @@ Parameters:
 
 - `routes` `{Array}` An array of [routes](Routes.md).
 
+Returns:
+
+- `{Object}` An instance of Rosid.
+
 ## Serve
 
 Start a static site server and compile requested files on-the-fly. The site will reload automatically when files change.
