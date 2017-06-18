@@ -11,11 +11,7 @@ The created `package.json` should point to a non-existing `index.js`. Let's crea
 ```js
 module.exports = function(filePath, opts) {
 
-	return Promise.resolve().then(() => {
-
-		return 'Hello World!'
-
-	})
+	return Promise.resolve('Hello World!')
 
 }
 ```
@@ -65,7 +61,7 @@ module.exports.cache = []
 
 Here's another example where only SASS files trigger a cache flush:
 
-```js 
+```js
 module.exports.cache = [
 	'.sass',
 	'.scss'

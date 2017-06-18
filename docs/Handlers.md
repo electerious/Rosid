@@ -14,19 +14,11 @@ Example:
 
 ```js
 /*
- * The following handler transforms SASS to CSS.
+ * A handler that always returns 'Hello World!'.
  */
 module.exports = function(filePath, opts) {
 
-	/*
-	 * 1. Load requested file (filePath)
-	 * 2. Transform the file
-	 * 3. Return the transformed contents of the file
-	 */
-
-	return Promise.resolve(`
-		.css { display: none; }
-	`)
+	return Promise.resolve('Hello World!')
 
 }
 ```
