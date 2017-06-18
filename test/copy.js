@@ -49,8 +49,7 @@ describe('copy()', function() {
 		]
 
 		const routes = [
-			{ path: '[^_]*.html' },
-			{ path: '[^_]*.ejs' }
+			{ path: '[^_]*.{html,ejs}*' }
 		]
 
 		const opts = {
