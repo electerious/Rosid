@@ -12,8 +12,8 @@ If you want more control over the `serve` or `compile` function, pass an object 
 	ignore: [],
 	/*
 	 * Increase verbosity.
-	 * true  = Log additional messages.
-	 * false = Only log important messages.
+	 * true  = Log additional messages
+	 * false = Only log important messages
 	 */
 	verbose: false,
 	/*
@@ -29,7 +29,14 @@ If you want more control over the `serve` or `compile` function, pass an object 
 	 * true  = Open URL
 	 * false = Don't open URL
 	 */
-	open: true
+	open: false,
+	/*
+	 * Open the first browser window with a custom URL path.
+	 * Should only be used together with the 'open' option.
+	 * ''   = URL to open. Should be a string starting with '/'.
+	 * null = Open '/index.html'
+	 */
+	open: null
 }
 ```
 

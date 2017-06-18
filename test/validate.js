@@ -144,7 +144,8 @@ describe('validate', function() {
 				ignore  : [],
 				polling : false,
 				verbose : false,
-				open    : true
+				open    : false,
+				path    : null
 			})
 
 		})
@@ -155,7 +156,8 @@ describe('validate', function() {
 				ignore  : [],
 				polling : false,
 				verbose : false,
-				open    : true
+				open    : false,
+				path    : null
 			})
 
 		})
@@ -170,7 +172,8 @@ describe('validate', function() {
 				ignore  : [],
 				polling : true,
 				verbose : false,
-				open    : true
+				open    : false,
+				path    : null
 			})
 
 		})
@@ -183,7 +186,8 @@ describe('validate', function() {
 				],
 				polling : true,
 				verbose : true,
-				open    : false
+				open    : true,
+				path    : '/ui/index.html'
 			}
 
 			assert.deepEqual(validate.opts(opts), opts)

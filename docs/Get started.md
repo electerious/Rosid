@@ -87,10 +87,10 @@ It's time to fire up Rosid. Rosid has been installed into the `node_modules` dir
 
 ```sh
 # Start Rosid
-./node_modules/.bin/rosid serve src/
+./node_modules/.bin/rosid serve src/ --open
 ```
 
-Rosid starts and opens your default browser. You should see "Hello Rosid!" in it with a white font on a green background.
+Rosid starts and opens your default browser (thanks to the `--open` option). You should see "Hello Rosid!" in it with a white font on a green background.
 
 ## 6. Compile your project
 

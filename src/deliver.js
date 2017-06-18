@@ -117,7 +117,8 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 		files     : [ files ],
 		notify    : false,
 		ghostMode : false,
-		open      : opts.open
+		open      : opts.open,
+		startPath : opts.path
 	}
 
 	bs.init(defaults, next)

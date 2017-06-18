@@ -17,6 +17,8 @@ Commands:
 Options:
 
   -p, --polling  use polling to watch files over a network or in other non-standard situations
+  -o, --open     open URL automatically in your default browser
+  -p, --path     open the first browser window with this path
   -v, --verbose  increase verbosity
   -V, --version  output the version number
   -h, --help     output usage information
@@ -38,6 +40,20 @@ Export your site to a folder.
 
 ```sh
 rosid serve src/ dist/
+```
+
+## Tips
+
+Let Rosid open the URL automatically in your default browser with `--open` (or `-o`):
+
+```sh
+rosid serve src/ -o
+```
+
+Open a custom URL in your default browser with `--open` (or `-o`) and `--path` (or `-p`):
+
+```sh
+rosid serve src/ -o -p '/ui/index.html'
 ```
 
 You can ignore files you don't want in the exported folder with `--ignore` (or `-i`).
