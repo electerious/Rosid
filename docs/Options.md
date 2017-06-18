@@ -33,7 +33,7 @@ If you want more control over the `serve` or `compile` function, pass an object 
 	/*
 	 * Open the first browser window with a custom URL path.
 	 * Should only be used together with the 'open' option.
-	 * ''   = URL to open. Should be a string starting with '/'.
+	 * ''   = URL to open
 	 * null = Open '/index.html'
 	 */
 	open: null
