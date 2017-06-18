@@ -15,15 +15,17 @@ module.exports = function(route, fileRoute, filePath, optimize, next) {
 
 	log(`{cyan:Starting handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 
-	const processHandler = (data) => {
-
-		log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ fileRoute }`)
-
-		if (data==null) {
-			return next(new Error(`Handler of route '${ route.name }' returned without data`))
-		}
+	const processResolve = (data) => {
 
 		next(null, data)
+
+	}
+
+	const processReject = (err) => {
+
+		log(`{red:Handler failed: {magenta:${ route.name } {grey:${ fileRoute }`)
+
+		return next(err)
 
 	}
 
@@ -33,6 +35,6 @@ module.exports = function(route, fileRoute, filePath, optimize, next) {
 
 	route
 		.handler(filePath, opts)
-		.then(processHandler, next)
+		.then(processResolve, processReject)
 
 }
