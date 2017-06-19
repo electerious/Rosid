@@ -17,6 +17,8 @@ module.exports = function(route, fileRoute, filePath, optimize, next) {
 
 	const processResolve = (data) => {
 
+		log(`{cyan:Finished handler: {magenta:${ route.name } {grey:${ fileRoute }`)
+
 		next(null, data)
 
 	}
