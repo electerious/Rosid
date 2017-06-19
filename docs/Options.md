@@ -25,18 +25,12 @@ If you want more control over the `serve` or `compile` function, pass an object 
 	 */
 	polling: false,
 	/*
-	 * Decide if Rosid should open the URL automatically in your default browser.
-	 * true  = Open URL
+	 * Decide if Rosid should automatically open your default browser.
+	 * true  = Open '/index.html'
 	 * false = Don't open URL
+	 * ''    = Open custom URL
 	 */
-	open: false,
-	/*
-	 * Open the first browser window with a custom URL path.
-	 * Should only be used together with the 'open' option.
-	 * ''   = URL to open
-	 * null = Open '/index.html'
-	 */
-	open: null
+	open: false
 }
 ```
 

@@ -11,7 +11,6 @@ const alias = {
 	i: 'ignore',
 	p: 'polling',
 	o: 'open',
-	p: 'path',
 	v: 'verbose',
 	V: 'version'
 }
@@ -34,7 +33,6 @@ const serve = function(srcPath, opts) {
 	getRosid().serve(srcPath, {
 		polling : opts.polling,
 		open    : opts.open,
-		path    : opts.path,
 		verbose : opts.verbose
 	})
 
@@ -73,8 +71,7 @@ const help = function() {
 		Options:
 
 		  -p, --polling  use polling to watch files over a network or in other non-standard situations
-		  -o, --open     open URL automatically in your default browser
-		  -p, --path     open the first browser window with this path
+		  -o, --open     open URL automatically in default browser
 		  -v, --verbose  increase verbosity
 		  -V, --version  output the version number
 		  -h, --help     output usage information
@@ -97,7 +94,6 @@ const parse = function(argv) {
 	if (argv._[0]==='serve') return serve(argv._[1], {
 		polling : argv.polling,
 		open    : argv.open,
-		path    : argv.path,
 		verbose : argv.verbose
 	})
 

@@ -181,16 +181,19 @@ describe('validate', function() {
 		it('should return the same options when called with an object with every option specified', function() {
 
 			const opts = {
-				ignore  : [
-					'array'
-				],
+				ignore  : [ 'array' ],
+				polling : true,
+				verbose : true,
+				open    : '/ui/index.html'
+			}
+
+			assert.deepEqual(validate.opts(opts), {
+				ignore  : [ 'array' ],
 				polling : true,
 				verbose : true,
 				open    : true,
 				path    : '/ui/index.html'
-			}
-
-			assert.deepEqual(validate.opts(opts), opts)
+			})
 
 		})
 

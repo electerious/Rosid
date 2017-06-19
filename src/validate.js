@@ -55,22 +55,25 @@ const _path = function(filePath) {
 /**
  * Parse and validate options.
  * @public
- * @param {Object} opts - Additional optional options.
+ * @param {?Object} opts - Additional optional options.
  * @returns {Object} opts - Validated additional optional options.
  */
-const _opts = function(opts) {
-
-	// Copy object to prevent changes by reverence
-	opts = Object.assign({}, opts)
+const _opts = function(opts = {}) {
 
 	// Set default value when an option is missing or has an incorrect type
-	opts.ignore  = (Array.isArray(opts.ignore)===true ? opts.ignore : [])
-	opts.polling = (opts.polling===true ? true : false)
-	opts.verbose = (opts.verbose===true ? true : false)
-	opts.open    = (opts.open===true ? true : false)
-	opts.path    = (typeof opts.path==='string' ? opts.path : null)
+	const ignore  = (Array.isArray(opts.ignore)===true ? opts.ignore : [])
+	const polling = (opts.polling===true ? true : false)
+	const verbose = (opts.verbose===true ? true : false)
+	const open    = (typeof opts.open==='string' || opts.open===true ? true : false)
+	const path    = (typeof opts.open==='string' ? opts.open : null)
 
-	return opts
+	return {
+		ignore,
+		polling,
+		verbose,
+		open,
+		path
+	}
 
 }
 
