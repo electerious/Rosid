@@ -27,10 +27,10 @@ const getIgnoredFiles = function(routes, customFiles, srcPath) {
 	]
 
 	// Escape glob patterns. srcPath should not glob.
-	const saveSrcPath = globEscape(srcPath)
+	// const saveSrcPath = globEscape(srcPath)
 
 	// Make route paths absolute and ignore them
-	const ignoredRoutes = routes.map((route) => path.join(saveSrcPath, route.path))
+	const ignoredRoutes = routes.map((route) => path.resolve(srcPath, route.path))
 
 	// Return all ignored files
 	return [
