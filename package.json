@@ -32,7 +32,7 @@
   "dependencies": {
     "async": "^2.5.0",
     "find-up": "^2.1.0",
-    "fs-extra": "^3.0.1",
+    "fs-extra": "^4.0.0",
     "is-path-inside": "^1.0.0",
     "junk": "^2.1.0",
     "klaw": "^2.0.0",
