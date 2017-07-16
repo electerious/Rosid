@@ -71,7 +71,7 @@ Sites powered by Rosid:
 Guides for Rosid:
 
 - 📄 [Get started](docs/Get%20started.md)
-- 📄 [Writing a handler](docs/Get%20started.md)
+- 📄 [Writing a handler](docs/Writing%20a%20handler.md)
 
 ## Documentation
 
