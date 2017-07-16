@@ -62,11 +62,12 @@ Sites powered by Rosid:
 - 🌎 [Electerious](https://electerious.com)
 - 🌏 [Lychee](https://lychee.electerious.com)
 - 🌍 [LaudableApps](https://laudableapps.com)
-- 🌎 [basicLightbox](https://basiclightbox.electerious.com)
-- 🌏 [basicGrid](https://basicgrid.electerious.com)
-- 🌍 [Coffee Table](https://coffee.electerious.com)
-- 🌎 [basicLightbox](https://basiclightbox.electerious.com)
-- 🌏 [basicGrid](https://basicgrid.electerious.com)
+- 🌎 [LaudableSites](https://laudablesites.com)
+- 🌏 [basicLightbox](https://basiclightbox.electerious.com)
+- 🌍 [basicGrid](https://basicgrid.electerious.com)
+- 🌎 [Coffee Table](https://coffee.electerious.com)
+- 🌏 [basicLightbox](https://basiclightbox.electerious.com)
+- 🌍 [basicGrid](https://basicgrid.electerious.com)
 
 Guides for Rosid:
 
