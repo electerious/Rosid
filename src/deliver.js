@@ -46,7 +46,8 @@ const getFiles = function() {
  */
 const eventHandler = function(bs, event, filePath) {
 
-	const fileName = path.parse(filePath).base
+	const fileName      = path.parse(filePath).base
+	const fileExtension = path.extname(filePath)
 
 	// Ignore change when filePath is junk
 	if (junk.is(fileName)===true) return
@@ -55,25 +56,29 @@ const eventHandler = function(bs, event, filePath) {
 	// This ensures that we serve the latest files when the user reloads the site.
 	cache.flush(filePath)
 
-	// Chokidar always sends an 'event' property - which could be 'add',
-	// 'unlink' etc so we need to check for that and only respond to 'change'.
-	if (event==='change') {
+	const styleExtensions = [
+		'.css',
+		'.scss',
+		'.sass',
+		'.less'
+	]
 
-		const fileExtension = path.extname(filePath)
+	// Reload stylesheets when the file extension is a known style extension
+	if (styleExtensions.includes(fileExtension)===true) return bs.reload('*.css')
 
-		const styleExtensions = [
-			'.css',
-			'.scss',
-			'.sass',
-			'.less'
-		]
+	const imageExtensions = [
+		'.png',
+		'.jpg',
+		'.jpeg',
+		'.svg',
+		'.gif',
+		'.webp'
+	]
 
-		// Reload stylesheets only when the file extension is a known style extension
-		if (styleExtensions.includes(fileExtension)===true) return bs.reload('*.css')
+	// Reload images when the file extension is a known image extension supported by Browsersync
+	if (imageExtensions.includes(fileExtension)===true) return bs.reload(`*${ fileExtension }`)
 
-		return bs.reload()
-
-	}
+	bs.reload()
 
 }
 
@@ -106,7 +111,8 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 		match   : getFiles(),
 		fn      : eventHandler.bind(null, bs),
 		options : {
-			usePolling: opts.polling
+			usePolling    : opts.polling,
+			ignoreInitial : true
 		}
 	}
 
