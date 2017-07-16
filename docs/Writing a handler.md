@@ -59,7 +59,7 @@ Attach an array to the function in `index.js`, which contains a list of file pat
 module.exports.cache = []
 ```
 
-Each pattern must be a valid [glob pattern](https://github.com/isaacs/node-glob). The pattern will be matched against a relative file path. Here's another example where only SASS files trigger a cache flush:
+Each pattern must be a valid [glob pattern](Patterns.md). The pattern will be matched against a relative file path. Here's another example where only SASS files trigger a cache flush:
 
 ```js
 module.exports.cache = [
