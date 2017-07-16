@@ -42,7 +42,7 @@ const getFiles = function() {
  * Should be executed when a file gets updated.
  * @param {Object} bs - Browsersync instance.
  * @param {String} event - Event sent by Chokidar.
- * @param {String} filePath - File affected by event.
+ * @param {String} filePath - File affected by event (relative).
  */
 const eventHandler = function(bs, event, filePath) {
 
@@ -51,16 +51,15 @@ const eventHandler = function(bs, event, filePath) {
 	// Ignore change when filePath is junk
 	if (junk.is(fileName)===true) return
 
-	// Get the extension of the filePath
-	const extension = path.extname(filePath)
-
 	// Flush the cache no matter what event was send by Chokidar.
 	// This ensures that we serve the latest files when the user reloads the site.
-	cache.flush(extension)
+	cache.flush(filePath)
 
 	// Chokidar always sends an 'event' property - which could be 'add',
 	// 'unlink' etc so we need to check for that and only respond to 'change'.
 	if (event==='change') {
+
+		const fileExtension = path.extname(filePath)
 
 		const styleExtensions = [
 			'.css',
@@ -69,8 +68,8 @@ const eventHandler = function(bs, event, filePath) {
 			'.less'
 		]
 
-		// Reload stylesheets only when the extension is a known style extension
-		if (styleExtensions.includes(extension)===true) return bs.reload('*.css')
+		// Reload stylesheets only when the file extension is a known style extension
+		if (styleExtensions.includes(fileExtension)===true) return bs.reload('*.css')
 
 		return bs.reload()
 

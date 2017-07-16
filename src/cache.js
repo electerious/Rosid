@@ -1,5 +1,6 @@
 'use strict'
 
+const mm    = require('micromatch')
 const cache = new Map()
 
 /**
@@ -29,22 +30,21 @@ const _set = function(key, obj) {
 }
 
 /**
- * Deletes matching data when an extension is given or all data when no extension is given.
+ * Deletes matching data when a file path is given or all data when no caching information given.
  * @public
- * @param {String} extension - Related extension which should be deleted.
+ * @param {String} filePath - File that triggers a cache flush (relative).
  */
-const _flush = function(extension) {
+const _flush = function(filePath) {
 
 	cache.forEach((value, key) => {
 
 		// Delete entry directly when no caching information available
 		if (value.cache==null) return cache.delete(key)
 
-		// Look for matching extensions in the current entry
-		const matches = value.cache.filter((value) => value===extension)
+		// Look if the current entry is affected by the file path
+		const isAffected = mm.any(filePath, value.cache)
 
-		// Delete entry when a match was found
-		if (matches.length>0) cache.delete(key)
+		if (isAffected===true) cache.delete(key)
 
 	})
 

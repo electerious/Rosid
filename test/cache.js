@@ -1,6 +1,7 @@
 'use strict'
 
 const assert = require('chai').assert
+const uuid   = require('uuid/v4')
 const cache  = require('./../src/cache')
 
 describe('cache', function() {
@@ -9,9 +10,12 @@ describe('cache', function() {
 
 		it('should add an item', function() {
 
-			cache.set('file.html', { cache: [ 'html' ] })
+			const key   = `src/${ uuid() }.html`
+			const value = { cache: [ '**/*.html' ] }
 
-			assert.isDefined(cache.get('file.html'))
+			cache.set(key, value)
+
+			assert.isDefined(cache.get(key))
 
 		})
 
@@ -21,8 +25,8 @@ describe('cache', function() {
 
 		it('should return an item', function() {
 
-			const key   = 'file.html'
-			const value = { cache: [ 'html' ] }
+			const key   = `src/${ uuid() }.html`
+			const value = { cache: [ '**/*.html' ] }
 
 			cache.set(key, value)
 
@@ -32,7 +36,9 @@ describe('cache', function() {
 
 		it('should return undefined for unknown items', function() {
 
-			assert.isUndefined(cache.get('file.js'))
+			const key = `src/${ uuid() }.html`
+
+			assert.isUndefined(cache.get(key))
 
 		})
 
@@ -42,35 +48,57 @@ describe('cache', function() {
 
 		it('should clear items with the given extension', function() {
 
-			cache.set('file.html', { cache: [ 'html' ] })
-			cache.set('file.css', { cache: [ 'css' ] })
+			const keys = [
+				`src/${ uuid() }.html`,
+				`src/${ uuid() }.css`
+			]
 
-			cache.flush('html')
+			const values = [
+				{ cache: [ '**/*.html' ] },
+				{ cache: [ '**/*.css' ] }
+			]
 
-			assert.isUndefined(cache.get('file.html'))
-			assert.isDefined(cache.get('file.css'))
+			cache.set(keys[0], values[0])
+			cache.set(keys[1], values[1])
+
+			cache.flush(keys[0])
+
+			assert.isUndefined(cache.get(keys[0]))
 
 		})
 
 		it('should not clear items with the given extension when extension not matching', function() {
 
-			cache.set('file.html', { cache: [ 'html' ] })
-			cache.set('file.css', { cache: [ 'css' ] })
+			const keys = [
+				`src/${ uuid() }.html`,
+				`src/${ uuid() }.css`
+			]
 
-			cache.flush('js')
+			const values = [
+				{ cache: [ '**/*.html' ] },
+				{ cache: [ '**/*.css' ] }
+			]
 
-			assert.isDefined(cache.get('file.html'))
-			assert.isDefined(cache.get('file.css'))
+			cache.set(keys[0], values[0])
+			cache.set(keys[1], values[1])
+
+			cache.flush(`src/${ uuid() }.js`)
+
+			assert.isDefined(cache.get(keys[0]))
+			assert.isDefined(cache.get(keys[1]))
 
 		})
 
-		it('should clear all items without a cache property', function() {
+		it('should clear items without a cache property', function() {
 
-			cache.set('file.html', {})
+			const key   = `src/${ uuid() }.html`
+			const value = {}
 
-			cache.flush()
+			cache.set(key, value)
 
-			assert.isUndefined(cache.get('file.html'))
+			cache.flush(`src/${ uuid() }.js`)
+
+			assert.isUndefined(cache.get(key))
 
 		})
 
