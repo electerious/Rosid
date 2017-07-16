@@ -78,7 +78,7 @@ The handler is now installed, but Rosid has no clue how to use it. It's up to yo
 ```
 
 - `name` is just a help for you. Rosid logs the activity of the handler with the name you've chosen.
-- `path` uses the same patterns the shell uses. It matches all files with a `css`, `scss` or `sass` extension. Your `main.scss` is a match and Rosid will transform it with the handler specified in the `handler` property.
+- `path` uses the same [patterns the shell uses](https://github.com/isaacs/node-glob). It matches all files with a `css`, `scss` or `sass` extension that are located in the root of your `src` folder. Your `main.scss` is a match and Rosid will transform it with the handler specified in the `handler` property.
 - `opts` are options. They're different form handler to handler. `rosid-handler-sass` loads `.sass` files by default. The `in` option changes this behaviour to `.scss` as this is the extension of your file.
 
 ## 5. Start Rosid

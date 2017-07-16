@@ -53,18 +53,18 @@ This route will run the handler for every HTML file in your project. Start Rosid
 
 Rosid caches the output of handlers. Adding, saving or deleting files flushes the cache. You can enhance the experience of your handler by telling Rosid which files should trigger a cache refresh. This isn't necessary, but recommended.
 
-Attach an array to the function in `index.js`, which contains a list of extensions used by the handler. This array would be empty as `rosid-handler-helloworld` doesn't depend on other files. The output would be cached as long as Rosid runs:
+Attach an array to the function in `index.js`, which contains a list of file patterns used by the handler. This array would be empty as `rosid-handler-helloworld` doesn't depend on other files. The output would be cached as long as Rosid runs:
 
 ```js
 module.exports.cache = []
 ```
 
-Here's another example where only SASS files trigger a cache flush:
+Each pattern must be a valid [glob pattern](https://github.com/isaacs/node-glob). The pattern will be matched against a relative file path. Here's another example where only SASS files trigger a cache flush:
 
 ```js
 module.exports.cache = [
-	'.sass',
-	'.scss'
+	'**/*.sass',
+	'**/*.scss'
 ]
 ```
 
