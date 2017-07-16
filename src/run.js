@@ -1,6 +1,5 @@
 'use strict'
 
-const async   = require('async')
 const path    = require('path')
 const mm      = require('micromatch')
 const fse     = require('fs-extra')

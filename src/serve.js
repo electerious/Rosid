@@ -11,7 +11,6 @@
 module.exports = function(routes, srcPath, opts, next) {
 
 	// Require modules on function call to speed up the initial launch
-	const async    = require('async')
 	const validate = require('./validate')
 	const rewrite  = require('./rewrite')
 	const redirect = require('./redirect')
@@ -40,10 +39,6 @@ module.exports = function(routes, srcPath, opts, next) {
 	const _rewrite  = rewrite(routes, srcPath)
 	const _redirect = redirect()
 
-	async.series([
-
-		(next) => deliver(srcPath, _rewrite, _redirect, opts, next)
-
-	], next)
+	deliver(srcPath, _rewrite, _redirect, opts, next)
 
 }

@@ -1,7 +1,6 @@
 'use strict'
 
-const path  = require('path')
-const async = require('async')
+const path = require('path')
 
 /**
  * Parse and validate a route.

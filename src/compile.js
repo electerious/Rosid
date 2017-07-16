@@ -12,7 +12,7 @@
 module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	// Require modules on function call to speed up the initial launch
-	const async    = require('async')
+	const series   = require('run-series')
 	const validate = require('./validate')
 	const clean    = require('./clean')
 	const copy     = require('./copy')
@@ -42,7 +42,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 	// Handlers may use promises which could lead to unhandled rejections
 	process.on('unhandledRejection', next)
 
-	async.series([
+	series([
 
 		(next) => clean(distPath, cwdPath, opts, next),
 		(next) => copy(routes, srcPath, distPath, opts, next),
