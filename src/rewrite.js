@@ -30,15 +30,15 @@ module.exports = function(routes, srcPath) {
 		// Continue without a rewrite when no matching route has been found
 		if (route==null) return next()
 
+		// The cache might already contain the compiled file
+		const fileCache = cache.get(fileRoute)
+
 		// Use cached handler response when available
-		if (cache.get(fileRoute)!=null) {
+		if (fileCache!=null) {
 
 			log(`{cyan:Using cached handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 
-			const cachedHandler = cache.get(fileRoute)
-
-			// Send file to browser
-			return send(res, cachedHandler.contentType, cachedHandler.data)
+			return send(res, fileCache.contentType, fileCache.data)
 
 		}
 
@@ -48,7 +48,6 @@ module.exports = function(routes, srcPath) {
 		// Load file with a different extension as filePath points to the target extension
 		const fileLoad = (() => {
 
-			// Check if fn exists
 			const hasFn = (typeof route.handler.in==='function')
 
 			return (hasFn===true ? rename(filePath, route.handler.in(route.opts)) : filePath)
@@ -63,7 +62,6 @@ module.exports = function(routes, srcPath) {
 
 			if (err!=null) return next(err)
 
-			// Send file to browser
 			send(res, contentType, data)
 
 			// Cache the response of the handler
