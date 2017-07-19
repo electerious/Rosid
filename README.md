@@ -66,8 +66,6 @@ Sites powered by Rosid:
 - 🌏 [basicLightbox](https://basiclightbox.electerious.com)
 - 🌍 [basicGrid](https://basicgrid.electerious.com)
 - 🌎 [Coffee Table](https://coffee.electerious.com)
-- 🌏 [basicLightbox](https://basiclightbox.electerious.com)
-- 🌍 [basicGrid](https://basicgrid.electerious.com)
 
 Guides for Rosid:
 
