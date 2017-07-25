@@ -3,7 +3,7 @@
 'use strict'
 
 const path     = require('path')
-const minimist = require('minimist')
+const nanomist = require('nanomist')
 const findUp   = require('find-up')
 const pkg      = require('./../package')
 
@@ -108,4 +108,4 @@ const parse = function(argv) {
 
 }
 
-parse(minimist(process.argv.slice(2), { alias }))
+parse(nanomist(process.argv.slice(2), { alias }))
