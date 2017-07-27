@@ -33,6 +33,7 @@ const serve = function(srcPath, opts) {
 	srcPath = path.resolve(srcPath || '')
 
 	getRosid().serve(srcPath, {
+		static  : opts.static,
 		open    : opts.open,
 		verbose : opts.verbose
 	})
