@@ -2,10 +2,10 @@
 
 'use strict'
 
-const path     = require('path')
-const nanomist = require('nanomist')
-const findUp   = require('find-up')
-const pkg      = require('./../package')
+const path   = require('path')
+const mri    = require('mri')
+const findUp = require('find-up')
+const pkg    = require('./../package')
 
 const alias = {
 	i: 'ignore',
@@ -108,4 +108,4 @@ const parse = function(argv) {
 
 }
 
-parse(nanomist(process.argv.slice(2), { alias }))
+parse(mri(process.argv.slice(2), { alias }))

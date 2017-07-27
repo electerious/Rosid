@@ -37,7 +37,7 @@
     "klaw": "^2.0.0",
     "micromatch": "^3.0.3",
     "mime": "^1.3.6",
-    "nanomist": "^1.0.0",
+    "mri": "^1.1.0",
     "nice-try": "^1.0.3",
     "rename-extension": "^2.0.2",
     "run-series": "^1.1.4",
