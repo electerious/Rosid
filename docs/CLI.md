@@ -27,8 +27,8 @@ Examples:
 
   $ rosid serve src/
   $ rosid serve src/ -o
-  $ rosid serve src/ -o 'en/index.html'
-  $ rosid serve src/ -s 'static.html'
+  $ rosid serve src/ -o '/en/index.html'
+  $ rosid serve src/ -s '/static.html'
   $ rosid compile src/ dist/
   $ rosid compile src/ dist/ -i '**/_*' -i '**/includes'
 ```
@@ -68,7 +68,7 @@ rosid serve src/ -o '/ui/index.html'
 Prevent pages from reloading when the content changes by using `--static` (or `-s`):
 
 ```sh
-rosid serve src/ dist/ -s 'static.html'
+rosid serve src/ dist/ -s '/static.html'
 ```
 
 You can ignore files you don't want in the exported folder with `--ignore` (or `-i`):
