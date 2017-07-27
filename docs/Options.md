@@ -5,25 +5,23 @@ If you want more control over the `serve` or `compile` function, pass an object 
 ```js
 {
 	/*
-	 * Option for the copy-module which will only run when compiling your site.
+	 * Don't copy this files when Rosid is compiling your site.
 	 * [] = Ignore the following files when copying.
 	 *      Must be an array of strings, which will be matched against absolute paths.
 	 */
 	ignore: [],
+	/*
+	 * Disable browser reload for this files when Rosid is serving your site.
+	 * [] = Never reload this files when content changes.
+	 *      Must be an array of strings, which will be matched against a URL.
+	 */
+	static: [],
 	/*
 	 * Increase verbosity.
 	 * true  = Log additional messages
 	 * false = Only log important messages
 	 */
 	verbose: false,
-	/*
-	 * Option for the deliver-module which will only run when serving your site.
-	 * It is typically necessary to set this to true to successfully watch files over a network,
-	 * and it may be necessary to successfully watch files in other non-standard situations.
-	 * true  = Use fs.watch
-	 * false = Use fs.watchFile (backed by polling)
-	 */
-	polling: false,
 	/*
 	 * Decide if Rosid should automatically open your default browser.
 	 * true  = Open '/index.html'

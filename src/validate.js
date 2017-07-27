@@ -60,18 +60,12 @@ const _path = function(filePath) {
 const _opts = function(opts = {}) {
 
 	// Set default value when an option is missing or has an incorrect type
-	const ignore  = (Array.isArray(opts.ignore)===true ? opts.ignore : [])
-	const polling = (opts.polling===true ? true : false)
-	const verbose = (opts.verbose===true ? true : false)
-	const open    = (typeof opts.open==='string' || opts.open===true ? true : false)
-	const path    = (typeof opts.open==='string' ? opts.open : null)
-
 	return {
-		ignore,
-		polling,
-		verbose,
-		open,
-		path
+		ignore  : (Array.isArray(opts.ignore)===true ? opts.ignore : []),
+		static  : (Array.isArray(opts.static)===true ? opts.static : []),
+		verbose : (opts.verbose===true ? true : false),
+		open    : (typeof opts.open==='string' || opts.open===true ? true : false),
+		path    : (typeof opts.open==='string' ? opts.open : null)
 	}
 
 }

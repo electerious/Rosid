@@ -142,7 +142,7 @@ describe('validate', function() {
 
 			assert.deepEqual(validate.opts(), {
 				ignore  : [],
-				polling : false,
+				static  : [],
 				verbose : false,
 				open    : false,
 				path    : null
@@ -154,7 +154,7 @@ describe('validate', function() {
 
 			assert.deepEqual(validate.opts({}), {
 				ignore  : [],
-				polling : false,
+				static  : [],
 				verbose : false,
 				open    : false,
 				path    : null
@@ -165,13 +165,13 @@ describe('validate', function() {
 		it('should set defaults when called with an object with missing options', function() {
 
 			const opts = {
-				polling: true
+				verbose: true
 			}
 
 			assert.deepEqual(validate.opts(opts), {
 				ignore  : [],
-				polling : true,
-				verbose : false,
+				static  : [],
+				verbose : true,
 				open    : false,
 				path    : null
 			})
@@ -182,14 +182,14 @@ describe('validate', function() {
 
 			const opts = {
 				ignore  : [ 'array' ],
-				polling : true,
+				static  : [ 'array' ],
 				verbose : true,
 				open    : '/ui/index.html'
 			}
 
 			assert.deepEqual(validate.opts(opts), {
 				ignore  : [ 'array' ],
-				polling : true,
+				static  : [ 'array' ],
 				verbose : true,
 				open    : true,
 				path    : '/ui/index.html'

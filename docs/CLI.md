@@ -16,11 +16,21 @@ Commands:
 
 Options:
 
-  -p, --polling  use polling to watch files over a network or in other non-standard situations
-  -o, --open     open URL automatically in default browser
+  -i, --ignore   ignore given files when copying
+  -s, --static   disable browser reload for given files
+  -o, --open     open default or given URL automatically in default browser
   -v, --verbose  increase verbosity
   -V, --version  output the version number
   -h, --help     output usage information
+
+Examples:
+
+  $ rosid serve src/
+  $ rosid serve src/ -o
+  $ rosid serve src/ -o 'en/index.html'
+  $ rosid serve src/ -s 'static.html'
+  $ rosid compile src/ dist/
+  $ rosid compile src/ dist/ -i '**/_*' -i '**/includes'
 ```
 
 ## Commands
@@ -55,8 +65,14 @@ Open a custom URL in your default browser with `--open` (or `-o`) followed by a 
 rosid serve src/ -o '/ui/index.html'
 ```
 
-You can ignore files you don't want in the exported folder with `--ignore` (or `-i`).
+Prevent pages from reloading when the content changes by using `--static` (or `-s`):
 
 ```sh
-rosid serve src/ dist/ -i '**/_*' -i '**/.bower.json' -i '**/assets/includes'
+rosid serve src/ dist/ -s 'static.html'
+```
+
+You can ignore files you don't want in the exported folder with `--ignore` (or `-i`):
+
+```sh
+rosid compile src/ dist/ -i '**/_*' -i '**/.bower.json' -i '**/assets/includes'
 ```

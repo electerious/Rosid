@@ -9,7 +9,7 @@ const pkg    = require('./../package')
 
 const alias = {
 	i: 'ignore',
-	p: 'polling',
+	s: 'static',
 	o: 'open',
 	v: 'verbose',
 	V: 'version'
@@ -33,7 +33,6 @@ const serve = function(srcPath, opts) {
 	srcPath = path.resolve(srcPath || '')
 
 	getRosid().serve(srcPath, {
-		polling : opts.polling,
 		open    : opts.open,
 		verbose : opts.verbose
 	})
@@ -72,11 +71,21 @@ const help = function() {
 
 		Options:
 
-		  -p, --polling  use polling to watch files over a network or in other non-standard situations
-		  -o, --open     open URL automatically in default browser
+		  -i, --ignore   ignore given files when copying
+		  -s, --static   disable browser reload for given files
+		  -o, --open     open default or given URL automatically in default browser
 		  -v, --verbose  increase verbosity
 		  -V, --version  output the version number
 		  -h, --help     output usage information
+
+		Examples:
+
+		  $ rosid serve src/
+		  $ rosid serve src/ -o
+		  $ rosid serve src/ -o 'en/index.html'
+		  $ rosid serve src/ -s 'static.html'
+		  $ rosid compile src/ dist/
+		  $ rosid compile src/ dist/ -i '**/_*' -i '**/includes'
 	`.replace(/\t/g, ' '))
 
 }
@@ -89,12 +98,13 @@ const parse = function(argv) {
 	// Output usage information
 	if (argv.help===true) return help()
 
-	// Ignore must be an array of strings
+	// Ignore and static must be arrays of strings
 	argv.ignore = (typeof argv.ignore==='string' ? [ argv.ignore ] : argv.ignore)
+	argv.static = (typeof argv.static==='string' ? [ argv.static ] : argv.static)
 
 	// Serve current or specified folder
 	if (argv._[0]==='serve') return serve(argv._[1], {
-		polling : argv.polling,
+		static  : argv.static,
 		open    : argv.open,
 		verbose : argv.verbose
 	})

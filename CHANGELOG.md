@@ -6,10 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### New
+
+- Added `static` option to disable browser reload for specific files
+
 ### Changed
 
 - Switched to a smaller package for parse CLI flags and arguments
 - Helpful error when `rosidfile.js` or `rosidfile.json` is missing
+
+### Removed
+
+- Removed `polling` option
 
 ## [8.0.0] - 2017-07-19
 

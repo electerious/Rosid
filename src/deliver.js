@@ -111,19 +111,23 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 		match   : getFiles(),
 		fn      : eventHandler.bind(null, bs),
 		options : {
-			usePolling    : opts.polling,
 			ignoreInitial : true
 		}
 	}
 
+	const snippetOptions = {
+		blacklist: opts.static
+	}
+
 	const defaults = {
-		logPrefix : 'Rosid',
-		server    : server,
-		files     : [ files ],
-		notify    : false,
-		ghostMode : false,
-		open      : opts.open,
-		startPath : opts.path
+		logPrefix      : 'Rosid',
+		server         : server,
+		files          : [ files ],
+		notify         : false,
+		ghostMode      : false,
+		open           : opts.open,
+		startPath      : opts.path,
+		snippetOptions : snippetOptions
 	}
 
 	bs.init(defaults, next)
