@@ -19,6 +19,8 @@ const getRosid = function() {
 
 	const routesPath = findUp.sync([ 'rosidfile.js', 'rosidfile.json' ])
 
+	if (routesPath==null) throw new Error('No rosidfile.js or rosidfile.json found')
+
 	const Rosid  = require('./../src/index')
 	const routes = require(routesPath)
 
