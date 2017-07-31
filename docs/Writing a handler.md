@@ -68,6 +68,8 @@ module.exports.cache = [
 ]
 ```
 
+Skip the definition of `module.exports.cache` to disable caching for your handler.
+
 ## 4. Distribution
 
 Handlers should be distributed through npm. The recommended prefix is `rosid-handler-` and the `package.json` of your handler should at least contain the tags `rosid` and `handler`.
