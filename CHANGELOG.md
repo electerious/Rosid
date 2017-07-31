@@ -9,11 +9,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### New
 
 - Added `static` option to disable browser reload for specific files
+- CLI examples
+- Helpful error when `rosidfile.js` or `rosidfile.json` is missing
 
 ### Changed
 
 - Switched to a smaller package for parse CLI flags and arguments
-- Helpful error when `rosidfile.js` or `rosidfile.json` is missing
 
 ### Removed
 
