@@ -87,7 +87,7 @@ describe('clean()', function() {
 
 		}, (err) => {
 
-			assert.strictEqual(`Specified distPath must be inside the current working directory to prevent us from deleting ourself`, err.message)
+			assert.strictEqual(err.message, `Specified distPath must be inside the current working directory to prevent us from deleting ourself`)
 
 		})
 
@@ -115,7 +115,7 @@ describe('clean()', function() {
 
 		}, (err) => {
 
-			assert.strictEqual(`Specified distPath must be inside the current working directory to prevent us from deleting ourself`, err.message)
+			assert.strictEqual(err.message, `Specified distPath must be inside the current working directory to prevent us from deleting ourself`)
 
 		})
 
