@@ -1,6 +1,6 @@
 'use strict'
 
-const mm    = require('micromatch')
+const mm = require('micromatch')
 const cache = new Map()
 
 /**
@@ -54,7 +54,7 @@ const _flush = function(filePath) {
  * @public
  */
 module.exports = {
-	get   : _get,
-	set   : _set,
-	flush : _flush
+	get: _get,
+	set: _set,
+	flush: _flush
 }

@@ -1,10 +1,10 @@
 'use strict'
 
-const os     = require('os')
-const fs     = require('fs')
-const pify   = require('pify')
+const os = require('os')
+const fs = require('fs')
+const pify = require('pify')
 const assert = require('chai').assert
-const uuid   = require('uuid/v4')
+const uuid = require('uuid/v4')
 const deliver = require('./../src/deliver')
 
 const fsify = require('fsify')({
@@ -24,10 +24,10 @@ describe('deliver()', function() {
 
 		return fsify(structure).then((structure) => {
 
-			const srcPath  = structure[0].name
-			const rewrite  = () => {}
+			const srcPath = structure[0].name
+			const rewrite = () => {}
 			const redirect = () => {}
-			const opts     = { open: false }
+			const opts = { open: false }
 
 			return pify(deliver)(srcPath, rewrite, redirect, opts)
 

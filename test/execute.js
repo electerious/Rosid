@@ -1,9 +1,9 @@
 'use strict'
 
-const os      = require('os')
-const path    = require('path')
-const assert  = require('chai').assert
-const uuid    = require('uuid/v4')
+const os = require('os')
+const path = require('path')
+const assert = require('chai').assert
+const uuid = require('uuid/v4')
 const execute = require('./../src/execute')
 
 const randomPath = () => path.resolve(os.tmpdir(), uuid())
@@ -13,9 +13,9 @@ describe('execute()', function() {
 	it('should execute handler with filePath and data', function(done) {
 
 		const fileRoute = randomPath()
-		const filePath  = randomPath()
-		const optimize  = false
-		const data      = 'data'
+		const filePath = randomPath()
+		const optimize = false
+		const data = 'data'
 
 		const opts = {
 			key: 'value'
@@ -31,9 +31,9 @@ describe('execute()', function() {
 		}
 
 		const route = {
-			name    : 'mocha',
-			handler : handler,
-			opts    : opts
+			name: 'mocha',
+			handler: handler,
+			opts: opts
 		}
 
 		execute(route, fileRoute, filePath, optimize, (err, data) => {})
@@ -43,8 +43,8 @@ describe('execute()', function() {
 	it('should execute handler with filePath and data and custom optimize option', function(done) {
 
 		const fileRoute = randomPath()
-		const filePath  = randomPath()
-		const data      = 'data'
+		const filePath = randomPath()
+		const data = 'data'
 
 		const opts = {
 			key: 'value',
@@ -61,9 +61,9 @@ describe('execute()', function() {
 		}
 
 		const route = {
-			name    : 'mocha',
-			handler : handler,
-			opts    : opts
+			name: 'mocha',
+			handler: handler,
+			opts: opts
 		}
 
 		execute(route, fileRoute, filePath, undefined, (err, data) => {})
@@ -73,15 +73,15 @@ describe('execute()', function() {
 	it('should process the response of a handler', function(done) {
 
 		const fileRoute = randomPath()
-		const filePath  = randomPath()
-		const data      = 'data'
+		const filePath = randomPath()
+		const data = 'data'
 
 		const handler = () => Promise.resolve(data)
 
 		const route = {
-			name    : 'mocha',
-			handler : handler,
-			opts    : {}
+			name: 'mocha',
+			handler: handler,
+			opts: {}
 		}
 
 		execute(route, fileRoute, filePath, undefined, (err, _data) => {
@@ -99,14 +99,14 @@ describe('execute()', function() {
 	it('should pass an error to the callback when handler returns no data', function(done) {
 
 		const fileRoute = randomPath()
-		const filePath  = randomPath()
+		const filePath = randomPath()
 
 		const handler = () => Promise.resolve(null)
 
 		const route = {
-			name    : 'mocha',
-			handler : handler,
-			opts    : {}
+			name: 'mocha',
+			handler: handler,
+			opts: {}
 		}
 
 		execute(route, fileRoute, filePath, undefined, (err, _data) => {

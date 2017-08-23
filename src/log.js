@@ -1,6 +1,6 @@
 'use strict'
 
-const tfunk  = require('tfunk')
+const tfunk = require('tfunk')
 const prefix = tfunk('[{blue:Rosid}]')
 
 /**

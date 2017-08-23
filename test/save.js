@@ -1,11 +1,11 @@
 'use strict'
 
-const os     = require('os')
-const fs     = require('fs')
-const pify   = require('pify')
+const os = require('os')
+const fs = require('fs')
+const pify = require('pify')
 const assert = require('chai').assert
-const uuid   = require('uuid/v4')
-const save   = require('./../src/save')
+const uuid = require('uuid/v4')
+const save = require('./../src/save')
 
 const fsify = require('fsify')({
 	cwd: os.tmpdir()
@@ -25,7 +25,7 @@ describe('save()', function() {
 		return fsify(structure).then((structure) => {
 
 			const filePath = structure[0].name
-			const data     = uuid()
+			const data = uuid()
 
 			return pify(save)(filePath, data, {}).then(() => {
 
@@ -49,7 +49,7 @@ describe('save()', function() {
 		return fsify(structure).then((structure) => {
 
 			const filePath = structure[0].name
-			const data     = uuid()
+			const data = uuid()
 
 			return pify(save)(filePath, data, { verbose: true }).then(() => {
 

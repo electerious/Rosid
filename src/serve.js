@@ -12,9 +12,9 @@ module.exports = function(routes, srcPath, opts, next) {
 
 	// Require modules on function call to speed up the initial launch
 	const validate = require('./validate')
-	const rewrite  = require('./rewrite')
+	const rewrite = require('./rewrite')
 	const redirect = require('./redirect')
-	const deliver  = require('./deliver')
+	const deliver = require('./deliver')
 
 	// Make opts optional and use opts as next when next is undefined
 	// Next will be validated at a later juncture
@@ -22,10 +22,10 @@ module.exports = function(routes, srcPath, opts, next) {
 
 	try {
 
-		next    = validate.next(next)
-		routes  = routes.map(validate.route)
+		next = validate.next(next)
+		routes = routes.map(validate.route)
 		srcPath = validate.path(srcPath)
-		opts    = validate.opts(opts)
+		opts = validate.opts(opts)
 
 	} catch (err) {
 
@@ -36,7 +36,7 @@ module.exports = function(routes, srcPath, opts, next) {
 	// Handlers may use promises which could lead to unhandled rejections
 	process.on('unhandledRejection', next)
 
-	const _rewrite  = rewrite(routes, srcPath)
+	const _rewrite = rewrite(routes, srcPath)
 	const _redirect = redirect()
 
 	deliver(srcPath, _rewrite, _redirect, opts, next)

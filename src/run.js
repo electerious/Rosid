@@ -1,11 +1,11 @@
 'use strict'
 
-const path    = require('path')
-const mm      = require('micromatch')
-const klaw    = require('klaw')
-const rename  = require('rename-extension')
+const path = require('path')
+const mm = require('micromatch')
+const klaw = require('klaw')
+const rename = require('rename-extension')
 const execute = require('./execute')
-const save    = require('./save')
+const save = require('./save')
 
 /**
  * Run multiple route functions parallel.
@@ -25,7 +25,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 		// Generate an array of matching routes and use the first matching route only
 		const matches = routes.filter((route) => mm.isMatch(fileRoute, route.path))
-		const route   = matches[0]
+		const route = matches[0]
 
 		// Return resolved promise when no matching route found
 		if (route==null) return Promise.resolve()

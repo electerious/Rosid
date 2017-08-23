@@ -1,11 +1,11 @@
 'use strict'
 
-const os     = require('os')
-const fs     = require('fs')
-const pify   = require('pify')
+const os = require('os')
+const fs = require('fs')
+const pify = require('pify')
 const assert = require('chai').assert
-const uuid   = require('uuid/v4')
-const copy   = require('./../src/copy')
+const uuid = require('uuid/v4')
+const copy = require('./../src/copy')
 
 const fsify = require('fsify')({
 	cwd: os.tmpdir()
@@ -53,22 +53,22 @@ describe('copy()', function() {
 		]
 
 		const opts = {
-			verbose : true,
-			ignore  : [
+			verbose: true,
+			ignore: [
 				'**/*.css'
 			]
 		}
 
 		return fsify(structure).then((structure) => {
 
-			const srcPath  = structure[0].name
+			const srcPath = structure[0].name
 			const distPath = structure[1].name
 
-			const distFileEJS        = structure[0].contents[0].name.replace(srcPath, distPath)
+			const distFileEJS = structure[0].contents[0].name.replace(srcPath, distPath)
 			const distFileIgnoredEJS = structure[0].contents[1].name.replace(srcPath, distPath)
-			const distFileSWP        = structure[0].contents[2].name.replace(srcPath, distPath)
-			const distFileCSS        = structure[0].contents[3].name.replace(srcPath, distPath)
-			const distFileJS         = structure[0].contents[4].name.replace(srcPath, distPath)
+			const distFileSWP = structure[0].contents[2].name.replace(srcPath, distPath)
+			const distFileCSS = structure[0].contents[3].name.replace(srcPath, distPath)
+			const distFileJS = structure[0].contents[4].name.replace(srcPath, distPath)
 
 			return pify(copy)(routes, srcPath, distPath, opts).then(() => {
 
@@ -105,7 +105,7 @@ describe('copy()', function() {
 
 		return fsify(structure).then((structure) => {
 
-			const srcPath  = structure[0].name
+			const srcPath = structure[0].name
 			const distPath = structure[1].name
 
 			return pify(copy)(routes, srcPath, distPath, opts)

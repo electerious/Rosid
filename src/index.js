@@ -1,7 +1,7 @@
 'use strict'
 
 const compile = require('./compile')
-const serve   = require('./serve')
+const serve = require('./serve')
 
 /**
  * Returns an object of functions.
@@ -13,8 +13,8 @@ const serve   = require('./serve')
 module.exports = function(routes) {
 
 	return {
-		compile : compile.bind(null, routes),
-		serve   : serve.bind(null, routes)
+		compile: compile.bind(null, routes),
+		serve: serve.bind(null, routes)
 	}
 
 }

@@ -1,8 +1,8 @@
 'use strict'
 
-const fse          = require('fs-extra')
+const fse = require('fs-extra')
 const isPathInside = require('is-path-inside')
-const log          = require('./log')
+const log = require('./log')
 
 /**
  * Delete an entire directory with all its files and folders.

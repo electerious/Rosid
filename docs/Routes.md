@@ -5,20 +5,20 @@ The route-configuration is an array of objects. Each object must contain a name,
 ```js
 const routes = [
 	{
-		name    : 'JS',
-		path    : 'assets/scripts/**/*.js',
-		handler : 'rosid-handler-js'
+		name: 'JS',
+		path: 'assets/scripts/**/*.js',
+		handler: 'rosid-handler-js'
 	},
 	{
-		name    : 'SCSS',
-		path    : 'assets/styles/**/[^_]*.{css,scss}',
-		handler : transfromSCSS,
-		opts    : { custom: 'data' }
+		name: 'SCSS',
+		path: 'assets/styles/**/[^_]*.{css,scss}',
+		handler: transfromSCSS,
+		opts: { custom: 'data' }
 	},
 	{
-		name    : 'EJS',
-		path    : '[^_]*.{html,ejs}',
-		handler : require('rosid-handler-ejs')
+		name: 'EJS',
+		path: '[^_]*.{html,ejs}',
+		handler: require('rosid-handler-ejs')
 	}
 ]
 ```
@@ -28,19 +28,19 @@ Store the routes in a variable or save them in a JSON file called `rosidfile.jso
 ```json
 [
 	{
-		"name"    : "JS",
-		"path"    : "assets/scripts/**/[^_]*.js",
-		"handler" : "rosid-handler-js"
+		"name": "JS",
+		"path": "assets/scripts/**/[^_]*.js",
+		"handler": "rosid-handler-js"
 	},
 	{
-		"name"    : "SASS",
-		"path"    : "assets/styles/[^_]*.{css,sass}",
-		"handler" : "rosid-handler-sass"
+		"name": "SASS",
+		"path": "assets/styles/[^_]*.{css,sass}",
+		"handler": "rosid-handler-sass"
 	},
 	{
-		"name"    : "EJS",
-		"path"    : "[^_]*.{html,ejs}",
-		"handler" : "rosid-handler-ejs"
+		"name": "EJS",
+		"path": "[^_]*.{html,ejs}",
+		"handler": "rosid-handler-ejs"
 	}
 ]
 ```
@@ -79,12 +79,12 @@ You can choose your property names freely. Only the following names are reserved
 ```json
 [
 	{
-		"name"    : "SASS",
-		"path"    : "assets/styles/[^_]*.{css,scss}",
-		"handler" : "rosid-handler-sass",
-		"opts"    : {
-			"in"       : ".scss",
-			"optimize" : true
+		"name": "SASS",
+		"path": "assets/styles/[^_]*.{css,scss}",
+		"handler": "rosid-handler-sass",
+		"opts": {
+			"in": ".scss",
+			"optimize": true
 		}
 	}
 ]

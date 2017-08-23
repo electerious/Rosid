@@ -1,8 +1,8 @@
 'use strict'
 
 const assert = require('chai').assert
-const uuid   = require('uuid/v4')
-const cache  = require('./../src/cache')
+const uuid = require('uuid/v4')
+const cache = require('./../src/cache')
 
 describe('cache', function() {
 
@@ -10,7 +10,7 @@ describe('cache', function() {
 
 		it('should add an item', function() {
 
-			const key   = `src/${ uuid() }.html`
+			const key = `src/${ uuid() }.html`
 			const value = { cache: [ '**/*.html' ] }
 
 			cache.set(key, value)
@@ -25,7 +25,7 @@ describe('cache', function() {
 
 		it('should return an item', function() {
 
-			const key   = `src/${ uuid() }.html`
+			const key = `src/${ uuid() }.html`
 			const value = { cache: [ '**/*.html' ] }
 
 			cache.set(key, value)
@@ -91,7 +91,7 @@ describe('cache', function() {
 
 		it('should clear items without a cache property', function() {
 
-			const key   = `src/${ uuid() }.html`
+			const key = `src/${ uuid() }.html`
 			const value = {}
 
 			cache.set(key, value)

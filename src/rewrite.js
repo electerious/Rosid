@@ -1,13 +1,13 @@
 'use strict'
 
-const path    = require('path')
-const mm      = require('micromatch')
-const mime    = require('mime')
-const rename  = require('rename-extension')
-const log     = require('./log')
-const cache   = require('./cache')
+const path = require('path')
+const mm = require('micromatch')
+const mime = require('mime')
+const rename = require('rename-extension')
+const log = require('./log')
+const cache = require('./cache')
 const execute = require('./execute')
-const send    = require('./send')
+const send = require('./send')
 
 /**
  * Match and rewrite a request.
@@ -25,7 +25,7 @@ module.exports = function(routes, srcPath) {
 
 		// Generate an array of matching routes and use the first matching route only
 		const matches = routes.filter((route) => mm.isMatch(fileRoute, route.path))
-		const route   = matches[0]
+		const route = matches[0]
 
 		// Continue without a rewrite when no matching route has been found
 		if (route==null) return next()
@@ -66,9 +66,9 @@ module.exports = function(routes, srcPath) {
 
 			// Cache the response of the handler
 			cache.set(fileRoute, {
-				contentType : contentType,
-				data        : data,
-				cache       : route.handler.cache
+				contentType: contentType,
+				data: data,
+				cache: route.handler.cache
 			})
 
 		})

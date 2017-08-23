@@ -1,7 +1,7 @@
 'use strict'
 
 const assert = require('chai').assert
-const send   = require('./../src/send')
+const send = require('./../src/send')
 
 describe('send()', function() {
 

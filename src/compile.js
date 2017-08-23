@@ -12,11 +12,11 @@
 module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	// Require modules on function call to speed up the initial launch
-	const series   = require('run-series')
+	const series = require('run-series')
 	const validate = require('./validate')
-	const clean    = require('./clean')
-	const copy     = require('./copy')
-	const run      = require('./run')
+	const clean = require('./clean')
+	const copy = require('./copy')
+	const run = require('./run')
 
 	// Current working directory
 	const cwdPath = process.cwd()
@@ -27,11 +27,11 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 
 	try {
 
-		next     = validate.next(next)
-		routes   = routes.map(validate.route)
-		srcPath  = validate.path(srcPath)
+		next = validate.next(next)
+		routes = routes.map(validate.route)
+		srcPath = validate.path(srcPath)
 		distPath = validate.path(distPath)
-		opts     = validate.opts(opts)
+		opts = validate.opts(opts)
 
 	} catch (err) {
 

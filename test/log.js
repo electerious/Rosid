@@ -1,7 +1,7 @@
 'use strict'
 
 const assert = require('chai').assert
-const log    = require('./../src/log')
+const log = require('./../src/log')
 
 describe('log()', function() {
 

@@ -1,11 +1,11 @@
 'use strict'
 
-const os     = require('os')
-const fs     = require('fs')
-const pify   = require('pify')
+const os = require('os')
+const fs = require('fs')
+const pify = require('pify')
 const assert = require('chai').assert
-const uuid   = require('uuid/v4')
-const clean  = require('./../src/clean')
+const uuid = require('uuid/v4')
+const clean = require('./../src/clean')
 
 const fsifyCwd = require('fsify')({
 	persistent: false
@@ -29,7 +29,7 @@ describe('clean()', function() {
 		return fsifyCwd(structure).then((structure) => {
 
 			const distPath = structure[0].name
-			const cwdPath  = process.cwd()
+			const cwdPath = process.cwd()
 
 			return pify(clean)(distPath, cwdPath, {}).then(() => {
 
@@ -53,7 +53,7 @@ describe('clean()', function() {
 		return fsifyCwd(structure).then((structure) => {
 
 			const distPath = structure[0].name
-			const cwdPath  = process.cwd()
+			const cwdPath = process.cwd()
 
 			return pify(clean)(distPath, cwdPath, { verbose: true }).then(() => {
 
@@ -77,7 +77,7 @@ describe('clean()', function() {
 		return fsifyTmp(structure).then((structure) => {
 
 			const distPath = structure[0].name
-			const cwdPath  = process.cwd()
+			const cwdPath = process.cwd()
 
 			return pify(clean)(distPath, cwdPath, {})
 
@@ -105,7 +105,7 @@ describe('clean()', function() {
 		return fsifyTmp(structure).then((structure) => {
 
 			const distPath = structure[0].name
-			const cwdPath  = structure[0].name
+			const cwdPath = structure[0].name
 
 			return pify(clean)(distPath, cwdPath, {})
 

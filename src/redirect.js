@@ -11,7 +11,7 @@ module.exports = function() {
 	return (req, res, next) => {
 
 		const parsedURL = url.parse(req.url)
-		const lastChar  = parsedURL.pathname.substr(-1)
+		const lastChar = parsedURL.pathname.substr(-1)
 
 		// Only continue when requested URL is a folder
 		if (lastChar!=='/') return next()

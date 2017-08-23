@@ -1,6 +1,6 @@
 'use strict'
 
-const assert  = require('chai').assert
+const assert = require('chai').assert
 const rewrite = require('./../src/rewrite')
 
 describe('rewrite', function() {

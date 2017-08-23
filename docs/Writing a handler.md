@@ -40,9 +40,9 @@ Rosid still needs to know when to use your handler so you need to add it to the 
 ```json
 [
   {
-    "name"    : "Hello World",
-    "path"    : "**/*.html",
-    "handler" : "rosid-handler-helloworld"
+    "name": "Hello World",
+    "path": "**/*.html",
+    "handler": "rosid-handler-helloworld"
   }
 ]
 ```

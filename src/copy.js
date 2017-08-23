@@ -1,10 +1,10 @@
 'use strict'
 
 const path = require('path')
-const fse  = require('fs-extra')
+const fse = require('fs-extra')
 const junk = require('junk')
-const mm   = require('micromatch')
-const log  = require('./log')
+const mm = require('micromatch')
+const log = require('./log')
 
 /**
  * Get a list of files which should not be copied.
@@ -60,7 +60,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 		const fileName = path.parse(filePath).base
 
 		const isIgnored = mm.any(filePath, ignoredFiles)
-		const isJunk    = junk.is(fileName)
+		const isJunk = junk.is(fileName)
 
 		// Copy file when it's not ignored or not junk
 		const copy = isIgnored===false && isJunk===false
@@ -68,7 +68,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 		if (opts.verbose===true) {
 
 			if (copy===false) log(`{cyan:Skipping file: {grey:${ filePath }`)
-			if (copy===true)  log(`{cyan:Copying file: {grey:${ filePath }`)
+			if (copy===true) log(`{cyan:Copying file: {grey:${ filePath }`)
 
 		}
 

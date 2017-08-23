@@ -1,10 +1,10 @@
 'use strict'
 
-const path        = require('path')
-const niceTry     = require('nice-try')
-const junk        = require('junk')
+const path = require('path')
+const niceTry = require('nice-try')
+const junk = require('junk')
 const browserSync = niceTry(() => require('browser-sync'))
-const cache       = require('./cache')
+const cache = require('./cache')
 
 /**
  * Get a list of files to watch.
@@ -46,7 +46,7 @@ const getFiles = function() {
  */
 const eventHandler = function(bs, event, filePath) {
 
-	const fileName      = path.parse(filePath).base
+	const fileName = path.parse(filePath).base
 	const fileExtension = path.extname(filePath)
 
 	// Ignore change when filePath is junk
@@ -100,18 +100,18 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 	const bs = browserSync.create()
 
 	const server = {
-		baseDir    : srcPath,
-		middleware : [
+		baseDir: srcPath,
+		middleware: [
 			rewrite,
 			redirect
 		]
 	}
 
 	const files = {
-		match   : getFiles(),
-		fn      : eventHandler.bind(null, bs),
-		options : {
-			ignoreInitial : true
+		match: getFiles(),
+		fn: eventHandler.bind(null, bs),
+		options: {
+			ignoreInitial: true
 		}
 	}
 
@@ -120,14 +120,14 @@ module.exports = function(srcPath, rewrite, redirect, opts, next) {
 	}
 
 	const defaults = {
-		logPrefix      : 'Rosid',
-		server         : server,
-		files          : [ files ],
-		notify         : false,
-		ghostMode      : false,
-		open           : opts.open,
-		startPath      : opts.path,
-		snippetOptions : snippetOptions
+		logPrefix: 'Rosid',
+		server: server,
+		files: [ files ],
+		notify: false,
+		ghostMode: false,
+		open: opts.open,
+		startPath: opts.path,
+		snippetOptions: snippetOptions
 	}
 
 	bs.init(defaults, next)
