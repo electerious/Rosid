@@ -30,7 +30,7 @@ Parameters:
 
 Returns:
 
-- `{Promise}({String|Buffer})` The transformed file content.
+- `{Promise<String|Buffer>}` The transformed file content.
 
 ## Distributing a handler
 
