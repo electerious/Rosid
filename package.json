@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.1",
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.0",
     "fsify": "^2.0.3",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
