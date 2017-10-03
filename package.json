@@ -26,16 +26,16 @@
   ],
   "scripts": {
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "test": "nyc node_modules/mocha/bin/_mocha",
+    "test": "nyc node_modules/mocha/bin/_mocha --exit",
     "prepublish": "npm test"
   },
   "dependencies": {
     "find-up": "^2.1.0",
-    "fs-extra": "^4.0.1",
+    "fs-extra": "^4.0.2",
     "is-path-inside": "^1.0.0",
     "junk": "^2.1.0",
     "klaw": "^2.0.0",
-    "micromatch": "^3.0.4",
+    "micromatch": "^3.1.0",
     "mime": "^2.0.0",
     "mri": "^1.1.0",
     "nice-try": "^1.0.3",
@@ -47,11 +47,11 @@
     "browser-sync": "^2.18.13"
   },
   "devDependencies": {
-    "chai": "^4.1.1",
+    "chai": "^4.1.2",
     "coveralls": "^3.0.0",
     "fsify": "^2.0.3",
-    "mocha": "^3.5.0",
-    "nyc": "^11.1.0",
+    "mocha": "^4.0.0",
+    "nyc": "^11.2.1",
     "pify": "^3.0.0",
     "uuid": "^3.1.0"
   }
