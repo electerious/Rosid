@@ -44,8 +44,9 @@ Rosid starts a server and compares requested URLs with [user-defined patterns](d
 
 Boilerplates powered by Rosid:
 
-- 📐 [Skeleton EJS](https://github.com/electerious/Skeleton-EJS): JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and EJS
-- 📐 [Skeleton NJK](https://github.com/electerious/Skeleton-NJK): Components UI, JS (with Babel, UglifyJS), SASS (with cssnano, Autoprefixer) and Nunjucks
+- 📐 [Skeleton EJS](https://github.com/electerious/Skeleton-EJS): EJS, JS (with Babel, UglifyJS) and SASS (with cssnano, Autoprefixer)
+- 📐 [Skeleton NJK](https://github.com/electerious/Skeleton-NJK): Nunjucks, JS (with Babel, UglifyJS) and SASS (with cssnano, Autoprefixer)
+- 📐 [Skeleton Components](https://github.com/electerious/Skeleton-Components): UI for components written in Nunjucks, JS (with Babel, UglifyJS) and SASS (with cssnano, Autoprefixer)
 
 Handlers build for Rosid:
 
