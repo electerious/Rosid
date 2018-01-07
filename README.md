@@ -79,7 +79,7 @@ Guides for Rosid:
 
 Rosid depends on...
 
-- [Node.js](https://nodejs.org/en/) (v6.2.0 or newer)
+- [Node.js](https://nodejs.org/en/) (v8.9.0 or newer)
 - [npm](https://www.npmjs.com)
 
 Make sure to install and update all dependencies before you setup Rosid.
