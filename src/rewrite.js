@@ -55,7 +55,7 @@ module.exports = function(routes, srcPath) {
 		})()
 
 		// Get mime type of request files
-		const contentType = mime.lookup(filePath)
+		const contentType = mime.getType(filePath)
 
 		// Execute handler
 		execute(route, fileRoute, fileLoad, false, (err, data) => {
