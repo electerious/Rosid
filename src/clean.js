@@ -12,6 +12,7 @@ const log = require('./log')
  * @param {String} cwdPath - Current working directory.
  * @param {Object} opts - Additional optional options.
  * @param {Function} next - The callback that handles the response. Receives the following properties: err.
+ * @returns {?*}
  */
 module.exports = function(distPath, cwdPath, opts, next) {
 

@@ -1,7 +1,6 @@
 'use strict'
 
 const os = require('os')
-const fs = require('fs')
 const pify = require('pify')
 const assert = require('chai').assert
 const uuid = require('uuid/v4')

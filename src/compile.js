@@ -8,6 +8,7 @@
  * @param {String} distPath - Path to the destination folder.
  * @param {?Object} opts - Additional optional options.
  * @param {Function} next - The callback that handles the response. Receives the following properties: err.
+ * @returns {?*}
  */
 module.exports = function(routes, srcPath, distPath, opts, next) {
 

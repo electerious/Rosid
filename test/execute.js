@@ -15,7 +15,6 @@ describe('execute()', function() {
 		const fileRoute = randomPath()
 		const filePath = randomPath()
 		const optimize = false
-		const data = 'data'
 
 		const opts = {
 			key: 'value'
@@ -36,7 +35,7 @@ describe('execute()', function() {
 			opts: opts
 		}
 
-		execute(route, fileRoute, filePath, optimize, (err, data) => {})
+		execute(route, fileRoute, filePath, optimize, () => {})
 
 	})
 
@@ -44,7 +43,6 @@ describe('execute()', function() {
 
 		const fileRoute = randomPath()
 		const filePath = randomPath()
-		const data = 'data'
 
 		const opts = {
 			key: 'value',
@@ -66,7 +64,7 @@ describe('execute()', function() {
 			opts: opts
 		}
 
-		execute(route, fileRoute, filePath, undefined, (err, data) => {})
+		execute(route, fileRoute, filePath, undefined, () => {})
 
 	})
 
@@ -109,7 +107,7 @@ describe('execute()', function() {
 			opts: {}
 		}
 
-		execute(route, fileRoute, filePath, undefined, (err, _data) => {
+		execute(route, fileRoute, filePath, undefined, (err) => {
 
 			assert.isDefined(err)
 

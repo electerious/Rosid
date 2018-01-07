@@ -2,10 +2,10 @@
 
 'use strict'
 
-const path   = require('path')
-const mri    = require('mri')
+const path = require('path')
+const mri = require('mri')
 const findUp = require('find-up')
-const pkg    = require('./../package')
+const pkg = require('./../package')
 
 const alias = {
 	i: 'ignore',
@@ -21,10 +21,10 @@ const getRosid = function() {
 
 	if (routesPath==null) throw new Error('No rosidfile.js or rosidfile.json found')
 
-	const Rosid  = require('./../src/index')
+	const rosid = require('./../src/index')
 	const routes = require(routesPath)
 
-	return Rosid(routes)
+	return rosid(routes)
 
 }
 
@@ -33,21 +33,21 @@ const serve = function(srcPath, opts) {
 	srcPath = path.resolve(srcPath || '')
 
 	getRosid().serve(srcPath, {
-		static  : opts.static,
-		open    : opts.open,
-		verbose : opts.verbose
+		static: opts.static,
+		open: opts.open,
+		verbose: opts.verbose
 	})
 
 }
 
 const compile = function(srcPath, distPath, opts) {
 
-	srcPath  = path.resolve(srcPath || '')
+	srcPath = path.resolve(srcPath || '')
 	distPath = path.resolve(distPath || 'dist/')
 
 	getRosid().compile(srcPath, distPath, {
-		ignore  : opts.ignore,
-		verbose : opts.verbose
+		ignore: opts.ignore,
+		verbose: opts.verbose
 	})
 
 }
@@ -105,15 +105,15 @@ const parse = function(argv) {
 
 	// Serve current or specified folder
 	if (argv._[0]==='serve') return serve(argv._[1], {
-		static  : argv.static,
-		open    : argv.open,
-		verbose : argv.verbose
+		static: argv.static,
+		open: argv.open,
+		verbose: argv.verbose
 	})
 
 	// Compile current or specified folder to static files
 	if (argv._[0]==='compile') return compile(argv._[1], argv._[2], {
-		ignore  : argv.ignore,
-		verbose : argv.verbose
+		ignore: argv.ignore,
+		verbose: argv.verbose
 	})
 
 	// Show usage information when no known arg was found

@@ -43,6 +43,7 @@ const getFiles = function() {
  * @param {Object} bs - Browsersync instance.
  * @param {String} event - Event sent by Chokidar.
  * @param {String} filePath - File affected by event (relative).
+ * @returns {?*}
  */
 const eventHandler = function(bs, event, filePath) {
 
@@ -90,6 +91,7 @@ const eventHandler = function(bs, event, filePath) {
  * @param {Function} redirect - URL redirect middleware.
  * @param {Object} opts - Additional optional options.
  * @param {Function} next - The callback that handles the response. Receives the following properties: err.
+ * @returns {?*}
  */
 module.exports = function(srcPath, rewrite, redirect, opts, next) {
 

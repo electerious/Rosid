@@ -5,6 +5,7 @@ const url = require('url')
 /**
  * Redirect to the main page when no file specified in the URL.
  * @public
+ * @returns {?*}
  */
 module.exports = function() {
 

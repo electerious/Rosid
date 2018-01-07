@@ -9,7 +9,7 @@ You must require and initialize Rosid before you can use the `serve` and `compil
 Syntax:
 
 ```js
-const Rosid = require('rosid')(routes)
+const rosid = require('rosid')(routes)
 ```
 
 Parameters:
@@ -27,13 +27,13 @@ Start a static site server and compile requested files on-the-fly. The site will
 Syntax:
 
 ```js
-Rosid.serve(srcPath, opts, callback)
+rosid.serve(srcPath, opts, callback)
 ```
 
 Example:
 
 ```js
-Rosid.serve('src/', (err) => {})
+rosid.serve('src/', (err) => {})
 ```
 
 Parameters:
@@ -50,13 +50,13 @@ Export your site to a folder.
 Syntax:
 
 ```js
-Rosid.compile(srcPath, distPath, opts, callback)
+rosid.compile(srcPath, distPath, opts, callback)
 ```
 
 Example:
 
 ```js
-Rosid.compile('src/', 'dist/', (err) => {})
+rosid.compile('src/', 'dist/', (err) => {})
 ```
 
 Parameters:
