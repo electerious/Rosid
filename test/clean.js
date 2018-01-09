@@ -1,8 +1,8 @@
 'use strict'
 
+const util = require('util')
 const os = require('os')
 const fs = require('fs')
-const pify = require('pify')
 const assert = require('chai').assert
 const uuid = require('uuid/v4')
 const clean = require('./../src/clean')
@@ -31,7 +31,7 @@ describe('clean()', function() {
 			const distPath = structure[0].name
 			const cwdPath = process.cwd()
 
-			return pify(clean)(distPath, cwdPath, {}).then(() => {
+			return util.promisify(clean)(distPath, cwdPath, {}).then(() => {
 
 				assert.throws(fs.readdirSync.bind(null, distPath))
 
@@ -55,7 +55,7 @@ describe('clean()', function() {
 			const distPath = structure[0].name
 			const cwdPath = process.cwd()
 
-			return pify(clean)(distPath, cwdPath, { verbose: true }).then(() => {
+			return util.promisify(clean)(distPath, cwdPath, { verbose: true }).then(() => {
 
 				assert.throws(fs.readdirSync.bind(null, distPath))
 
@@ -79,7 +79,7 @@ describe('clean()', function() {
 			const distPath = structure[0].name
 			const cwdPath = process.cwd()
 
-			return pify(clean)(distPath, cwdPath, {})
+			return util.promisify(clean)(distPath, cwdPath, {})
 
 		}).then(() => {
 
@@ -107,7 +107,7 @@ describe('clean()', function() {
 			const distPath = structure[0].name
 			const cwdPath = structure[0].name
 
-			return pify(clean)(distPath, cwdPath, {})
+			return util.promisify(clean)(distPath, cwdPath, {})
 
 		}).then(() => {
 

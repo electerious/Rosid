@@ -1,8 +1,8 @@
 'use strict'
 
+const util = require('util')
 const os = require('os')
 const fs = require('fs')
-const pify = require('pify')
 const assert = require('chai').assert
 const uuid = require('uuid/v4')
 const save = require('./../src/save')
@@ -27,7 +27,7 @@ describe('save()', function() {
 			const filePath = structure[0].name
 			const data = uuid()
 
-			return pify(save)(filePath, data, {}).then(() => {
+			return util.promisify(save)(filePath, data, {}).then(() => {
 
 				assert.strictEqual(fs.readFileSync(filePath, 'utf8'), data)
 
@@ -51,7 +51,7 @@ describe('save()', function() {
 			const filePath = structure[0].name
 			const data = uuid()
 
-			return pify(save)(filePath, data, { verbose: true }).then(() => {
+			return util.promisify(save)(filePath, data, { verbose: true }).then(() => {
 
 				assert.strictEqual(fs.readFileSync(filePath, 'utf8'), data)
 

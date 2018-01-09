@@ -1,8 +1,8 @@
 'use strict'
 
+const util = require('util')
 const os = require('os')
 const fs = require('fs')
-const pify = require('pify')
 const assert = require('chai').assert
 const uuid = require('uuid/v4')
 const copy = require('./../src/copy')
@@ -70,7 +70,7 @@ describe('copy()', function() {
 			const distFileCSS = structure[0].contents[3].name.replace(srcPath, distPath)
 			const distFileJS = structure[0].contents[4].name.replace(srcPath, distPath)
 
-			return pify(copy)(routes, srcPath, distPath, opts).then(() => {
+			return util.promisify(copy)(routes, srcPath, distPath, opts).then(() => {
 
 				assert.throws(fs.readFileSync.bind(null, distFileEJS))
 				assert.doesNotThrow(fs.readFileSync.bind(null, distFileIgnoredEJS))
@@ -108,7 +108,7 @@ describe('copy()', function() {
 			const srcPath = structure[0].name
 			const distPath = structure[1].name
 
-			return pify(copy)(routes, srcPath, distPath, opts)
+			return util.promisify(copy)(routes, srcPath, distPath, opts)
 
 		})
 

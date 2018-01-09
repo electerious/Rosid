@@ -1,7 +1,7 @@
 'use strict'
 
+const util = require('util')
 const os = require('os')
-const pify = require('pify')
 const assert = require('chai').assert
 const uuid = require('uuid/v4')
 const deliver = require('./../src/deliver')
@@ -28,7 +28,7 @@ describe('deliver()', function() {
 			const redirect = () => {}
 			const opts = { open: false }
 
-			return pify(deliver)(srcPath, rewrite, redirect, opts)
+			return util.promisify(deliver)(srcPath, rewrite, redirect, opts)
 
 		}).then((bs) => {
 
