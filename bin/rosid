@@ -12,7 +12,8 @@ const alias = {
 	s: 'static',
 	o: 'open',
 	v: 'verbose',
-	V: 'version'
+	V: 'version',
+	h: 'help'
 }
 
 const getRosid = function() {
