@@ -16,14 +16,21 @@ const alias = {
 	h: 'help'
 }
 
+const getConfig = function() {
+
+	const configPath = findUp.sync([ 'rosidfile.js', 'rosidfile.json' ])
+
+	if (configPath==null) throw new Error('No rosidfile.js or rosidfile.json found')
+
+	return require(configPath)
+
+}
+
 const getRosid = function() {
 
-	const routesPath = findUp.sync([ 'rosidfile.js', 'rosidfile.json' ])
-
-	if (routesPath==null) throw new Error('No rosidfile.js or rosidfile.json found')
-
+	// Require rosid only when it's needed to speed up the CLI
 	const rosid = require('./../src/index')
-	const routes = require(routesPath)
+	const routes = getConfig()
 
 	return rosid(routes)
 
