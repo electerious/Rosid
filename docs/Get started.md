@@ -83,7 +83,7 @@ The handler is now installed, but Rosid has no clue how to use it. It's up to yo
 
 ## 5. Start Rosid
 
-It's time to fire up Rosid. Rosid has been installed into the `node_modules` directory and you can run the Rosid CLI it contains.
+It's time to fire up Rosid. Rosid has been installed into the `node_modules` directory and you can run the CLI it contains.
 
 ```sh
 # Start Rosid
