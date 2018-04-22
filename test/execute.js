@@ -84,7 +84,7 @@ describe('execute()', function() {
 
 		execute(route, fileRoute, filePath, undefined, (err, _data) => {
 
-			if (err!=null) return done(err)
+			if (err != null) return done(err)
 
 			assert.strictEqual(_data, data)
 
