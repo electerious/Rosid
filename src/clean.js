@@ -20,17 +20,17 @@ module.exports = function(distPath, cwdPath, opts, next) {
 	// isPathInside returns false when both paths are the same.
 	const isSafePath = isPathInside(distPath, cwdPath)
 
-	if (isSafePath===false) {
+	if (isSafePath === false) {
 		return next(new Error(`Specified distPath must be inside the current working directory to prevent us from deleting ourself`))
 	}
 
-	if (opts.verbose===true) log(`{cyan:Deleting folder: {grey:${ distPath }`)
+	if (opts.verbose === true) log(`{cyan:Deleting folder: {grey:${ distPath }`)
 
 	fse.remove(distPath, (err) => {
 
-		if (err!=null) return next(err)
+		if (err != null) return next(err)
 
-		if (opts.verbose===true) log(`{cyan:Deleted folder: {grey:${ distPath }`)
+		if (opts.verbose === true) log(`{cyan:Deleted folder: {grey:${ distPath }`)
 
 		next()
 

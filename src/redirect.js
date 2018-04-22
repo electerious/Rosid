@@ -15,7 +15,7 @@ module.exports = function() {
 		const lastChar = parsedURL.pathname.substr(-1)
 
 		// Only continue when requested URL is a folder
-		if (lastChar!=='/') return next()
+		if (lastChar !== '/') return next()
 
 		res.statusCode = 302
 		res.setHeader('Location', `${ parsedURL.pathname }index.html`)

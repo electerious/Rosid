@@ -19,7 +19,7 @@ module.exports = function(routes, srcPath, opts, next) {
 
 	// Make opts optional and use opts as next when next is undefined
 	// Next will be validated at a later juncture
-	if (next==null) next = opts
+	if (next == null) next = opts
 
 	try {
 

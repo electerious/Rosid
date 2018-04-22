@@ -16,21 +16,21 @@ const _route = function(route) {
 
 	// Check if route has a name
 	// The name is required to output informative messages and errors
-	if (route.name==null || route.name==='') throw new Error('Missing name property in route')
+	if (route.name == null || route.name === '') throw new Error('Missing name property in route')
 
 	// Check if route has a path and a handler
-	if (route.path==null) throw new Error(`Missing path property in route '${ route.name }'`)
-	if (route.handler==null) throw new Error(`Missing handler property in route '${ route.name }'`)
+	if (route.path == null) throw new Error(`Missing path property in route '${ route.name }'`)
+	if (route.handler == null) throw new Error(`Missing handler property in route '${ route.name }'`)
 
 	// Check if path is relative
-	if (path.isAbsolute(route.path)===true) throw new Error(`Path in route '${ route.name }' must be relative`)
+	if (path.isAbsolute(route.path) === true) throw new Error(`Path in route '${ route.name }' must be relative`)
 
 	// Check if handler is a string or function
-	if (typeof route.handler==='string') route.handler = require(route.handler)
-	if (typeof route.handler!=='function') throw new Error(`Handler in route '${ route.name }' is not a function nor a string`)
+	if (typeof route.handler === 'string') route.handler = require(route.handler)
+	if (typeof route.handler !== 'function') throw new Error(`Handler in route '${ route.name }' is not a function nor a string`)
 
 	// Provide fallbacks
-	if (route.opts==null) route.opts = {}
+	if (route.opts == null) route.opts = {}
 
 	return route
 
@@ -61,11 +61,11 @@ const _opts = function(opts = {}) {
 
 	// Set default value when an option is missing or has an incorrect type
 	return {
-		ignore: (Array.isArray(opts.ignore)===true ? opts.ignore : []),
-		static: (Array.isArray(opts.static)===true ? opts.static : []),
-		verbose: (opts.verbose===true ? true : false),
-		open: (typeof opts.open==='string' || opts.open===true ? true : false),
-		path: (typeof opts.open==='string' ? opts.open : null)
+		ignore: (Array.isArray(opts.ignore) === true ? opts.ignore : []),
+		static: (Array.isArray(opts.static) === true ? opts.static : []),
+		verbose: opts.verbose === true,
+		open: typeof opts.open === 'string' || opts.open === true,
+		path: (typeof opts.open === 'string' ? opts.open : null)
 	}
 
 }
@@ -79,9 +79,9 @@ const _opts = function(opts = {}) {
 const _next = function(next) {
 
 	// Ensure that next is a function
-	if (typeof next!=='function') next = (err) => {
+	if (typeof next !== 'function') next = (err) => {
 
-		if (err!=null) throw err
+		if (err != null) throw err
 
 	}
 

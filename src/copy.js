@@ -63,12 +63,12 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 		const isJunk = junk.is(fileName)
 
 		// Copy file when it's not ignored or not junk
-		const copy = isIgnored===false && isJunk===false
+		const copy = isIgnored === false && isJunk === false
 
-		if (opts.verbose===true) {
+		if (opts.verbose === true) {
 
-			if (copy===false) log(`{cyan:Skipping file: {grey:${ filePath }`)
-			if (copy===true) log(`{cyan:Copying file: {grey:${ filePath }`)
+			if (copy === false) log(`{cyan:Skipping file: {grey:${ filePath }`)
+			if (copy === true) log(`{cyan:Copying file: {grey:${ filePath }`)
 
 		}
 

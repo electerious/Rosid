@@ -51,7 +51,7 @@ const eventHandler = function(bs, event, filePath) {
 	const fileExtension = path.extname(filePath)
 
 	// Ignore change when filePath is junk
-	if (junk.is(fileName)===true) return
+	if (junk.is(fileName) === true) return
 
 	// Flush the cache no matter what event was send by Chokidar.
 	// This ensures that we serve the latest files when the user reloads the site.
@@ -65,7 +65,7 @@ const eventHandler = function(bs, event, filePath) {
 	]
 
 	// Reload stylesheets when the file extension is a known style extension
-	if (styleExtensions.includes(fileExtension)===true) return bs.reload('*.css')
+	if (styleExtensions.includes(fileExtension) === true) return bs.reload('*.css')
 
 	const imageExtensions = [
 		'.png',
@@ -77,7 +77,7 @@ const eventHandler = function(bs, event, filePath) {
 	]
 
 	// Reload images when the file extension is a known image extension supported by Browsersync
-	if (imageExtensions.includes(fileExtension)===true) return bs.reload(`*${ fileExtension }`)
+	if (imageExtensions.includes(fileExtension) === true) return bs.reload(`*${ fileExtension }`)
 
 	bs.reload()
 
@@ -95,7 +95,7 @@ const eventHandler = function(bs, event, filePath) {
  */
 module.exports = function(srcPath, rewrite, redirect, opts, next) {
 
-	if (browserSync==null) {
+	if (browserSync == null) {
 		return next(new Error('Rosid has been installed without optionalDependencies. Make sure that all optionalDependencies are installed before serving a site.'))
 	}
 

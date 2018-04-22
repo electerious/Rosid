@@ -13,13 +13,13 @@ const log = require('./log')
  */
 module.exports = function(filePath, data, opts, next) {
 
-	if (opts.verbose===true) log(`{cyan:Saving file: {grey:${ filePath }`)
+	if (opts.verbose === true) log(`{cyan:Saving file: {grey:${ filePath }`)
 
 	fse.outputFile(filePath, data, (err) => {
 
-		if (err!=null) return next(err)
+		if (err != null) return next(err)
 
-		if (opts.verbose===true) log(`{cyan:Saved file: {grey:${ filePath }`)
+		if (opts.verbose === true) log(`{cyan:Saved file: {grey:${ filePath }`)
 
 		next()
 

@@ -28,13 +28,13 @@ module.exports = function(routes, srcPath) {
 		const route = matches[0]
 
 		// Continue without a rewrite when no matching route has been found
-		if (route==null) return next()
+		if (route == null) return next()
 
 		// The cache might already contain the compiled file
 		const fileCache = cache.get(fileRoute)
 
 		// Use cached handler response when available
-		if (fileCache!=null) {
+		if (fileCache != null) {
 
 			log(`{cyan:Using cached handler: {magenta:${ route.name } {grey:${ fileRoute }`)
 
@@ -48,9 +48,9 @@ module.exports = function(routes, srcPath) {
 		// Load file with a different extension as filePath points to the target extension
 		const fileLoad = (() => {
 
-			const hasFn = (typeof route.handler.in==='function')
+			const hasFn = (typeof route.handler.in === 'function')
 
-			return (hasFn===true ? rename(filePath, route.handler.in(route.opts)) : filePath)
+			return (hasFn === true ? rename(filePath, route.handler.in(route.opts)) : filePath)
 
 		})()
 
@@ -60,7 +60,7 @@ module.exports = function(routes, srcPath) {
 		// Execute handler
 		execute(route, fileRoute, fileLoad, false, (err, data) => {
 
-			if (err!=null) return next(err)
+			if (err != null) return next(err)
 
 			send(res, contentType, data)
 

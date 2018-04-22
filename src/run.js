@@ -28,7 +28,7 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 		const route = matches[0]
 
 		// Return resolved promise when no matching route found
-		if (route==null) return Promise.resolve()
+		if (route == null) return Promise.resolve()
 
 		// Save file in distPath at the same location as in srcPath,
 		// but with a different extension.
@@ -38,9 +38,9 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 			const fileDist = filePath.replace(srcPath, distPath)
 
 			// Check if fn exists
-			const hasFn = (typeof route.handler.out==='function')
+			const hasFn = (typeof route.handler.out === 'function')
 
-			return (hasFn===true ? rename(fileDist, route.handler.out(route.opts)) : fileDist)
+			return (hasFn === true ? rename(fileDist, route.handler.out(route.opts)) : fileDist)
 
 		})()
 
@@ -50,12 +50,12 @@ module.exports = function(routes, srcPath, distPath, opts, next) {
 			// Execute handler
 			execute(route, fileRoute, filePath, true, (err, data) => {
 
-				if (err!=null) return reject(err)
+				if (err != null) return reject(err)
 
 				// Save file to disk
 				save(fileSave, data, opts, (err) => {
 
-					if (err!=null) return reject(err)
+					if (err != null) return reject(err)
 
 					resolve()
 

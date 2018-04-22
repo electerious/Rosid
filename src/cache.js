@@ -39,12 +39,12 @@ const _flush = function(filePath) {
 	cache.forEach((value, key) => {
 
 		// Delete entry directly when no caching information available
-		if (value.cache==null) return cache.delete(key)
+		if (value.cache == null) return cache.delete(key)
 
 		// Look if the current entry is affected by the file path
 		const isAffected = mm.any(filePath, value.cache)
 
-		if (isAffected===true) cache.delete(key)
+		if (isAffected === true) cache.delete(key)
 
 	})
 
