@@ -4,7 +4,7 @@
 
 Just-in-time server and static site generator written in [Node.js](https://nodejs.org/). Rosid transforms your files on-the-fly before serving them to the browser.
 
-![Terminal and browser](https://l.electerious.com/uploads/big/416d22f9cbd3e997a08a95ec1c80d062.png)
+![Terminal and browser](https://s.electerious.com/images/rosid/readme.png)
 
 ## Contents
 
