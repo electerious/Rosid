@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "find-up": "^3.0.0",
-    "fs-extra": "^6.0.0",
+    "fs-extra": "^7.0.0",
     "is-path-inside": "^2.0.0",
     "junk": "^2.1.0",
     "klaw": "^2.1.1",
