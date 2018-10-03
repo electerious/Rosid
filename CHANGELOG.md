@@ -39,7 +39,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [9.0.0] - 2017-07-31
 
-### New
+### Added
 
 - Added `static` option to disable browser reload for specific files
 - CLI examples
@@ -55,7 +55,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [8.0.0] - 2017-07-19
 
-### New
+### Added
 
 - Documentation for patterns
 - Reload browser when a file has been added or removed
