@@ -56,6 +56,7 @@ Handlers build for Rosid:
 - ⚙️ [rosid-handler-njk](https://github.com/electerious/rosid-handler-njk): Load Nunjucks templates and render them.
 - ⚙️ [rosid-handler-twig](https://github.com/electerious/rosid-handler-twig): Load Twig templates and render them.
 - ⚙️ [rosid-handler-malvid](https://github.com/comwrap/rosid-handler-malvid): UI to help you build and document web components.
+- ⚙️ [rosid-handler-postcss](https://github.com/omarkhatibco/rosid-handler-postcss): Load CSS and transform it using Post CSS.
 
 Sites powered by Rosid:
 
