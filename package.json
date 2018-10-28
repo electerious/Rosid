@@ -38,7 +38,7 @@
     "mime": "^2.3.1",
     "mri": "^1.1.0",
     "nice-try": "^2.0.0",
-    "rename-extension": "^2.0.3",
+    "rename-extension": "^3.0.0",
     "run-series": "^1.1.6",
     "tfunk": "^3.1.0"
   },
