@@ -32,7 +32,7 @@
     "find-up": "^3.0.0",
     "fs-extra": "^7.0.1",
     "is-path-inside": "^2.0.0",
-    "junk": "^2.1.0",
+    "junk": "^3.0.0",
     "klaw": "^3.0.0",
     "micromatch": "^3.1.10",
     "mime": "^2.4.0",
