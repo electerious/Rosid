@@ -29,12 +29,12 @@
     "test": "nyc node_modules/mocha/bin/_mocha --exit"
   },
   "dependencies": {
-    "find-up": "^3.0.0",
-    "fs-extra": "^7.0.1",
-    "is-path-inside": "^2.1.0",
+    "find-up": "^4.0.0",
+    "fs-extra": "^8.0.0",
+    "is-path-inside": "^3.0.0",
     "junk": "^3.0.0",
     "klaw": "^3.0.0",
-    "micromatch": "^3.1.10",
+    "micromatch": "^4.0.2",
     "mime": "^2.4.2",
     "mri": "^1.1.4",
     "nice-try": "^2.0.0",
