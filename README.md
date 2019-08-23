@@ -52,6 +52,7 @@ Handlers build for Rosid:
 - ⚙️ [rosid-handler-js](https://github.com/electerious/rosid-handler-js): Load, transform, bundle and compress JS.
 - ⚙️ [rosid-handler-node](https://github.com/electerious/rosid-handler-node): Load JS and transform to HTML.
 - ⚙️ [rosid-handler-sass](https://github.com/electerious/rosid-handler-sass): Load SASS and transform to CSS, add vendor prefixes and minify.
+- ⚙️ [rosid-handler-less](https://github.com/freedeebee/rosid-handler-less): Load LESS and transform to CSS, add vendor prefixes and minify.
 - ⚙️ [rosid-handler-ejs](https://github.com/electerious/rosid-handler-ejs): Load EJS templates and render them.
 - ⚙️ [rosid-handler-njk](https://github.com/electerious/rosid-handler-njk): Load Nunjucks templates and render them.
 - ⚙️ [rosid-handler-twig](https://github.com/electerious/rosid-handler-twig): Load Twig templates and render them.
@@ -68,6 +69,7 @@ Sites powered by Rosid:
 - 🌏 [basicLightbox](https://basiclightbox.electerious.com)
 - 🌍 [basicGrid](https://basicgrid.electerious.com)
 - 🌎 [Coffee Table](https://coffee.electerious.com)
+- 🌏 [Malvid](https://malvid.io)
 
 Guides for Rosid:
 
