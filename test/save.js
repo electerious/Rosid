@@ -4,7 +4,7 @@ const util = require('util')
 const os = require('os')
 const fs = require('fs')
 const assert = require('chai').assert
-const uuid = require('uuid/v4')
+const uuid = require('uuid').v4
 const save = require('./../src/save')
 
 const fsify = require('fsify')({

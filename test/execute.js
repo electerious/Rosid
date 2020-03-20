@@ -3,7 +3,7 @@
 const os = require('os')
 const path = require('path')
 const assert = require('chai').assert
-const uuid = require('uuid/v4')
+const uuid = require('uuid').v4
 const execute = require('./../src/execute')
 
 const randomPath = () => path.resolve(os.tmpdir(), uuid())

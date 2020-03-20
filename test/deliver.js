@@ -3,7 +3,7 @@
 const util = require('util')
 const os = require('os')
 const assert = require('chai').assert
-const uuid = require('uuid/v4')
+const uuid = require('uuid').v4
 const deliver = require('./../src/deliver')
 
 const fsify = require('fsify')({
