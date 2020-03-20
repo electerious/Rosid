@@ -38,7 +38,7 @@
     "mime": "^2.4.2",
     "mri": "^1.1.4",
     "nice-try": "^2.0.0",
-    "rename-extension": "^3.0.0",
+    "rename-extension": "^4.0.0",
     "run-series": "^1.1.6",
     "tfunk": "^3.1.0"
   },
@@ -48,7 +48,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "coveralls": "^3.0.3",
-    "fsify": "^3.0.0",
+    "fsify": "^4.0.0",
     "mocha": "^7.0.1",
     "nyc": "^15.0.0",
     "uuid": "^7.0.0"
