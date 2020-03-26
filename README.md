@@ -69,7 +69,7 @@ Sites powered by Rosid:
 - 🌏 [basicLightbox](https://basiclightbox.electerious.com)
 - 🌍 [basicGrid](https://basicgrid.electerious.com)
 - 🌎 [Coffee Table](https://coffee.electerious.com)
-- 🌏 [Malvid](https://malvid.io)
+- 🌏 [Malvid](https://malvid.electerious.com)
 
 Guides for Rosid:
 
